@@ -1,7 +1,5 @@
 class Api::SessionsController < ApplicationController
-  before_action :require_login, only: :destroy
-  before_action :require_logout, only: :create
-
+  
   def create
     @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
     if @user
