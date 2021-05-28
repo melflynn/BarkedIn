@@ -1,7 +1,7 @@
 import React from "react";
 import HomePage from './home_page/home_page';
 import { Route } from 'react-router-dom';
-import { LogoutAuthRoute } from '../util/logout_auth_util';
+import { LogoutAuthRoute } from '../util/auth_util';
 import LoginContainer from './session_form/login_container';
 import SignupContainer from './session_form/signup_container';
 
