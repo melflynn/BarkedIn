@@ -33,14 +33,14 @@ class SessionForm extends React.Component {
     if (this.props.formType === "login") {
       header = (
         <header className="login-form-header">
-          <img src="#" alt="BarkedInLogo" />
+          <img src="#" alt="in-logo" />
         </header>
       )
       submitText = "Sign In"
     } else if (this.props.formType === "signup1") {
       header = (
         <header className="signup-form-header">
-          <img src="#" alt="BarkedInLogo" />
+          <img src="#" alt="in-logo" />
           <h2>Make the most of your professional life</h2>
         </header>
       )

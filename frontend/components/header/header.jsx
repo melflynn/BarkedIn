@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Header = (props) => (
   <header>
     <Link to="/">
-      <img src="#" alt="BarkedInLogo" />
+      <img src="#" alt="in-logo" />
     </Link>
     <nav className="header-nav">
       <Link to="/feed">

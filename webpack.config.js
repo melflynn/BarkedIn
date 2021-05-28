@@ -9,13 +9,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: [/\.jsx?$/],
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
           presets: ['@babel/env', '@babel/react']
         }
-      }
+      },
     ]
   },
   devtool: 'source-map',
