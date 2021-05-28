@@ -16,8 +16,10 @@ const HomePage = () => (
           <Link to="/login" className="login-nav">Sign In</Link>
         </section>
       </nav>
-      <h1>Welcome to your professional community</h1>
     </header>
+    <section className="home-page">
+      <h1>Welcome to your professional community</h1>
+    </section>
   </div>
 )
 

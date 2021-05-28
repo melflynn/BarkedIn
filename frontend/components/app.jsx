@@ -8,7 +8,7 @@ import FeedContainer from './home_page/feed_container';
 
 const App = () => (
   <div>
-    <LogoutAuthRoute path="/" component={HomePage} />
+    <LogoutAuthRoute exact path="/" component={HomePage} />
     <LoginAuthRoute path="/feed" component={FeedContainer} />
     <LogoutAuthRoute path="/login" component={LoginContainer} />
     <LogoutAuthRoute path="/signup" component={SignupContainer} />

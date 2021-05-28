@@ -2,16 +2,63 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$main-blue: #0a66c2;
+$second-blue: #2977c9;
+$lightest-blue: rgba(112,181,249,0.15);
+$light-grey: rgba(0,0,0,0.6);
+$dark-grey: rgba(0,0,0,0.9);
+$lightest-grey: rgba(0,0,0,0.08);
+$sans-serif: helvetica, arial, sans-serif;
+
 nav {
   display: flex;
   justify-content: space-between;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+  font-size: 16px;
+  font-weight: 550;
+  font-family: $sans-serif;
 }
 
-.signup-nav a {
-  color: $grey;
+.signup-nav {
+  color: $light-grey;
+  padding: 0 8px;
+  border-radius: 4px;
+  padding: 7px 7px;
+  margin-right: 4px;
 }
 
-.signup-nav a:hover {
+.signup-nav:hover {
   color: $dark-grey;
-  background-color: $light-grey;
+  background-color: $lightest-grey;
+  
+}
+
+.login-nav {
+  color: $main-blue;
+  border: 1px solid $main-blue;
+  border-radius: 24px;
+  padding: 7px 14px;
+}
+
+.login-nav:hover {
+  color: $main-blue;
+  border: 2px solid $main-blue;
+  border-radius: 24px;
+  padding: 6px 13px;
+  background-color: $lightest-blue;
+}
+
+.home-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+  h1 {
+    color: $second-blue;
+    font-family: $sans-serif;
+    font-size: 56px;
+    margin: auto;
+    font-weight: 200;
+  }
 }

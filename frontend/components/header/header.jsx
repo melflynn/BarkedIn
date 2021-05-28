@@ -4,17 +4,19 @@ import { Link } from 'react-router-dom';
 
 const Header = (props) => (
   <header>
-    <Link to="/">
-      <img src="#" alt="in-logo" />
-    </Link>
-    <nav className="header-nav">
-      <Link to="/feed">
-        <i>Home</i>
+    <nav>
+      <Link to="/">
+        <img src="#" alt="in-logo" />
       </Link>
-      <Link to="#">
-        <i>Network</i>
-      </Link>
-      <MeDropdown user={props.user} logout={props.logout}/>
+      <nav className="header-nav">
+        <Link to="/feed">
+          <i>Home</i>
+        </Link>
+        <Link to="#">
+          <i>Network</i>
+        </Link>
+        <MeDropdown user={props.user} logout={props.logout}/>
+      </nav>
     </nav>
   </header>
 )

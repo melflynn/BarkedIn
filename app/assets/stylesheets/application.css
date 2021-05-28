@@ -14,10 +14,6 @@
  *= require_self
  */
 
- @import 'base/reset.scss';
-
- @import 'base/colors.scss';
- @import 'base/fonts.scss';
-
- @import '/*';
- @import 'api/*';
+ body {
+   margin-left: 50px;
+ }
