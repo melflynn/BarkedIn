@@ -24,7 +24,17 @@ class User < ApplicationRecord
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
-    user && user.is_password?(password) ? user : nil
+    if user && user.is_password?(password)
+      return user
+    elsif user.nil?
+      return {email: 'Please enter a valid username'}
+    elsif password.nil? || password.empty?
+      return {password: 'Please enter a password'}
+    elsif password.length < 6
+      return {password: 'The password you provided must have at least 6 characters.'}
+    else 
+      return {password: "That's not the right password. Try again"}
+    end
   end
 
   def is_password?(password)

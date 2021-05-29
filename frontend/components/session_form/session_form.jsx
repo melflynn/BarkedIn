@@ -37,18 +37,16 @@ class SessionForm extends React.Component {
       header = (
         <header className="login-form-header">
           <img src="#" alt="in-logo" />
-          <h3>Sign in</h3>
-          <h4>Stay updated on your professional world</h4>
         </header>
       );
       passwordText = "Password";
       submitText = "Sign In";
       redirectLogin = (
         <p>New to BarkedIn? <Link to="/signup">Join now</Link></p>
-      );
-    } else if (this.props.formType === "signup1") {
-      header = (
-        <header className="signup-form-header">
+        );
+      } else if (this.props.formType === "signup1") {
+        header = (
+          <header className="top-form-text">
           <img src="#" alt="in-logo" />
           <h2>Make the most of your professional life</h2>
         </header>
@@ -57,19 +55,27 @@ class SessionForm extends React.Component {
       submitText = "Agree & Join";
       redirectLogin = (
         <p>Already on BarkedIn? <Link to="/login">Sign In</Link></p>
-      );
-    }
-
-    return (
-      <div className="signup-page">
+        );
+      }
+      
+      return (
+        <div className="signup-page">
         {header}
         <form>
+          {this.props.formType === "login" ? (
+            <div>
+              <h3 className="top-form-text">Sign in</h3>
+              <h4 className="top-form-text">Stay updated on your professional world</h4>
+            </div>
+          ) : '' }
           <label>Email
-            <input type="text" value={this.state.email} onChange={this.updateItem('email')} />
+            <input type="text" className={ this.props.errors.email ? 'login-input-errors' : '' } value={this.state.email} onChange={this.updateItem('email')} />
           </label>
+          {this.props.errors.email ? <p className="login-errors">{this.props.errors.email}</p> : ''}
           <label>{passwordText}
-            <input type="password" value={this.state.password} onChange={this.updateItem('password')} />
+            <input type="password" className={this.props.errors.password ? 'login-input-errors' : ''} value={this.state.password} onChange={this.updateItem('password')} />
           </label>
+          {this.props.errors.password ? <p className="login-errors">{this.props.errors.password}</p> : ''}
           <button onClick={this.handleSubmit}>{submitText}</button>
         </form>
         {redirectLogin}
