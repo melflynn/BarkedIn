@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const HomePage = () => (
   <div>
     <header>
-      <nav>
+      <nav className="home-page-nav">
         <section className="right-nav">
           <Link to="/">
             <img src="#" alt="in-logo" />

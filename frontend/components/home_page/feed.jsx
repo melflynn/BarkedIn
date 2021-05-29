@@ -4,7 +4,7 @@ import HeaderContainer from '../header/header_container';
 class Feed extends React.Component {
 
   render () {
-    return <div>
+    return <div className="feed-page">
       <HeaderContainer />
     </div>
   }

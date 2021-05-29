@@ -1,5 +1,7 @@
 /* PHASE 1: Reset */
 
+$sans-serif: helvetica, arial, sans-serif;
+
 html, body, header, nav, h1, a,
 ul, li, strong, main, button, i,
 section, img, div, h2, p, form,
@@ -10,6 +12,7 @@ span, article, footer, time, small, h3 {
   border: 0;
   outline: none;
   font: inherit;
+  font-family: $sans-serif;
   color: inherit;
   text-align: inherit;
   text-decoration: inherit;
