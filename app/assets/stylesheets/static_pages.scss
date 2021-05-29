@@ -83,8 +83,12 @@ nav {
   .top-form-text, header {
     color: $dark-grey;
     font-size: 28px;
-    margin: 10px;
-    width: 100%;
+    margin: 20px;
+    width: 150%;
+
+    h2 {
+      margin-top: 20px;
+    }
 
   }
   
@@ -96,16 +100,18 @@ nav {
     border-radius: 3px;
     padding: 10px;
     align-items: center;
+    background-color: white;
     
     div {
-      width: 80%;
-      padding: 20px 10px;
+      width: 90%;
       padding-bottom: 10px;
     }
 
     h3.top-form-text {
       font-weight: 700;
       text-align: left;
+      width: 100%;
+      margin-left: 10px;
     }
   
     h4.top-form-text {
@@ -123,19 +129,34 @@ nav {
       padding-bottom: 0px;
       text-align: left;
       color: $light-grey;
+
     }
-  
+    
+    label.login-label {
+      border: 1px solid $light-grey;
+      border-radius: 4px;
+      margin: 5px;
+    }
+
     input {
       width: 100%;
       height: 25px;
       border: 1px solid $light-grey;
       border-radius: 4px;
     }
+
+    input.login-input {
+      border: none;
+    }
     
-    input.login-input-errors {
+    input.login-input-errors, label.login-input-errors {
       border: 1px solid $error-red;
     }
 
+    label.login-input-errors {
+      color: $error-red;
+    }
+    
     button {
       background-color: $main-blue;
       color: white;
@@ -181,6 +202,7 @@ nav {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: -1;
 
   header {
     background-color: white;

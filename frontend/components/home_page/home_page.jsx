@@ -18,7 +18,7 @@ const HomePage = () => (
       </nav>
     </header>
     <section className="home-page">
-      <h1>Welcome to your professional community</h1>
+      <h1>Welcome to your <p>p<i className="fas fa-paw" style={{ 'fontSize': '40px' }}></i>wfessional</p> community</h1>
     </section>
   </div>
 )
