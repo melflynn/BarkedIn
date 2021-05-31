@@ -61,7 +61,13 @@ class SignupForm extends React.Component {
           errors: {}
       })
     } else {
-      const user = Object.assign({}, this.state);
+      const user = {
+        email: this.state.email,
+        password: this.state.password,
+        first_name: this.state.firstName,
+        last_name: this.state.lastName
+      };
+      console.log(user);
       this.props.formAction(user);
     }
     
@@ -81,8 +87,8 @@ class SignupForm extends React.Component {
       this.state.errors.firstInput = this.state.errors.email;
       this.state.errors.secondInput = this.state.errors.password;
     } else {
-      firstInput = 'first name';
-      secondInput = 'last name';
+      firstInput = 'firstName';
+      secondInput = 'lastName';
       button = 'continue';
       this.state.firstInput = this.state.firstName;
       this.state.secondInput = this.state.lastName;
