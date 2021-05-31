@@ -11,10 +11,29 @@ class SignupForm extends React.Component {
       lastName: '',
       email: '',
       password: '',
-      errors: {}
+      errors: {},
+      emailAndPassword: false
     }
     this.updateItem = this.updateItem.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
+  }
+
+  // componentDidUpdate () {
+  //   if (this.props.errors.includes("Email has already been taken")) {
+  //     this.setState({
+  //       emailAndPassword: false,
+  //       errors: {
+  //         email: "Someone's already using that email"
+  //       }
+  //     })
+  //   }
+  // }
+
+  demoLogin (e) {
+    e.preventDefault();
+    const user = {email: 'demodog@dogs.com', password: 'password'};
+    this.props.demoLogin(user);
   }
 
   updateItem(type) {
@@ -61,14 +80,14 @@ class SignupForm extends React.Component {
           errors: {}
       })
     } else {
-      const user = {
-        email: this.state.email,
-        password: this.state.password,
-        first_name: this.state.firstName,
-        last_name: this.state.lastName
-      };
-      console.log(user);
-      this.props.formAction(user);
+        const user = {
+          email: this.state.email,
+          password: this.state.password,
+          first_name: this.state.firstName,
+          last_name: this.state.lastName
+        };
+        console.log(user);
+        this.props.formAction(user);
     }
     
   }
@@ -78,10 +97,12 @@ class SignupForm extends React.Component {
     let firstInput;
     let secondInput;
     let button;
+    let demo;
     if (!this.state.emailAndPassword) {
       firstInput = 'email';
       secondInput = 'password';
       button = "Agree & Join";
+      demo = <button onClick={this.demoLogin}>Demo User</button>
       this.state.firstInput = this.state.email;
       this.state.secondInput = this.state.secondInput;
       this.state.errors.firstInput = this.state.errors.email;
@@ -112,6 +133,7 @@ class SignupForm extends React.Component {
             </label>
             {this.state.errors.secondInput ? <p className="login-errors">{this.state.errors.secondInput}</p> : ''}
             <button onClick={this.handleSubmit}>{button}</button>
+            {this.state.emailAndPassword ? '' : demo}
           </form>
           <p>Already on BarkedIn? <Link to="/login">Sign In</Link></p>
         </div>
