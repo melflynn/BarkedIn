@@ -12,10 +12,8 @@ class SignupForm extends React.Component {
       errors: {},
       emailAndPassword: false
     }
-    this.updateItem = this.updateItem.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
-    this.validateEmail = this.validateEmail.bind(this);
   }
 
   validateEmail () {
@@ -142,7 +140,7 @@ class SignupForm extends React.Component {
     if (!this.state.emailAndPassword) {
       firstInput = 'email';
       secondInput = 'password';
-      button = "Agree & Join";
+      button = "Join";
       demo = <button id="demo-login" onClick={this.demoLogin}>Demo User</button>
       this.state.firstInput = this.state.email;
       this.state.secondInput = this.state.password;
