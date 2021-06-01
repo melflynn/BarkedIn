@@ -1,7 +1,5 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { Link } from 'react-router-dom';
-import SignupForm2 from './signup_form_2';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -37,8 +35,26 @@ class SignupForm extends React.Component {
 
   demoLogin (e) {
     e.preventDefault();
+    // debugger;
+    const email = 'demodog@dogs.com'.split('');
+    email.forEach((input, i) => {
+      setTimeout(() => {
+        let emailVal = $('#email').val();
+        emailVal += input;
+        $('#email').val(emailVal);
+      }, 100 * i);
+    })
+    const password = 'password'.split('');
+    password.forEach((input, i) => {
+      setTimeout(() => {
+        let passwordVal = $('#password').val();
+        passwordVal += input;
+        $('#password').val(passwordVal);
+      }, 100 * i);
+    })
+
     const user = {email: 'demodog@dogs.com', password: 'password'};
-    this.props.demoLogin(user);
+    setTimeout(() => this.props.demoLogin(user), 1700);
   }
 
   updateItem(type) {
@@ -94,7 +110,8 @@ class SignupForm extends React.Component {
           first_name: this.state.firstName,
           last_name: this.state.lastName
         };
-        this.props.formAction(user);
+        this.props.formAction(user)
+          .then((errors) => console.log(errors));
       } else {
         this.setState({
           errors: page2Errors
@@ -105,7 +122,6 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    // this.validateEmail();
     let firstInput;
     let secondInput;
     let button;
@@ -139,11 +155,11 @@ class SignupForm extends React.Component {
           </header>
           <form>
             <label>{firstInput === 'email' ? 'Email' : 'First Name'}
-                <input type="text" className={this.state.errors.firstInput ? 'login-input-errors' : ''} value={this.state.firstInput} onChange={this.updateItem(firstInput)} />
+                <input type="text" id={firstInput === 'email' ? 'email' : ''}className={this.state.errors.firstInput ? 'login-input-errors' : ''} value={this.state.firstInput} onChange={this.updateItem(firstInput)} />
             </label>
             {this.state.errors.firstInput ? <p className="login-errors">{this.state.errors.firstInput}</p> : ''}
             <label>{secondInput === 'password' ? "Password (6 or more characters)" : "Last Name"}
-                <input type={secondInput === "password" ? "password" : "text"} className={this.state.errors.secondInput ? 'login-input-errors' : ''} value={this.state.secondInput} onChange={this.updateItem(secondInput)} />
+                <input type={secondInput === "password" ? "password" : "text"} id={secondInput === 'password' ? 'password' : ''} className={this.state.errors.secondInput ? 'login-input-errors' : ''} value={this.state.secondInput} onChange={this.updateItem(secondInput)} />
             </label>
             {this.state.errors.secondInput ? <p className="login-errors">{this.state.errors.secondInput}</p> : ''}
             <button onClick={this.handleSubmit}>{button}</button>
