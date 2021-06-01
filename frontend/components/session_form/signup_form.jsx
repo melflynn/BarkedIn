@@ -17,16 +17,21 @@ class SignupForm extends React.Component {
     this.updateItem = this.updateItem.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
+    // this.validateEmail = this.validateEmail.bind(this);
   }
 
-  // componentDidUpdate () {
-  //   if (this.props.errors.includes("Email has already been taken")) {
+  // validateEmail () {
+  //   if (this.props.errors.email) {
+  //     this.props.receiveErrors({});
   //     this.setState({
-  //       emailAndPassword: false,
-  //       errors: {
-  //         email: "Someone's already using that email"
-  //       }
+  //       firstName: '',
+  //       lastName: '',
+  //       email: '',
+  //       password: '',
+  //       errors: {},
+  //       emailAndPassword: false
   //     })
+  //     alert("Someone's already using that email.");
   //   }
   // }
 
@@ -47,53 +52,60 @@ class SignupForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (!this.state.email) {
+    if (!this.state.emailAndPassword) {
+      let page1Errors = {};
+
+      if (!this.state.email) {
+        page1Errors['email'] = 'Please enter your email address';
+      }
+
       if (!this.state.password) {
+        page1Errors['password'] = 'Please enter your password';
+      } else if (this.state.password.length < 6) {
+        page1Errors['password'] = 'Password must be 6 characters or more';
+      }
+
+      if (Object.keys(page1Errors).length === 0) {
         this.setState({
-          errors: {
-            email: 'Please enter your email address',
-            password: 'Please enter your password'
-          }
+          emailAndPassword: true,
+          errors: {}
         })
       } else {
         this.setState({
-          errors: {
-            email: 'Please enter your email address'
-          }
+          errors: page1Errors
         })
       }
-    } else if (!this.state.password) {
-      this.setState({
-        errors: {
-          password: 'Please enter your password'
-        }
-      })
-    } else if (this.state.password.length < 6) {
-      this.setState({
-        errors: {
-          password: 'Password must be 6 characters or more'
-        }
-      })
-    } else if (!this.state.emailAndPassword) {
-      this.setState({
-          emailAndPassword: true,
-          errors: {}
-      })
+
     } else {
+      let page2Errors = {};
+
+      if (!this.state.firstName) {
+        page2Errors['firstName'] = 'Please enter your first name.'
+      }
+
+      if (!this.state.lastName) {
+        page2Errors['lastName'] = 'Please enter your last name.'
+      }
+
+      if (Object.keys(page2Errors).length === 0) {
         const user = {
           email: this.state.email,
           password: this.state.password,
           first_name: this.state.firstName,
           last_name: this.state.lastName
         };
-        console.log(user);
         this.props.formAction(user);
+      } else {
+        this.setState({
+          errors: page2Errors
+        })
+      }
     }
     
   }
 
   render() {
-    console.log(this.state);
+    // this.validateEmail();
     let firstInput;
     let secondInput;
     let button;
@@ -113,6 +125,8 @@ class SignupForm extends React.Component {
       button = 'continue';
       this.state.firstInput = this.state.firstName;
       this.state.secondInput = this.state.lastName;
+      this.state.errors.firstInput = this.state.errors.firstName;
+      this.state.errors.secondInput = this.state.errors.lastName;
     }
 
     return (

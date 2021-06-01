@@ -39,12 +39,12 @@ class LoginForm extends React.Component {
                 <h3 className="top-form-text">Sign in</h3>
               <h4 className="top-form-text">Stay updated on your pawfessional world</h4>
               </div>
-            <label className={`login-label${this.props.errors.email ? ' login-input-errors' : ''}`} value={this.state.email}>Email
-              <input type="text" className="login-input" onChange={this.updateItem('email')} />
+            <label>
+              <input type="text" className={`${this.props.errors.email ? ' login-input-errors' : ''}`} value={this.state.email} placeholder="Email" onChange={this.updateItem('email')} />
             </label>
             {this.props.errors.email ? <p className="login-errors">{this.props.errors.email}</p> : ''}
-            <label className={`login-label${this.props.errors.password ? ' login-input-errors' : ''}`}>Password
-              <input type="password" className="login-input" value={this.state.password} onChange={this.updateItem('password')} />
+            <label>
+              <input type="password" className={`${this.props.errors.email ? ' login-input-errors' : ''}`} value={this.state.password} placeholder="Password" onChange={this.updateItem('password')} />
             </label>
             {this.props.errors.password ? <p className="login-errors">{this.props.errors.password}</p> : ''}
             <button onClick={this.handleSubmit}>Sign In</button>

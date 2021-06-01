@@ -131,12 +131,6 @@ nav {
       color: $light-grey;
 
     }
-    
-    label.login-label {
-      border: 1px solid $light-grey;
-      border-radius: 4px;
-      margin: 5px;
-    }
 
     input {
       width: 100%;
@@ -144,19 +138,11 @@ nav {
       border: 1px solid $light-grey;
       border-radius: 4px;
     }
-
-    input.login-input {
-      border: none;
-    }
     
-    input.login-input-errors, label.login-input-errors {
+    input.login-input-errors {
       border: 1px solid $error-red;
     }
 
-    label.login-input-errors {
-      color: $error-red;
-    }
-    
     button {
       background-color: $main-blue;
       color: white;
