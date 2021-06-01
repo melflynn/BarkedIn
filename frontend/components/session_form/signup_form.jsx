@@ -26,12 +26,18 @@ class SignupForm extends React.Component {
         email: '',
         password: '',
         errors: {
-          email: "Someone's already using that email."
+          alert: "Someone's already using that email."
         },
         emailAndPassword: false
       })
       this.props.receiveErrors({});
     }
+  }
+
+  resetErrors () {
+    this.setState({
+      errors: {}
+    })
   }
 
   demoLogin (e) {
@@ -123,6 +129,12 @@ class SignupForm extends React.Component {
 
   render() {
     this.validateEmail();
+
+    if (this.state.errors.alert) {
+      setTimeout(() => alert(this.state.errors.alert), 100);
+      setTimeout(() => this.resetErrors(), 101);
+    }
+
     let firstInput;
     let secondInput;
     let button;
