@@ -20,7 +20,7 @@ class MeDropdown extends React.Component {
         </div>
         <div id="me-dropdown">
           <p>{this.props.user.firstName} {this.props.user.lastName}</p>
-          <p>{this.props.user.jobTitle}</p>
+          <p>{this.props.user.breed}</p>
           <button onClick={this.props.logout}>Sign Out</button>
         </div>
       </div>
