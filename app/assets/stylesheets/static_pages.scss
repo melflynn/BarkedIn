@@ -149,8 +149,21 @@ nav {
       width: 80%;
       padding: 10px;
       border-radius: 24px;
-      margin-bottom: 40px;
       margin-top: 20px;
+    }
+
+    #demo-login {
+      background-color: white;
+      border: 1px solid $main-blue;
+      color: $main-blue;
+      margin-bottom: 20px;
+    }
+
+    #demo-login:hover {
+      color: $main-blue;
+      border: 2px solid $main-blue;
+      background-color: $lightest-blue;
+      padding: 9px;
     }
 
     button:hover {

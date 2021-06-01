@@ -15,27 +15,27 @@ class SignupForm extends React.Component {
     this.updateItem = this.updateItem.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
-    // this.validateEmail = this.validateEmail.bind(this);
+    this.validateEmail = this.validateEmail.bind(this);
   }
 
-  // validateEmail () {
-  //   if (this.props.errors.email) {
-  //     this.props.receiveErrors({});
-  //     this.setState({
-  //       firstName: '',
-  //       lastName: '',
-  //       email: '',
-  //       password: '',
-  //       errors: {},
-  //       emailAndPassword: false
-  //     })
-  //     alert("Someone's already using that email.");
-  //   }
-  // }
+  validateEmail () {
+    if (this.props.errors.email) {
+      this.setState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        errors: {
+          email: "Someone's already using that email."
+        },
+        emailAndPassword: false
+      })
+      this.props.receiveErrors({});
+    }
+  }
 
   demoLogin (e) {
     e.preventDefault();
-    // debugger;
     const email = 'demodog@dogs.com'.split('');
     email.forEach((input, i) => {
       setTimeout(() => {
@@ -122,6 +122,7 @@ class SignupForm extends React.Component {
   }
 
   render() {
+    this.validateEmail();
     let firstInput;
     let secondInput;
     let button;
@@ -130,9 +131,9 @@ class SignupForm extends React.Component {
       firstInput = 'email';
       secondInput = 'password';
       button = "Agree & Join";
-      demo = <button onClick={this.demoLogin}>Demo User</button>
+      demo = <button id="demo-login" onClick={this.demoLogin}>Demo User</button>
       this.state.firstInput = this.state.email;
-      this.state.secondInput = this.state.secondInput;
+      this.state.secondInput = this.state.password;
       this.state.errors.firstInput = this.state.errors.email;
       this.state.errors.secondInput = this.state.errors.password;
     } else {
@@ -159,7 +160,7 @@ class SignupForm extends React.Component {
             </label>
             {this.state.errors.firstInput ? <p className="login-errors">{this.state.errors.firstInput}</p> : ''}
             <label>{secondInput === 'password' ? "Password (6 or more characters)" : "Last Name"}
-                <input type={secondInput === "password" ? "password" : "text"} id={secondInput === 'password' ? 'password' : ''} className={this.state.errors.secondInput ? 'login-input-errors' : ''} value={this.state.secondInput} onChange={this.updateItem(secondInput)} />
+              <input type={secondInput === "password" ? "password" : "text"} id={secondInput === 'password' ? 'password' : ''} className={this.state.errors.secondInput ? 'login-input-errors' : ''} value={this.state.secondInput} onChange={this.updateItem(secondInput)} />
             </label>
             {this.state.errors.secondInput ? <p className="login-errors">{this.state.errors.secondInput}</p> : ''}
             <button onClick={this.handleSubmit}>{button}</button>
