@@ -60,29 +60,6 @@ class SignupForm extends React.Component {
     e.preventDefault();
     if (!this.state.emailAndPassword) {
       let page1Errors = {};
-      
-      if (!this.state.password) {
-        page1Errors['password'] = 'Please enter your password';
-      } else if (this.state.password.length < 6) {
-        page1Errors['password'] = 'Password must be 6 characters or more';
-      }
-
-      if (!this.state.email) {
-        page1Errors['email'] = 'Please enter your email address';
-      } else {
-        this.props.validateEmail(this.state.email)
-        .then(
-          (user) => {
-            if (user) {
-              page1Errors['email'] = "Someone's already using that email";
-            }
-            emailAndPasswordChecks();
-          },
-          () => emailAndPasswordChecks()
-        )
-      }
-
-
       const emailAndPasswordChecks = () => {
         if (Object.keys(page1Errors).length === 0) {
         this.setState({
@@ -95,6 +72,31 @@ class SignupForm extends React.Component {
           })
         }
       };
+      
+      if (!this.state.password) {
+        page1Errors['password'] = 'Please enter your password';
+      } else if (this.state.password.length < 6) {
+        page1Errors['password'] = 'Password must be 6 characters or more';
+      }
+
+      if (!this.state.email) {
+        page1Errors['email'] = 'Please enter your email address';
+        emailAndPasswordChecks();
+      } else {
+        this.props.validateEmail(this.state.email)
+          .then(
+            (user) => {
+              console.log(user);
+              if (user) {
+                page1Errors['email'] = "Someone's already using that email";
+              }
+              emailAndPasswordChecks();
+            },
+            () => emailAndPasswordChecks()
+          )
+      }
+
+
 
     } else {
       let page2Errors = {};
