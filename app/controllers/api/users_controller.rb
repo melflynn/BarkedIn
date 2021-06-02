@@ -16,8 +16,12 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:user_id])
-    render :show
+    @user = User.find_by(id: params[:id])
+    if @user
+      render :show
+    else
+      render json: {userId: 'User with the given id does not exist'}, status: 422
+    end
   end
 
   private
