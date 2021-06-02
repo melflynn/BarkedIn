@@ -140,7 +140,7 @@ class SignupForm extends React.Component {
         <div className="feed-page"></div>
         <div className="signup-page">
           <header className="top-form-text">
-            <img src="#" alt="in-logo" />
+            <img id="in-logo-signup" src={window.inLogoBeige} />
             <h2>Make the most of your p<i className="fas fa-paw" style={{ 'fontSize': '20px' }}></i>wfessional life</h2>
           </header>
           <form>

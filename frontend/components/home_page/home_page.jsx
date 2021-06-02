@@ -8,7 +8,7 @@ const HomePage = () => (
       <nav className="home-page-nav">
         <section className="right-nav">
           <Link to="/">
-            <img src="#" alt="in-logo" />
+            <img src={window.inLogoWhite} />
           </Link>
         </section>
         <section className="left-nav">

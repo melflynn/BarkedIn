@@ -8,6 +8,12 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
+  
+  <script type="text/javascript">
+    window.inLogoWhite = "<%= image_url('barked-in-logo-white.png') %>";
+    window.inLogoBeige = "<%= image_url('barked-in-logo-beige.png') %>";
+
+  </script>
 
   <body>
     <%= yield %>
