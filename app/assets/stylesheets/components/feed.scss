@@ -96,6 +96,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     padding: 20px;
+    width: 1000px;
 
     .user-sidebar {
       background-color: white;
@@ -103,6 +104,19 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 200px;
+      margin-right: 20px;
+
+      .profile-photo {
+        height: 80px;
+        width: 80px;
+
+        img {
+          object-fit: cover;
+          border-radius: 50%;
+
+        }
+      }
     }
   }
 }
