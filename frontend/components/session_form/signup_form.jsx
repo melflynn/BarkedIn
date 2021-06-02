@@ -16,27 +16,27 @@ class SignupForm extends React.Component {
     this.demoLogin = this.demoLogin.bind(this);
   }
 
-  validateEmail () {
-    if (this.props.errors.email) {
-      this.setState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        errors: {
-          alert: "Someone's already using that email."
-        },
-        emailAndPassword: false
-      })
-      this.props.receiveErrors({});
-    }
-  }
+  // validateEmail () {
+  //   if (this.props.errors.email) {
+  //     this.setState({
+  //       firstName: '',
+  //       lastName: '',
+  //       email: '',
+  //       password: '',
+  //       errors: {
+  //         alert: "Someone's already using that email."
+  //       },
+  //       emailAndPassword: false
+  //     })
+  //     this.props.receiveErrors({});
+  //   }
+  // }
 
-  resetErrors () {
-    this.setState({
-      errors: {}
-    })
-  }
+  // resetErrors () {
+  //   this.setState({
+  //     errors: {}
+  //   })
+  // }
 
   demoLogin (e) {
     e.preventDefault();
@@ -77,6 +77,8 @@ class SignupForm extends React.Component {
 
       if (!this.state.email) {
         page1Errors['email'] = 'Please enter your email address';
+      } else if (this.props.validateEmail(this.state.email)) {
+        page1Errors['email'] = "Someone's already using that email";
       }
 
       if (!this.state.password) {
@@ -115,7 +117,6 @@ class SignupForm extends React.Component {
           last_name: this.state.lastName
         };
         this.props.formAction(user)
-          .then((errors) => console.log(errors));
       } else {
         this.setState({
           errors: page2Errors
@@ -126,12 +127,12 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    this.validateEmail();
+    // this.validateEmail();
 
-    if (this.state.errors.alert) {
-      setTimeout(() => alert(this.state.errors.alert), 100);
-      setTimeout(() => this.resetErrors(), 101);
-    }
+    // if (this.state.errors.alert) {
+    //   setTimeout(() => alert(this.state.errors.alert), 100);
+    //   setTimeout(() => this.resetErrors(), 101);
+    // }
 
     let firstInput;
     let secondInput;
