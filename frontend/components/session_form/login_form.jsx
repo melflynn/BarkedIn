@@ -5,13 +5,41 @@ class LoginForm extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
       email: '',
       password: ''
     }
-    this.updateItem = this.updateItem.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
+  }
+
+  demoLogin (e) {
+    e.preventDefault();
+    this.setState({
+      email: '',
+      password: '',
+    });
+    $('.login-errors').text("");
+    $('#email').removeClass('login-input-errors');
+    $('#password').removeClass('login-input-errors');
+    const email = 'demodog@dogs.com'.split('');
+    email.forEach((input, i) => {
+      setTimeout(() => {
+        let emailVal = $('#email').val();
+        emailVal += input;
+        $('#email').val(emailVal);
+      }, 100 * i);
+    })
+    const password = 'password'.split('');
+    password.forEach((input, i) => {
+      setTimeout(() => {
+        let passwordVal = $('#password').val();
+        passwordVal += input;
+        $('#password').val(passwordVal);
+      }, 100 * i);
+    })
+
+    const user = { email: 'demodog@dogs.com', password: 'password' };
+    setTimeout(() => this.props.formAction(user), 1700);
   }
 
   updateItem(type) {
@@ -40,14 +68,15 @@ class LoginForm extends React.Component {
             <h4 className="top-form-text">Stay updated on your pawfessional world</h4>
             </div>
           <label>
-            <input type="text" className={`${this.props.errors.email ? ' login-input-errors' : ''}`} value={this.state.email} placeholder="Email" onChange={this.updateItem('email')} />
+            <input type="text" id="email" className={`${this.props.errors.email ? ' login-input-errors' : ''}`} value={this.state.email} placeholder="Email" onChange={this.updateItem('email')} />
           </label>
           {this.props.errors.email ? <p className="login-errors">{this.props.errors.email}</p> : ''}
           <label>
-            <input type="password" className={`${this.props.errors.password ? ' login-input-errors' : ''}`} value={this.state.password} placeholder="Password" onChange={this.updateItem('password')} />
+            <input type="password" id="password" className={`${this.props.errors.password ? ' login-input-errors' : ''}`} value={this.state.password} placeholder="Password" onChange={this.updateItem('password')} />
           </label>
           {this.props.errors.password ? <p className="login-errors">{this.props.errors.password}</p> : ''}
           <button onClick={this.handleSubmit}>Sign In</button>
+          <button id="demo-login" onClick={this.demoLogin}>Demo User</button>
         </form>
         <p>New to BarkedIn? <Link to="/signup">Join now</Link></p>
       </div>
