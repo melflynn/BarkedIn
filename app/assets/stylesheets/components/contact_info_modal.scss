@@ -34,6 +34,10 @@
     i {
       padding: 10px;
       font-size: 20px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -74,7 +78,6 @@
 
           &:last-child {
             color: $main-blue;
-            text-decoration: underline;
           }
         }
       }
