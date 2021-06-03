@@ -1,6 +1,7 @@
-header {
+.main-header {
     background-color: white;
     width: 100%;
+    border-bottom: 1px solid $lighter-grey;
 
     a {
       display: flex;
@@ -22,7 +23,13 @@ header {
         padding: 10px;
         padding-bottom: 5px;
         display: flex;
-        align-items: flex-end;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+
+        i {
+          font-size: 24px;
+        }
       }
 
       div {

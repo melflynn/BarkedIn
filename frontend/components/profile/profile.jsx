@@ -9,19 +9,23 @@ class Profile extends React.Component {
 
   render () {
     return (
-      <div className="profile">
+      <div className="profile-page">
         <HeaderContainer />
-        <section>
-          <div className="background">
-            <div></div>
-            <div></div>
-          </div>
-          <div>
-            <img src={this.props.user.profilePhotoUrl} />
-            <p>{this.props.user.firstName} {this.props.user.lastName}</p>
-            <p>{this.props.user.breed}</p>
-          </div>
-        </section>
+        <div className="profile">
+          <section>
+            <div className="background">
+              <div></div>
+              <div></div>
+            </div>
+            <div>
+              <img src={this.props.user.profilePhotoUrl} />
+              <h3>{this.props.user.firstName} {this.props.user.lastName}</h3>
+              <h4>{this.props.user.breed}</h4>
+              <p>{this.props.user.location }<p>•</p><p>Contact info</p></p>
+            </div>
+          </section>
+        </div>
+
       </div>
     )
   }

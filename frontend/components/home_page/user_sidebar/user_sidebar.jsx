@@ -9,7 +9,7 @@ const UserSidebar = (props) => (
     </div>
     <div>
       <p className="profile-photo"><img src={props.user.profilePhotoUrl} /></p>
-      <Link to="/users/18">{props.user.firstName} {props.user.lastName}</Link>
+      <Link to={`/users/${props.user.id}`}>{props.user.firstName} {props.user.lastName}</Link>
       <p>{props.user.breed}</p>
     </div>
   </div>
