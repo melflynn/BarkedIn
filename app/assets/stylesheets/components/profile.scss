@@ -1,0 +1,55 @@
+.profile {
+  background-color: $warm-gray-20;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  
+  section {
+    background-color: white;
+    border-radius: 5px;
+    width: 1000px;
+    height: 300px;
+    margin: auto;
+    margin-top: 40px;
+    display: grid;
+
+    .background {
+      display: flex;
+      flex-direction: column;
+      grid-column: 1;
+      grid-row: 1;
+      height: 100%;
+
+      div:first-child {
+        height: 100px;
+        background-color: green;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+    }
+
+    div:last-child {
+      padding-top: 10px;
+      grid-column: 1;
+      grid-row: 1;
+      background: transparent;
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      img {
+        height: 150px;
+        width: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid white;
+        margin-top: 40px;
+      }
+
+    }
+  }
+}

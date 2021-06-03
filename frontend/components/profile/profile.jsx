@@ -9,7 +9,7 @@ class Profile extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="profile">
         <HeaderContainer />
         <section>
           <div className="background">
