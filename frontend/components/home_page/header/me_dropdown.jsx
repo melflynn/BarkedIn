@@ -16,7 +16,11 @@ class MeDropdown extends React.Component {
     return (
       <div>
         <div id="me-dropdown-parent" onClick={this.dropdownDisplay}>
-          Me
+          <img src={this.props.user.profilePhotoUrl} />
+          <div>
+            <p>Me</p>
+            <p></p>
+          </div>
         </div>
         <div id="me-dropdown">
           <p>{this.props.user.firstName} {this.props.user.lastName}</p>
