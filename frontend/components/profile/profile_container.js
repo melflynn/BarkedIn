@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { updateModal } from "../../actions/ui_actions";
-import { fetchUser } from "../../actions/user_actions";
+import { fetchUser, updateUser } from "../../actions/user_actions";
 import Profile from './profile';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: (userId) => dispatch(fetchUser(userId)),
-  updateModal: () => dispatch(updateModal())
+  updateUser: (user) => dispatch(updateUser(user)),
+  updateModal: (modalName) => dispatch(updateModal(modalName))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

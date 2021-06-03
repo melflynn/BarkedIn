@@ -10,7 +10,11 @@ const UIReducer = (state = _defaultUi, action) => {
     case UPDATE_MODAL:
       const modal = state.modal;
       let newState = Object.assign({}, state);
-      newState['modal'] = !modal;
+      if (modal) {
+        newState['modal'] = false;
+      } else {
+        newState['modal'] = action.modalName;
+      }
       return newState;
     default:
       return state;

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { configureStore } from './store/store';
 import Root from './components/root';
-import { updateModal } from './actions/ui_actions';
+import { updateUser } from './actions/user_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
 
-  window.updateModal = updateModal;
+  window.updateUser = updateUser;
   window.dispatch = store.dispatch;
   ReactDOM.render(<Root store={store}/>, root);
 })

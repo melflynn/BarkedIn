@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import HeaderContainer from '../header/header_container';
-import ContactInfoModal from '../modal/contact_info_modal';
 import Modal from '../modal/modal';
 
 class Profile extends React.Component {
@@ -38,38 +37,43 @@ class Profile extends React.Component {
   }
 
   render () {
-      console.log(this.state);
-      console.log(this.props);
-      if (this.state.redirect) {
-        return <Redirect to="/" />;
-      } else {
-        return (
-          <div className="profile-page">
-            {this.props.modal ? <Modal name="ContactInfo" user={this.state.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal}/> : ''}
-            <HeaderContainer />
-            <div className="profile">
-              <section>
-                <div className="background">
-                  <div></div>
-                  <div>
-                    {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt"></i> : ''}
-                  </div>
-                </div>
+
+    let modal;
+    if (this.props.modal === 'ContactInfo') {
+      modal = <Modal name={this.props.modal} user={this.state.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} />;
+    } else if (this.props.modal === 'EditProfileIntro') {
+      modal = <Modal name={this.props.modal} user={this.state.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} updateUser={this.props.updateUser}/>;
+    } else {
+      modal = '';
+    }
+
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    } else {
+      return (
+        <div className="profile-page">
+          {modal}
+          <HeaderContainer />
+          <div className="profile">
+            <section>
+              <div className="background">
+                <div></div>
                 <div>
-                  <img src={this.state.user ? this.state.user.profilePhotoUrl : ''} />
-                  <h3>{this.state.user ? this.state.user.firstName : ''} {this.state.user ? this.state.user.lastName : ''}</h3>
-                  <h4>{this.state.user ? this.state.user.breed : ''}</h4>
-                  <h5>{this.state.user ? this.state.user.location : ''}<p>•</p><p onClick={this.props.updateModal}>Contact info</p></h5>
+                  {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt" onClick={() => this.props.updateModal('EditProfileIntro')}></i> : ''}
                 </div>
-              </section>
-            </div>
-    
+              </div>
+              <div>
+                <img src={this.state.user ? this.state.user.profilePhotoUrl : ''} />
+                <h3>{this.state.user ? this.state.user.firstName : ''} {this.state.user ? this.state.user.lastName : ''}</h3>
+                <h4>{this.state.user ? this.state.user.breed : ''}</h4>
+                <h5>{this.state.user ? this.state.user.location : ''}<p>•</p><p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p></h5>
+              </div>
+            </section>
           </div>
-        )
-      }
-    // } else {
-    //   return null;
-    // }
+
+        </div>
+      )
+    }
   }
 }
 
