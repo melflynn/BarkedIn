@@ -46,6 +46,10 @@
             background-color: $lighter-grey;
             padding: 7px;
             border-radius: 50%;
+
+            &:hover {
+              cursor: pointer;
+            }
           }
         }
       }

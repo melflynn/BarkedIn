@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import HeaderContainer from '../header/header_container';
 import ContactInfoModal from '../modal/contact_info_modal';
+import Modal from '../modal/modal';
 
 class Profile extends React.Component {
   constructor (props) {
@@ -44,14 +45,14 @@ class Profile extends React.Component {
       } else {
         return (
           <div className="profile-page">
-            {this.props.modal ? <ContactInfoModal user={this.state.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal}/> : ''}
+            {this.props.modal ? <Modal name="ContactInfo" user={this.state.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal}/> : ''}
             <HeaderContainer />
             <div className="profile">
               <section>
                 <div className="background">
                   <div></div>
                   <div>
-                    <i className="fas fa-pencil-alt"></i>
+                    {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt"></i> : ''}
                   </div>
                 </div>
                 <div>

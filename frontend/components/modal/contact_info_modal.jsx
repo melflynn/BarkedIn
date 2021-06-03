@@ -2,8 +2,8 @@ import React from 'react';
 
 
 const ContactInfoModal = (props) => (
-  <div>
-    <div className="modal-background" onClick={props.updateModal}>
+  // <div>
+  //   <div className="modal-background" onClick={props.updateModal}>
       <div className="contact-modal-box" onClick={(e) => e.stopPropagation()}>
         <header>
           <h4>{props.user.firstName} {props.user.lastName}</h4>
@@ -27,8 +27,8 @@ const ContactInfoModal = (props) => (
           </li>
         </ul>
       </div>
-    </div>
-  </div>
+  //   </div>
+  // </div>
 )
 
 
