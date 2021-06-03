@@ -7,42 +7,41 @@ class Profile extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      user: undefined,
       redirect: false,
     }
   }
 
-  updateUser () {
-    this.props.fetchUser(this.props.userId)
-      .then(
-        (response) => this.setState({
-          user: response.user
-        }),
-        () => this.setState({
-          redirect: true
-        })
-      )
-  }
+  // updateUser () {
+  //   this.props.fetchUser(this.props.userId)
+  //     .then(
+  //       (response) => this.setState({
+  //         user: response.user
+  //       }),
+  //       () => this.setState({
+  //         redirect: true
+  //       })
+  //     )
+  // }
 
   componentDidUpdate () {
     if (!this.state.redirect) {
-      if (!this.state.user || this.props.userId !== this.state.user.id.toString()) {
-        this.updateUser();
+      if (!this.props.user || this.props.userId !== this.props.user.id.toString()) {
+        this.props.fetchUser(this.props.userId);
       }
     }
   }
 
   componentDidMount () {
-    this.updateUser();
+    this.props.fetchUser(this.props.userId);
   }
 
   render () {
 
     let modal;
     if (this.props.modal === 'ContactInfo') {
-      modal = <Modal name={this.props.modal} user={this.state.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} />;
+      modal = <Modal name={this.props.modal} user={this.props.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} />;
     } else if (this.props.modal === 'EditProfileIntro') {
-      modal = <Modal name={this.props.modal} user={this.state.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} updateUser={this.props.updateUser}/>;
+      modal = <Modal name={this.props.modal} user={this.props.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} updateUser={this.props.updateUser}/>;
     } else {
       modal = '';
     }
@@ -63,10 +62,10 @@ class Profile extends React.Component {
                 </div>
               </div>
               <div>
-                <img src={this.state.user ? this.state.user.profilePhotoUrl : ''} />
-                <h3>{this.state.user ? this.state.user.firstName : ''} {this.state.user ? this.state.user.lastName : ''}</h3>
-                <h4>{this.state.user ? this.state.user.breed : ''}</h4>
-                <h5>{this.state.user ? `${this.state.user.region}, ${this.state.user.country}` : ''}<p>•</p><p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p></h5>
+                <img src={this.props.user ? this.props.user.profilePhotoUrl : ''} />
+                <h3>{this.props.user ? this.props.user.firstName : ''} {this.props.user ? this.props.user.lastName : ''}</h3>
+                <h4>{this.props.user ? this.props.user.breed : ''}</h4>
+                <h5>{this.props.user ? `${this.props.user.region ? `${this.props.user.region}, ` : ''} ${this.props.user.country ? this.props.user.country : ''}` : ''}<p>•</p><p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p></h5>
               </div>
             </section>
           </div>

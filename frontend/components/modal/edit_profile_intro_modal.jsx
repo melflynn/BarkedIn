@@ -18,6 +18,7 @@ class EditProfileIntroModal extends React.Component {
   handleSubmit (e) {
     e.preventDefault();
     this.props.updateUser(this.state);
+    this.props.updateModal();
   }
 
   render () {
@@ -41,10 +42,10 @@ class EditProfileIntroModal extends React.Component {
               <input type="text" value={this.state.breed} onChange={this.updateItem('breed')}/>
             </label>
             <label>Country
-              <input type="text" value={this.state.breed} onChange={this.updateItem('breed')}/>
+              <input type="text" value={this.state.country} onChange={this.updateItem('country')}/>
             </label>
             <label>City/State
-              <input type="text" value={this.state.breed} onChange={this.updateItem('breed')}/>
+              <input type="text" value={this.state.region} onChange={this.updateItem('region')}/>
             </label>
             <button onClick={this.handleSubmit}>Save</button>
         </form>
