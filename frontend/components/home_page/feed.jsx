@@ -1,6 +1,6 @@
 import React from 'react';
-import HeaderContainer from './header/header_container';
-import UserSidebarContainer from './user_sidebar/user_sidebar_container.js';
+import HeaderContainer from '../header/header_container';
+import UserSidebar from './user_sidebar/user_sidebar';
 
 class Feed extends React.Component {
   constructor (props) {
@@ -20,7 +20,7 @@ class Feed extends React.Component {
         <HeaderContainer />
       </header>
       <main className="feed-main">
-        <UserSidebarContainer />
+        <UserSidebar user={this.props.user} />
       </main>
     </div>
   }

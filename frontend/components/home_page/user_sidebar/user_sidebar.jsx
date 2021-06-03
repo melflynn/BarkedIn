@@ -3,9 +3,15 @@ import { Link } from 'react-router-dom';
 
 const UserSidebar = (props) => (
   <div className="user-sidebar">
-    <p className="profile-photo"><img src={props.user.profilePhotoUrl} /></p>
-    <Link to="/users/18">{props.user.firstName} {props.user.lastName}</Link>
-    <p>{props.user.breed}</p>
+    <div className="background">
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <p className="profile-photo"><img src={props.user.profilePhotoUrl} /></p>
+      <Link to="/users/18">{props.user.firstName} {props.user.lastName}</Link>
+      <p>{props.user.breed}</p>
+    </div>
   </div>
 )
 
