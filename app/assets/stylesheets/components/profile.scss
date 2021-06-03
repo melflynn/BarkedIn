@@ -68,10 +68,12 @@
           font-size: 17px;
         }
 
-        p {
+        h5 {
           color: $light-grey;
           font-size: 14px;
           display: flex;
+          margin: 0;
+          font-weight: normal;
 
           p {
             margin-left: 3px;

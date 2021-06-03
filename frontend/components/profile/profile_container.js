@@ -4,7 +4,8 @@ import Profile from './profile';
 
 const mapStateToProps = (state, ownProps) => ({
   userId: ownProps.match.params.userId,
-  user: state.entities.users[ownProps.match.params.userId]
+  user: state.entities.users[ownProps.match.params.userId],
+  currentUser: state.entities.users[state.session.currentUserId]
 })
 
 const mapDispatchToProps = (dispatch) => ({
