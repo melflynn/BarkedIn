@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class MeDropdown extends React.Component {
   constructor (props) {
@@ -48,8 +49,16 @@ class MeDropdown extends React.Component {
         </div>
         {this.state.showDropdown ? (
           <div id="me-dropdown" onClick={(e) => e.stopPropagation()}>
-            <p>{this.props.user.firstName} {this.props.user.lastName}</p>
-            <p>{this.props.user.breed}</p>
+            <div>
+              <div>
+                <img src={this.props.user.profilePhotoUrl}/>
+                <div>
+                  <p>{this.props.user.firstName} {this.props.user.lastName}</p>
+                  <p>{this.props.user.breed}</p>
+                </div>
+              </div>
+              <Link to={`/users/${this.props.user.id}`}>View Profile</Link>
+            </div>
             <button onClick={this.props.logout}>Sign Out</button>
           </div>
         ) : ''

@@ -20,10 +20,10 @@ class Profile extends React.Component {
               <div></div>
             </div>
             <div>
-              <img src={this.props.user.profilePhotoUrl} />
-              <h3>{this.props.user.firstName} {this.props.user.lastName}</h3>
-              <h4>{this.props.user.breed}</h4>
-              <h5>{this.props.user.location }<p>•</p><p onClick={this.props.updateModal}>Contact info</p></h5>
+              <img src={this.props.user ? this.props.user.profilePhotoUrl : ""} />
+              <h3>{this.props.user ? this.props.user.firstName : ""} {this.props.user ? this.props.user.lastName : ""}</h3>
+              <h4>{this.props.user ? this.props.user.breed : ""}</h4>
+              <h5>{this.props.user ? this.props.user.location : ""}<p>•</p><p onClick={this.props.updateModal}>Contact info</p></h5>
             </div>
           </section>
         </div>

@@ -59,6 +59,22 @@
             border: 1px solid white;
           }
         }
+
+        a {
+          font-size: 16px;
+          font-weight: 600;
+          margin-top: 10px;
+
+          &:hover {
+            text-decoration: underline;
+          }          
+        }
+
+        p:last-child {
+          color: $light-grey;
+          font-size: 14px;
+          margin: 5px;
+        }
       }
 
     }
