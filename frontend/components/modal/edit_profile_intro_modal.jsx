@@ -3,24 +3,58 @@ import React from 'react';
 class EditProfileIntroModal extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      user: props.currentUser
+    this.state = props.currentUser
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  updateItem (type) {
+    return (e) => {
+      this.setState({
+        [type]: e.target.value
+      })
     }
   }
 
+  handleSubmit (e) {
+    e.preventDefault();
+    this.props.updateUser(this.state);
+  }
+
   render () {
+    console.log(this.state);
     return (
-      <div className="contact-modal-box" onClick={(e) => e.stopPropagation()}></div>
+      <div className="contact-modal-box" onClick={(e) => e.stopPropagation()}>
+        <header>
+          <h4>Edit Intro</h4>
+          <i className="fas fa-times" onClick={() => this.props.updateModal()}></i>
+        </header>
+        <form>
+          <div>
+            <label>First Name *
+              <input type="text" value={this.state.firstName} onChange={this.updateItem('firstName')}/>
+            </label>
+            <label>Last Name *
+              <input type="text" value={this.state.lastName} onChange={this.updateItem('lastName')}/>
+            </label>
+          </div>
+            <label>Breed
+              <input type="text" value={this.state.breed} onChange={this.updateItem('breed')}/>
+            </label>
+            <label>Country
+              <input type="text" value={this.state.breed} onChange={this.updateItem('breed')}/>
+            </label>
+            <label>City/State
+              <input type="text" value={this.state.breed} onChange={this.updateItem('breed')}/>
+            </label>
+            <button onClick={this.handleSubmit}>Save</button>
+        </form>
+      </div>
     )
   }
 
 }
 // const EditProfileModal = (props) => (
 //   <div className="contact-modal-box" onClick={(e) => e.stopPropagation()}>
-//     <header>
-//       <h4>{props.user.firstName} {props.user.lastName}</h4>
-//       <i className="fas fa-times" onClick={() => props.updateModal()}></i>
-//     </header>
 //     <h5>Contact Info</h5>
 //     <ul>
 //       <li>

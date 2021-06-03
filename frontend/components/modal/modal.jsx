@@ -11,8 +11,10 @@ const Modal = (props) => {
   switch (props.name) {
     case "ContactInfo":
       modal = <ContactInfoModal {...otherProps}/>;
+      break;
     case "EditProfileIntro":
-      modal = <EditProfileIntroModal {...otherProps}/>
+      modal = <EditProfileIntroModal {...otherProps}/>;
+      break;
   }
 
   return (
