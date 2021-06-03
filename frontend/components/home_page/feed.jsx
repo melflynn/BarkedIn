@@ -16,7 +16,6 @@ class Feed extends React.Component {
 
   render () {
     return <div className="feed-page">
-      <div id="hide-dropdown" onClick={this.hideDropdown}></div>
       <header>  
         <HeaderContainer />
       </header>
