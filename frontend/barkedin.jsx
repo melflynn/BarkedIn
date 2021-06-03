@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { configureStore } from './store/store';
 import Root from './components/root';
-import {fetchUser} from './actions/user_actions';
-// import {fetchUser} from './util/user_util';
+import { updateModal } from './actions/ui_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
@@ -26,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
 
-  window.fetchUser = fetchUser;
+  window.updateModal = updateModal;
   window.dispatch = store.dispatch;
   ReactDOM.render(<Root store={store}/>, root);
 })
