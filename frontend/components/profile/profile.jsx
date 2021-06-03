@@ -66,7 +66,7 @@ class Profile extends React.Component {
                 <img src={this.state.user ? this.state.user.profilePhotoUrl : ''} />
                 <h3>{this.state.user ? this.state.user.firstName : ''} {this.state.user ? this.state.user.lastName : ''}</h3>
                 <h4>{this.state.user ? this.state.user.breed : ''}</h4>
-                <h5>{this.state.user ? this.state.user.location : ''}<p>•</p><p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p></h5>
+                <h5>{this.state.user ? `${this.state.user.region}, ${this.state.user.country}` : ''}<p>•</p><p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p></h5>
               </div>
             </section>
           </div>
