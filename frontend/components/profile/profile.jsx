@@ -50,7 +50,9 @@ class Profile extends React.Component {
               <section>
                 <div className="background">
                   <div></div>
-                  <div></div>
+                  <div>
+                    <i className="fas fa-pencil-alt"></i>
+                  </div>
                 </div>
                 <div>
                   <img src={this.state.user ? this.state.user.profilePhotoUrl : ''} />

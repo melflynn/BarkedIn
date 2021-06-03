@@ -35,6 +35,19 @@
           border-top-left-radius: 5px;
           border-top-right-radius: 5px;
         }
+
+        div:last-child {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+
+          i {
+            margin-right: 10px;
+            background-color: $lighter-grey;
+            padding: 7px;
+            border-radius: 50%;
+          }
+        }
       }
   
       div:last-child {
