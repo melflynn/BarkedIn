@@ -10,6 +10,11 @@ class MeDropdown extends React.Component {
     this.dropdownDisplay = this.dropdownDisplay.bind(this);
     this.dropdownHide = this.dropdownHide.bind(this);
   }
+
+
+  componentWillUnmount () {
+    window.removeEventListener('click', this.dropdownHide);
+  }
   
   componentDidUpdate () {
 
