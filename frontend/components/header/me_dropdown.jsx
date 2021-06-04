@@ -62,7 +62,7 @@ class MeDropdown extends React.Component {
                   <p>{this.props.user.breed}</p>
                 </div>
               </div>
-              <Link to={`/users/${this.props.user.id}`}>View Profile</Link>
+              <p className="link" onClick={this.dropdownHide}><Link to={`/users/${this.props.user.id}`}>View Profile</Link></p>
             </div>
             <button onClick={this.props.logout}>Sign Out</button>
           </div>

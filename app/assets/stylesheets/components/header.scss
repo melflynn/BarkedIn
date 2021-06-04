@@ -137,7 +137,7 @@
               }
             }
 
-            a {
+            .link {
               background-color: white;
               border: 1px solid $main-blue;
               color: $main-blue;
@@ -146,6 +146,16 @@
               border-radius: 24px;
               width: 100%;
               text-align: center;
+
+              a {
+                padding: 0;
+
+                &:hover {
+                  color: $main-blue;
+                  text-decoration: none;
+                  border: none;
+                }
+              }
 
               &:hover {
                 color: $main-blue;
