@@ -11,17 +11,6 @@ class Profile extends React.Component {
     }
   }
 
-  // updateUser () {
-  //   this.props.fetchUser(this.props.userId)
-  //     .then(
-  //       (response) => this.setState({
-  //         user: response.user
-  //       }),
-  //       () => this.setState({
-  //         redirect: true
-  //       })
-  //     )
-  // }
 
   componentDidUpdate () {
     if (!this.state.redirect) {
@@ -52,7 +41,9 @@ class Profile extends React.Component {
       modal = <Modal name={this.props.modal} user={this.props.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} />;
     } else if (this.props.modal === 'EditProfileIntro') {
       modal = <Modal name={this.props.modal} user={this.props.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} updateUser={this.props.updateUser}/>;
-    } else {
+    } else if (this.props.modal === 'ProfilePhoto') {
+      modal = <Modal name={this.props.modal} user={this.props.user} updateModal={this.props.updateModal}/>
+    }else {
       modal = '';
     }
 
@@ -74,7 +65,7 @@ class Profile extends React.Component {
                 </div>
               </div>
               <div>
-                <img src={this.props.user ? this.props.user.profilePhotoUrl : ''} />
+                <img src={this.props.user ? this.props.user.profilePhotoUrl : ''} onClick={() => this.props.updateModal('ProfilePhoto')}/>
                 <h3>{this.props.user ? this.props.user.firstName : ''} {this.props.user ? this.props.user.lastName : ''}</h3>
                 <h4>{this.props.user ? this.props.user.breed : ''}</h4>
                 <h5>{this.props.user ? `${this.props.user.region ? `${this.props.user.region}, ` : ''} ${this.props.user.country ? this.props.user.country : ''}` : ''}<p>•</p><p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p></h5>

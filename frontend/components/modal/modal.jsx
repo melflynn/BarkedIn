@@ -1,7 +1,7 @@
 import React from 'react';
 import ContactInfoModal from './contact_info_modal';
 import EditProfileIntroModal from './edit_profile_intro_modal';
-
+import ProfilePhotoModal from './profile_photo_modal';
 
 const Modal = (props) => {
 
@@ -14,6 +14,9 @@ const Modal = (props) => {
       break;
     case "EditProfileIntro":
       modal = <EditProfileIntroModal {...otherProps}/>;
+      break;
+    case "ProfilePhoto":
+      modal = <ProfilePhotoModal {...otherProps}/>;
       break;
   }
 
