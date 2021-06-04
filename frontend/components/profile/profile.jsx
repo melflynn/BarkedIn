@@ -7,10 +7,17 @@ class Profile extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      photo: this.props.user.profilePhotoUrl,
       redirect: false,
     }
+    this.updatePhoto = this.updatePhoto.bind(this);
   }
 
+  updatePhoto (photoUrl) {
+    this.setState({
+      photo: photoUrl
+    })
+  }
 
   componentDidUpdate () {
     if (!this.state.redirect) {
@@ -35,14 +42,15 @@ class Profile extends React.Component {
   }
 
   render () {
+    console.log(this.props);
     let modal;
     if (this.props.modal === 'ContactInfo') {
       modal = <Modal name={this.props.modal} user={this.props.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} />;
     } else if (this.props.modal === 'EditProfileIntro') {
       modal = <Modal name={this.props.modal} user={this.props.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} updateUser={this.props.updateUser}/>;
     } else if (this.props.modal === 'ProfilePhoto') {
-      modal = <Modal name={this.props.modal} user={this.props.user} updateModal={this.props.updateModal}/>
-    }else {
+      modal = <Modal name={this.props.modal} user={this.props.user} updateModal={this.props.updateModal} updatePhoto={this.updatePhoto}/>
+    } else {
       modal = '';
     }
 
@@ -65,7 +73,7 @@ class Profile extends React.Component {
               </div>
               <div>
                 {this.props.userId === this.props.currentUser.id.toString() ? 
-                  <img src={this.props.user ? this.props.user.profilePhotoUrl : ''} id="editable-prof-pic" onClick={() => this.props.updateModal('ProfilePhoto')} /> :
+                  <img src={this.state.photo ? this.state.photo : ''} id="editable-prof-pic" onClick={() => this.props.updateModal('ProfilePhoto')} /> :
                   <img src={this.props.user ? this.props.user.profilePhotoUrl : ''}/>
                 }
                 <h3>{this.props.user ? this.props.user.firstName : ''} {this.props.user ? this.props.user.lastName : ''}</h3>

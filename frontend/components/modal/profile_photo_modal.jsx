@@ -31,7 +31,10 @@ class ProfilePhotoModal extends React.Component {
       data: formData,
       contentType: false,
       processData: false
-    }).then(() => this.props.updateModal())
+    }).then(() => {
+      this.props.updateModal();
+      this.props.updatePhoto(this.state.photo);
+    })
   }
     
   render () {
