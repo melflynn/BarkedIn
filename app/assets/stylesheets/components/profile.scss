@@ -137,9 +137,12 @@
 
       &.about {
         margin-top: 40px;
-        max-height: 140px;
+        // max-height: 160px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
         
-        div {
+        div:first-child {
           display: flex;
           justify-content: space-between;
           margin: 20px;
@@ -151,10 +154,30 @@
 
         }
 
-        p {
-          font-size: 14px;
-          margin: 20px;
-        }
+        div:last-child {
+          display: block;
+          overflow: hidden;
+          position: relative;
+          
+          p {
+            font-size: 14px;
+          }
+
+          span {
+            position: absolute;
+            background-color: white;
+            color: $light-grey;
+            font-size: 14px;
+            bottom: 0;
+            right: 0;
+
+            a:hover {
+              color: $main-blue;
+              cursor: pointer;
+            }
+          }
+
+        } 
       }
     }
   }

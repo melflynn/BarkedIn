@@ -8,15 +8,32 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       photo: null,
+      hiddenText: false,
       redirect: false,
     }
     this.updatePhoto = this.updatePhoto.bind(this);
+    this.seeMore = this.seeMore.bind(this);
   }
 
   updatePhoto (photoUrl) {
     this.setState({
       photo: photoUrl
     })
+  }
+
+  seeMore (e) {
+    e.preventDefault();
+    this.setState({
+      hiddenText: 'clicked'
+    });
+    $('.about').css('max-height', 'none');
+  }
+
+  seeLess () {
+    this.setState({
+      hiddenText: true
+    })
+    $('.about').css('max-height', '160px');
   }
 
   componentDidUpdate () {
@@ -29,16 +46,21 @@ class Profile extends React.Component {
             redirect: true
           }))
       }
+      if (!this.state.hiddenText && this.props.user.aboutMe.length > 316) {
+        this.seeLess();
+      }
     }
   }
 
   componentDidMount () {
     this.props.fetchUser(this.props.userId)
       .then(
-        null,
+        () => {if (this.props.user.aboutMe.length > 316) {
+          this.seeLess() }},
         () => this.setState({
         redirect: true
       }))
+    
   }
 
   render () {
@@ -93,7 +115,10 @@ class Profile extends React.Component {
                 <h3>About</h3>
                 {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt" onClick={() => this.props.updateModal('EditAboutMe')}></i> : ''}
               </div>
-              <p>{this.props.user ? this.props.user.aboutMe : ''}</p>
+              <div className="blurb">
+                <p>{this.props.user ? this.props.user.aboutMe : ''}</p>
+                {this.state.hiddenText && this.state.hiddenText !== 'clicked' ? <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
+              </div>
             </section>
           </div>
 
