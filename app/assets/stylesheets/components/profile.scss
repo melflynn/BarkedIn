@@ -140,16 +140,20 @@
         display: flex;
         flex-direction: column;
         padding: 20px;
+        padding-right: 0;
         
         div:first-child {
           display: flex;
           justify-content: space-between;
-          // margin: 20px;
           margin-bottom: 20px;
           margin-right: 10px;
 
           h3 {
             font-size: 20px;
+          }
+
+          i {
+            margin-right: 0;
           }
 
         }
@@ -158,6 +162,7 @@
           display: block;
           overflow: hidden;
           position: relative;
+          margin-right: 20px;
           
           p {
             font-size: 14px;

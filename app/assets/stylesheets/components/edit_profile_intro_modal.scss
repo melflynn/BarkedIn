@@ -17,6 +17,13 @@
       margin-top: 5px;
       width: 80%;
       min-width: 200px;
+      padding: 4px;
+
+      &:focus {
+        outline: none;
+        border: 2px solid $light-grey;
+        padding: 3px;
+      }
     }
 
     label {
