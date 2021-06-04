@@ -11,6 +11,7 @@ class ProfilePhotoModal extends React.Component {
     }
     this.handleFile = this.handleFile.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.dontSave = this.dontSave.bind(this);
   }
 
   handleFile (e) {
@@ -18,6 +19,15 @@ class ProfilePhotoModal extends React.Component {
       photo: URL.createObjectURL(e.currentTarget.files[0]),
       photoFile: e.currentTarget.files[0],
       newPhoto: true
+    })
+  }
+
+  dontSave (e) {
+    e.preventDefault();
+    this.setState({
+      photo: this.props.user.profilePhotoUrl,
+      photoFile: null,
+      newPhoto: false
     })
   }
 
@@ -42,7 +52,7 @@ class ProfilePhotoModal extends React.Component {
       <div className="modal-box profile-photo-modal-box" onClick={(e) => e.stopPropagation()}>
       <header>
         <h4>Profile Photo</h4>
-        <i className="fas fa-times" onClick={() => this.props.updateModal()}></i>
+        <i className="fas fa-times" onClick={this.state.newPhoto ? this.dontSave : this.props.updateModal}></i>
       </header>
       <div>
         <img src={this.state.photo}/>
