@@ -3,6 +3,7 @@ import ContactInfoModal from './contact_info_modal';
 import EditProfileIntroModal from './edit_profile_intro_modal';
 import ProfilePhotoModal from './profile_photo_modal';
 import EditAboutMeModal from './edit_about_me_modal';
+import DeletePhotoModal from './delete_photo_modal';
 
 const Modal = (props) => {
 
@@ -21,6 +22,9 @@ const Modal = (props) => {
       break;
     case "EditAboutMe":
       modal = <EditAboutMeModal {...otherProps}/>;
+      break;
+    case 'DeletePhoto':
+      modal = <DeletePhotoModal {...otherProps}/>
       break;
   }
 

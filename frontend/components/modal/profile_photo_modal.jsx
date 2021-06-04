@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchUser } from '../../actions/user_actions';
+import DeletePhotoModal from './delete_photo_modal';
 
 class ProfilePhotoModal extends React.Component {
   constructor (props) {
@@ -7,11 +7,13 @@ class ProfilePhotoModal extends React.Component {
     this.state = {
       photo: this.props.user.profilePhotoUrl || window.defaultProfPic,
       photoFile: null,
-      newPhoto: false
+      newPhoto: false,
+      deletePhotoModal: false
     }
     this.handleFile = this.handleFile.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.dontSave = this.dontSave.bind(this);
+    this.toggleDeletePhotoModal = this.toggleDeletePhotoModal.bind(this);
   }
 
   handleFile (e) {
@@ -46,43 +48,62 @@ class ProfilePhotoModal extends React.Component {
       this.props.updatePhoto(this.state.photo);
     })
   }
+
+  toggleDeletePhotoModal (e) {
+    e.preventDefault();
+    // debugger;
+    this.setState({
+      deletePhotoModal: !this.state.deletePhotoModal
+    })
+  }
     
   render () {
-    return (
-      <div className="modal-box profile-photo-modal-box" onClick={(e) => e.stopPropagation()}>
-      <header>
-        <h4>Profile Photo</h4>
-        <i className="fas fa-times" onClick={this.state.newPhoto ? this.dontSave : this.props.updateModal}></i>
-      </header>
-      <div>
-        <img src={this.state.photo}/>
+
+    let modal;
+
+    if (this.state.deletePhotoModal) {
+      modal = 
+      <div className="modal-background">
+        <DeletePhotoModal toggleDeletePhotoModal={this.toggleDeletePhotoModal} updatePhoto={this.props.updatePhoto} userId={this.props.user.id}/>;
       </div>
-      {this.state.newPhoto ? 
-        <div>
-          <div></div>
-          <button onClick={this.handleUpdate}>Save Photo</button>
-        </div> :
-        <div>
-          <ul>
-            <li>
-              <i className="fas fa-pencil-alt"></i>
-              <p>Edit</p>
-            </li>
-            <li>
-              <label>
-                <input type="file" onChange={this.handleFile}/>
-              </label>
-              <i className="fas fa-camera"></i>
-              <p>Add Photo</p>
-            </li>
-          </ul>
+    } else {
+      modal = '';
+    }
+
+    return (
+      <div className="modal-box profile-photo-modal-box-wrapper">
+        <div className="modal-box profile-photo-modal-box" onClick={(e) => e.stopPropagation()}>
+          <header>
+            <h4>Profile Photo</h4>
+            <i className="fas fa-times" onClick={this.state.newPhoto ? this.dontSave : this.props.updateModal}></i>
+          </header>
           <div>
-            <i className="fas fa-trash-alt"></i>
-            <p>Delete</p>
+            <img src={this.state.photo}/>
           </div>
-        </div> 
-      }
-    </div>
+          {this.state.newPhoto ? 
+            <div>
+              <div></div>
+              <button onClick={this.handleUpdate}>Save Photo</button>
+            </div> :
+            <div>
+              <ul>
+                <li>
+                  <label>
+                    <input type="file" onChange={this.handleFile}/>
+                  </label>
+                  <i className="fas fa-camera"></i>
+                  <p>Add Photo</p>
+                </li>
+              </ul>
+              <div onClick={this.toggleDeletePhotoModal}>
+                <i className="fas fa-trash-alt"></i>
+                <p>Delete</p>
+              </div>
+            </div> 
+          }
+        </div>
+        {modal}
+      </div>
     )
   }
 }

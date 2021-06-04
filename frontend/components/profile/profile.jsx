@@ -10,6 +10,7 @@ class Profile extends React.Component {
       photo: null,
       hiddenText: true,
       redirect: false,
+      currentPageUserId: props.userId
     }
     this.updatePhoto = this.updatePhoto.bind(this);
     this.seeMore = this.seeMore.bind(this);
@@ -30,6 +31,12 @@ class Profile extends React.Component {
     // $('.about').css('max-height', 'none');
   }
 
+  clickMore () {
+    debugger;
+    const blurb = $('blurb');
+    return blurb.prop('scrollHeight') > blurb.prop('clientHeight');
+  }
+
   // seeLess () {
   //   this.setState({
   //     hiddenText: true
@@ -39,10 +46,18 @@ class Profile extends React.Component {
 
   componentDidUpdate () {
     if (!this.state.redirect) {
-      if (!this.props.user || this.props.userId !== this.props.user.id.toString()) {
+      if (!this.props.user || this.props.userId !== this.state.currentPageUserId) { 
         this.props.fetchUser(this.props.userId)
           .then(
-            null,
+            () => {
+              this.setState({
+                currentPageUserId: this.props.userId,
+                hiddenText: true
+              })
+              debugger;
+              $('.blurb').addClass('clipped');
+            }
+            ,
             () => this.setState({
             redirect: true
           }))
@@ -68,7 +83,7 @@ class Profile extends React.Component {
   }
 
   render () {
-    console.log(this.props);
+    console.log($('.blurb').scrollHeight);
     let modal;
     switch (this.props.modal) {
       case 'ContactInfo':
@@ -86,6 +101,8 @@ class Profile extends React.Component {
       default:
         modal = '';
     }
+
+    let clickMore;
 
     if (this.state.redirect) {
       return <Redirect to="/" />;
@@ -121,7 +138,7 @@ class Profile extends React.Component {
               </div>
               <div>
                 <p className="blurb clipped">{this.props.user ? this.props.user.aboutMe : ''}</p>
-                {this.state.hiddenText && $('.blurb').scrollHeight > $('.blurb').clientHeight ? <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
+                {this.state.hiddenText && this.clickMore.bind(this) ? <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
               </div>
             </section>
           </div>
