@@ -49,8 +49,7 @@ class ProfilePhotoModal extends React.Component {
     })
   }
 
-  toggleDeletePhotoModal (e) {
-    e.preventDefault();
+  toggleDeletePhotoModal () {
     // debugger;
     this.setState({
       deletePhotoModal: !this.state.deletePhotoModal
@@ -63,8 +62,11 @@ class ProfilePhotoModal extends React.Component {
 
     if (this.state.deletePhotoModal) {
       modal = 
-      <div className="modal-background">
-        <DeletePhotoModal toggleDeletePhotoModal={this.toggleDeletePhotoModal} updatePhoto={this.props.updatePhoto} userId={this.props.user.id}/>;
+      <div className="modal-background" onClick={(e) => {
+        e.stopPropagation();
+        this.toggleDeletePhotoModal();
+        }}>
+        <DeletePhotoModal toggleDeletePhotoModal={this.toggleDeletePhotoModal} updatePhoto={this.props.updatePhoto} userId={this.props.user.id} updateModal={this.props.updateModal}/>;
       </div>
     } else {
       modal = '';

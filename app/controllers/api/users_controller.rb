@@ -36,7 +36,6 @@ class Api::UsersController < ApplicationController
 
   def destroy 
     @user = User.find_by(id: params[:id])
-    debugger;
     if @user.id == current_user.id 
       @user.profile_photo.purge
     end

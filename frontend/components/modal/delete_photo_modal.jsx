@@ -10,10 +10,12 @@ class DeletePhotoModal extends React.Component {
     e.preventDefault();
     $.ajax({
       method: 'DELETE',
-      url: `/api/users/${this.props.userId}`,
-    }).then((user) => {
-      user.profile_photo.purge
-    })
+      url: `/api/users/${this.props.userId}`
+    }).then(() => {
+      this.props.toggleDeletePhotoModal();
+      this.props.updateModal();
+      this.props.updatePhoto(window.defaultProfPic);
+    });
   }
 
   render() {
