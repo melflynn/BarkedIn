@@ -5,7 +5,7 @@ class ProfilePhotoModal extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      photo: this.props.user.profilePhotoUrl,
+      photo: this.props.user.profilePhotoUrl || window.defaultProfPic,
       photoFile: null,
       newPhoto: false
     }
@@ -25,7 +25,7 @@ class ProfilePhotoModal extends React.Component {
   dontSave (e) {
     e.preventDefault();
     this.setState({
-      photo: this.props.user.profilePhotoUrl,
+      photo: this.props.user.profilePhotoUrl || window.defaultProfPic,
       photoFile: null,
       newPhoto: false
     })

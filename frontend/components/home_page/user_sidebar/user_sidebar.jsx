@@ -8,7 +8,7 @@ const UserSidebar = (props) => (
       <div></div>
     </div>
     <div>
-      <p className="profile-photo"><img src={props.user.profilePhotoUrl} /></p>
+      <p className="profile-photo"><img src={props.user.profilePhotoUrl || window.defaultProfPic} /></p>
       <Link to={`/users/${props.user.id}`}>{props.user.firstName} {props.user.lastName}</Link>
       <p>{props.user.breed}</p>
     </div>

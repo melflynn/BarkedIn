@@ -46,7 +46,7 @@ class Profile extends React.Component {
             redirect: true
           }))
       }
-      if (!this.state.hiddenText && this.props.user.aboutMe.length > 316) {
+      if (this.props.user && !this.state.hiddenText && this.props.user.aboutMe && this.props.user.aboutMe.length > 316) {
         this.seeLess();
       }
     }
@@ -55,7 +55,7 @@ class Profile extends React.Component {
   componentDidMount () {
     this.props.fetchUser(this.props.userId)
       .then(
-        () => {if (this.props.user.aboutMe.length > 316) {
+        () => {if (this.props.user.aboutMe && this.props.user.aboutMe.length > 316) {
           this.seeLess() }},
         () => this.setState({
         redirect: true
@@ -102,8 +102,8 @@ class Profile extends React.Component {
               </div>
               <div>
                 {this.props.userId === this.props.currentUser.id.toString() ? 
-                  <img src={this.state.photo ? this.state.photo : this.props.user ? this.props.user.profilePhotoUrl : ''} id="editable-prof-pic" onClick={() => this.props.updateModal('ProfilePhoto')} /> :
-                  <img src={this.props.user ? this.props.user.profilePhotoUrl : ''}/>
+                  <img src={this.state.photo ? this.state.photo : this.props.user ? this.props.user.profilePhotoUrl || window.defaultProfPic : ''} id="editable-prof-pic" onClick={() => this.props.updateModal('ProfilePhoto')} /> :
+                  <img src={this.props.user ? this.props.user.profilePhotoUrl || window.defaultProfPic: ''}/>
                 }
                 <h3>{this.props.user ? this.props.user.firstName : ''} {this.props.user ? this.props.user.lastName : ''}</h3>
                 <h4>{this.props.user ? this.props.user.breed : ''}</h4>

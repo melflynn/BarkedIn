@@ -1,2 +1,8 @@
+if (user.profile_photo.attached?)
+  profilePhotoUrl = url_for(user.profile_photo)
+else
+  profilePhotoUrl = nil
+end
+
 json.extract! user, :id, :first_name, :last_name, :email, :breed, :country, :region, :about_me
-json.profilePhotoUrl url_for(user.profile_photo)
+json.profilePhotoUrl profilePhotoUrl

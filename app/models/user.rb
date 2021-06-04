@@ -24,6 +24,10 @@ class User < ApplicationRecord
     self.session_token
   end
 
+  # def ensure_profile_photo! 
+  #   if !self.profile_photo.attached?
+  # end
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     if user && user.is_password?(password)

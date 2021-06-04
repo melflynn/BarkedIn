@@ -46,7 +46,7 @@ class MeDropdown extends React.Component {
     return (
       <div>
         <div id="me-dropdown-parent" onClick={this.dropdownDisplay}>
-          <img src={this.props.user.profilePhotoUrl} />
+          <img src={this.props.user.profilePhotoUrl || window.defaultProfPic} />
           <div>
             <p>Me</p>
             <p></p>
@@ -56,7 +56,7 @@ class MeDropdown extends React.Component {
           <div id="me-dropdown" onClick={(e) => e.stopPropagation()}>
             <div>
               <div>
-                <img src={this.props.user.profilePhotoUrl}/>
+                <img src={this.props.user.profilePhotoUrl || window.defaultProfPic}/>
                 <div>
                   <p>{this.props.user.firstName} {this.props.user.lastName}</p>
                   <p>{this.props.user.breed}</p>
