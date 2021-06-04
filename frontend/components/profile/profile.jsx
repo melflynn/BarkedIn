@@ -65,7 +65,10 @@ class Profile extends React.Component {
                 </div>
               </div>
               <div>
-                <img src={this.props.user ? this.props.user.profilePhotoUrl : ''} onClick={() => this.props.updateModal('ProfilePhoto')}/>
+                {this.props.userId === this.props.currentUser.id.toString() ? 
+                  <img src={this.props.user ? this.props.user.profilePhotoUrl : ''} id="editable-prof-pic" onClick={() => this.props.updateModal('ProfilePhoto')} /> :
+                  <img src={this.props.user ? this.props.user.profilePhotoUrl : ''}/>
+                }
                 <h3>{this.props.user ? this.props.user.firstName : ''} {this.props.user ? this.props.user.lastName : ''}</h3>
                 <h4>{this.props.user ? this.props.user.breed : ''}</h4>
                 <h5>{this.props.user ? `${this.props.user.region ? `${this.props.user.region}, ` : ''} ${this.props.user.country ? this.props.user.country : ''}` : ''}<p>•</p><p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p></h5>
