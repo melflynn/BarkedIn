@@ -1,0 +1,15 @@
+.edit-about-me-modal-box {
+  textarea {
+    margin: 10px;
+    margin-right: 20px;
+    border-radius: 5px;
+    resize: none;
+    padding: 5px;
+
+    &:focus {
+      outline: none;
+      border: 2px solid $light-grey;
+      padding: 4px;
+    }
+  }
+}

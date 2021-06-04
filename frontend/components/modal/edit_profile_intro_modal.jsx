@@ -22,7 +22,6 @@ class EditProfileIntroModal extends React.Component {
   }
 
   render () {
-    console.log(this.state);
     return (
       <div className="modal-box edit-profile-intro-modal-box" onClick={(e) => e.stopPropagation()}>
         <header>
