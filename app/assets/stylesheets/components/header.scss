@@ -30,6 +30,12 @@
         i {
           font-size: 24px;
         }
+
+        &:hover {
+          color: $dark-grey;
+          border-bottom: 1px solid $dark-grey;
+          padding-bottom: 4px;
+        }
       }
 
       div {
@@ -71,6 +77,13 @@
 
           &:hover {
             cursor: pointer;
+            color: $dark-grey;
+            border-bottom: 1px solid $dark-grey;
+            padding-bottom: 4px;
+
+            p:last-child {
+              border-top: 7px solid $dark-grey;
+            }
           }
         }
   

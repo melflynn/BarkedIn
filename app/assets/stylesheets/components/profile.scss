@@ -34,6 +34,22 @@
           background-color: $grey-blue;
           border-top-left-radius: 5px;
           border-top-right-radius: 5px;
+          display: flex;
+          justify-content: flex-end;
+
+          i {
+            margin-right: 10px;
+            margin-top: 20px;
+            padding: 7px;
+            border-radius: 50%;
+            background-color: white;
+            height: 30px;
+            color: $main-blue;
+            
+            &:hover {
+              cursor: pointer;
+            }
+          }
         }
 
         div:last-child {
@@ -43,12 +59,12 @@
 
           i {
             margin-right: 10px;
-            background-color: $lighter-grey;
             padding: 7px;
             border-radius: 50%;
-
+            
             &:hover {
               cursor: pointer;
+              background-color: $lighter-grey;
             }
           }
         }
