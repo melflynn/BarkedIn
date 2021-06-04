@@ -137,7 +137,6 @@
 
       &.about {
         margin-top: 40px;
-        // max-height: 160px;
         display: flex;
         flex-direction: column;
         padding: 20px;
@@ -145,7 +144,8 @@
         div:first-child {
           display: flex;
           justify-content: space-between;
-          margin: 20px;
+          // margin: 20px;
+          margin-bottom: 20px;
           margin-right: 10px;
 
           h3 {

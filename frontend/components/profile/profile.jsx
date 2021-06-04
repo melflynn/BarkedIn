@@ -33,7 +33,7 @@ class Profile extends React.Component {
     this.setState({
       hiddenText: true
     })
-    $('.about').css('max-height', '160px');
+    $('.about').css('max-height', '140px');
   }
 
   componentDidUpdate () {
