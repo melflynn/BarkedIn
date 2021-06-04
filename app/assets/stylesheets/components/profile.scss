@@ -147,25 +147,33 @@
           justify-content: space-between;
           margin-bottom: 20px;
           margin-right: 10px;
-
+          
           h3 {
             font-size: 20px;
           }
-
+          
           i {
             margin-right: 0;
           }
-
+          
         }
-
+        
         div:last-child {
           display: block;
-          overflow: hidden;
+          // overflow: hidden;
           position: relative;
           margin-right: 20px;
           
           p {
             font-size: 14px;
+            // line-height: 16px;
+
+            &.clipped {
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;  
+              overflow: hidden;
+            }
           }
 
           span {
@@ -175,6 +183,7 @@
             font-size: 14px;
             bottom: 0;
             right: 0;
+            padding-bottom: 0;
 
             a:hover {
               color: $main-blue;

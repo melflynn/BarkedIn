@@ -8,7 +8,7 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       photo: null,
-      hiddenText: false,
+      hiddenText: true,
       redirect: false,
     }
     this.updatePhoto = this.updatePhoto.bind(this);
@@ -24,17 +24,18 @@ class Profile extends React.Component {
   seeMore (e) {
     e.preventDefault();
     this.setState({
-      hiddenText: 'clicked'
+      hiddenText: false
     });
-    $('.about').css('max-height', 'none');
+    $('.blurb').removeClass('clipped');
+    // $('.about').css('max-height', 'none');
   }
 
-  seeLess () {
-    this.setState({
-      hiddenText: true
-    })
-    $('.about').css('max-height', '140px');
-  }
+  // seeLess () {
+  //   this.setState({
+  //     hiddenText: true
+  //   })
+  //   // $('.about').css('max-height', '145px');
+  // }
 
   componentDidUpdate () {
     if (!this.state.redirect) {
@@ -46,21 +47,24 @@ class Profile extends React.Component {
             redirect: true
           }))
       }
-      if (this.props.user && !this.state.hiddenText && this.props.user.aboutMe && this.props.user.aboutMe.length > 316) {
-        this.seeLess();
-      }
+      // if (this.props.user && !this.state.hiddenText && this.props.user.aboutMe && this.props.user.aboutMe.length > 316) {
+      //   this.seeLess();
+      // } else if (this.props.user && this.state.hiddenText && this.props.user.aboutMe && this.props.user.aboutMe.length < 316) {
+      //   this.setState({
+      //     hiddenText: false
+      // });
+      // $('.about').css('max-height', 'none');
+      // }
     }
   }
 
   componentDidMount () {
     this.props.fetchUser(this.props.userId)
       .then(
-        () => {if (this.props.user.aboutMe && this.props.user.aboutMe.length > 316) {
-          this.seeLess() }},
+        null,
         () => this.setState({
         redirect: true
       }))
-    
   }
 
   render () {
@@ -115,9 +119,9 @@ class Profile extends React.Component {
                 <h3>About</h3>
                 {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt" onClick={() => this.props.updateModal('EditAboutMe')}></i> : ''}
               </div>
-              <div className="blurb">
-                <p>{this.props.user ? this.props.user.aboutMe : ''}</p>
-                {this.state.hiddenText && this.state.hiddenText !== 'clicked' ? <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
+              <div>
+                <p className="blurb clipped">{this.props.user ? this.props.user.aboutMe : ''}</p>
+                {this.state.hiddenText && $('.blurb').scrollHeight > $('.blurb').clientHeight ? <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
               </div>
             </section>
           </div>
