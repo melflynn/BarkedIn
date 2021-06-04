@@ -5,19 +5,16 @@ import UserSidebar from './user_sidebar/user_sidebar';
 class Feed extends React.Component {
   constructor (props) {
     super(props);
-    this.hideDropdown = this.hideDropdown.bind(this);
   }
 
-  hideDropdown (e) {
-    e.preventDefault();
-    const dropdown = document.getElementById("me-dropdown");
-    dropdown.classList.remove('shown');
+  componentDidMount () {
+    this.props.fetchUser(this.props.userId)
   }
 
   render () {
     return <div className="feed-page">
       <header>  
-        <HeaderContainer />
+        <HeaderContainer photo={this.props.user.profilePhotoUrl}/>
       </header>
       <main className="feed-main">
         <UserSidebar user={this.props.user} />

@@ -85,7 +85,7 @@ class Profile extends React.Component {
       return (
         <div className="profile-page">
           {modal}
-          <HeaderContainer />
+          <HeaderContainer photo={this.state.photo ? this.state.photo : this.props.currentUser.profilePhotoUrl}/>
           <div className="profile">
             <section className="intro">
               <div className="background">
