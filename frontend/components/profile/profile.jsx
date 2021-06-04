@@ -28,21 +28,7 @@ class Profile extends React.Component {
       hiddenText: false
     });
     $('.blurb').removeClass('clipped');
-    // $('.about').css('max-height', 'none');
   }
-
-  clickMore () {
-    debugger;
-    const blurb = $('blurb');
-    return blurb.prop('scrollHeight') > blurb.prop('clientHeight');
-  }
-
-  // seeLess () {
-  //   this.setState({
-  //     hiddenText: true
-  //   })
-  //   // $('.about').css('max-height', '145px');
-  // }
 
   componentDidUpdate () {
     if (!this.state.redirect) {
@@ -54,22 +40,11 @@ class Profile extends React.Component {
                 currentPageUserId: this.props.userId,
                 hiddenText: true
               })
-              debugger;
-              $('.blurb').addClass('clipped');
-            }
-            ,
+            },
             () => this.setState({
             redirect: true
           }))
       }
-      // if (this.props.user && !this.state.hiddenText && this.props.user.aboutMe && this.props.user.aboutMe.length > 316) {
-      //   this.seeLess();
-      // } else if (this.props.user && this.state.hiddenText && this.props.user.aboutMe && this.props.user.aboutMe.length < 316) {
-      //   this.setState({
-      //     hiddenText: false
-      // });
-      // $('.about').css('max-height', 'none');
-      // }
     }
   }
 
@@ -138,7 +113,7 @@ class Profile extends React.Component {
               </div>
               <div>
                 <p className="blurb clipped">{this.props.user ? this.props.user.aboutMe : ''}</p>
-                {this.state.hiddenText && this.clickMore.bind(this) ? <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
+                {this.state.hiddenText && ($('.blurb').prop('scrollHeight') > $('.blurb').prop('clientHeight') || this.props.user && this.props.user.aboutMe && this.props.user.aboutMe.length > 315) ? <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
               </div>
             </section>
           </div>
