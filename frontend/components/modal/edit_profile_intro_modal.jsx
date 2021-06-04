@@ -24,7 +24,7 @@ class EditProfileIntroModal extends React.Component {
   render () {
     console.log(this.state);
     return (
-      <div className="contact-modal-box" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-box edit-profile-intro-modal-box" onClick={(e) => e.stopPropagation()}>
         <header>
           <h4>Edit Intro</h4>
           <i className="fas fa-times" onClick={() => this.props.updateModal()}></i>
@@ -38,16 +38,20 @@ class EditProfileIntroModal extends React.Component {
               <input type="text" value={this.state.lastName} onChange={this.updateItem('lastName')}/>
             </label>
           </div>
-            <label>Breed
-              <input type="text" value={this.state.breed} onChange={this.updateItem('breed')}/>
-            </label>
+          <label>Breed
+            <input type="text" value={this.state.breed} onChange={this.updateItem('breed')}/>
+          </label>
+          <div>
             <label>Country
               <input type="text" value={this.state.country} onChange={this.updateItem('country')}/>
             </label>
             <label>City/State
               <input type="text" value={this.state.region} onChange={this.updateItem('region')}/>
             </label>
+          </div>
+          <footer>
             <button onClick={this.handleSubmit}>Save</button>
+          </footer>          
         </form>
       </div>
     )
@@ -55,7 +59,7 @@ class EditProfileIntroModal extends React.Component {
 
 }
 // const EditProfileModal = (props) => (
-//   <div className="contact-modal-box" onClick={(e) => e.stopPropagation()}>
+//   <div className="modal-box" onClick={(e) => e.stopPropagation()}>
 //     <h5>Contact Info</h5>
 //     <ul>
 //       <li>

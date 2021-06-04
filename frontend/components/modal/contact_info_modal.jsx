@@ -3,7 +3,7 @@ import React from 'react';
 
 const ContactInfoModal = (props) => {
   return (
-      <div className="contact-modal-box" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-box contact-info-modal-box" onClick={(e) => e.stopPropagation()}>
         <header>
           <h4>{props.user.firstName} {props.user.lastName}</h4>
           <i className="fas fa-times" onClick={() => props.updateModal()}></i>

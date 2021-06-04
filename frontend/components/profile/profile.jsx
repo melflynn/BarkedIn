@@ -26,13 +26,23 @@ class Profile extends React.Component {
   componentDidUpdate () {
     if (!this.state.redirect) {
       if (!this.props.user || this.props.userId !== this.props.user.id.toString()) {
-        this.props.fetchUser(this.props.userId);
+        this.props.fetchUser(this.props.userId)
+          .then(
+            null,
+            () => this.setState({
+            redirect: true
+          }))
       }
     }
   }
 
   componentDidMount () {
-    this.props.fetchUser(this.props.userId);
+    this.props.fetchUser(this.props.userId)
+      .then(
+        null,
+        () => this.setState({
+        redirect: true
+      }))
   }
 
   render () {
