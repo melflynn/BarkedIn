@@ -62,7 +62,7 @@ class Profile extends React.Component {
           {modal}
           <HeaderContainer />
           <div className="profile">
-            <section>
+            <section className="intro">
               <div className="background">
                 <div>
                   {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-camera"></i> : ''}
@@ -80,6 +80,13 @@ class Profile extends React.Component {
                 <h4>{this.props.user ? this.props.user.breed : ''}</h4>
                 <h5>{this.props.user ? `${this.props.user.region ? `${this.props.user.region}, ` : ''} ${this.props.user.country ? this.props.user.country : ''}` : ''}<p>•</p><p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p></h5>
               </div>
+            </section>
+            <section className="about">
+              <div>
+                <h3>About</h3>
+                <i className="fas fa-pencil-alt"></i>
+              </div>
+              <p>{this.props.user.aboutMe}</p>
             </section>
           </div>
 

@@ -16,116 +16,137 @@
       background-color: white;
       border-radius: 5px;
       width: 700px;
-      height: 300px;
       margin-left: auto;
       margin-right: auto;
       border: 1px solid $lighter-grey;
-      display: grid;
-  
-      .background {
-        display: flex;
-        flex-direction: column;
-        grid-column: 1;
-        grid-row: 1;
-        height: 100%;
-  
-        div:first-child {
-          height: 175px;
-          background-color: $grey-blue;
-          border-top-left-radius: 5px;
-          border-top-right-radius: 5px;
-          display: flex;
-          justify-content: flex-end;
+      grid-column: 1;
 
-          i {
-            margin-right: 10px;
-            margin-top: 20px;
-            padding: 7px;
-            border-radius: 50%;
-            background-color: white;
-            height: 30px;
-            color: $main-blue;
-            
-            &:hover {
-              cursor: pointer;
-            }
-          }
-        }
-
-        div:last-child {
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-end;
-
-          i {
-            margin-right: 10px;
-            padding: 7px;
-            border-radius: 50%;
-            
-            &:hover {
-              cursor: pointer;
-              background-color: $lighter-grey;
-            }
-          }
+      i {
+        border-radius: 50%;
+        
+        &:hover {
+          cursor: pointer;
+          background-color: $lighter-grey;
         }
       }
-  
-      div:last-child {
-        padding-top: 10px;
-        grid-column: 1;
-        grid-row: 1;
-        background: transparent;
-        margin-left: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-  
-        img {
-          height: 150px;
-          width: 150px;
-          object-fit: cover;
-          border-radius: 50%;
-          border: 2px solid white;
-          margin-top: 50px;
-
-          &#editable-prof-pic:hover {
-            cursor: pointer;
-          }
-        }
-
-        h3 {
-          font-size: 26px;
-          font-weight: 500;
-          margin-top: 10px;
-        }
-
-        h4 {
-          margin: 0;
-          font-weight: normal;
-          font-size: 17px;
-        }
-
-        h5 {
-          color: $light-grey;
-          font-size: 14px;
+    
+      &.intro {
+        height: 300px;
+        display: grid;
+    
+        .background {
           display: flex;
-          margin: 0;
-          font-weight: normal;
+          flex-direction: column;
+          grid-column: 1;
+          grid-row: 1;
+          height: 100%;
+    
+          div:first-child {
+            height: 175px;
+            background-color: $grey-blue;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            display: flex;
+            justify-content: flex-end;
 
-          p {
-            margin-left: 3px;
-
-            &:last-child {
-             color: $main-blue; 
+            i {
+              margin-right: 10px;
+              margin-top: 20px;
+              padding: 7px;
+              border-radius: 50%;
+              background-color: white;
+              height: 30px;
+              color: $main-blue;
               
               &:hover {
-              cursor: pointer;
-              text-decoration: underline;
+                cursor: pointer;
               }
             }
           }
+
+          div:last-child {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+
+            i {
+              margin-right: 10px;
+              padding: 7px;
+            }
+          }
         }
-  
+    
+        div:last-child {
+          padding-top: 10px;
+          grid-column: 1;
+          grid-row: 1;
+          background: transparent;
+          margin-left: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+    
+          img {
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-top: 50px;
+
+            &#editable-prof-pic:hover {
+              cursor: pointer;
+            }
+          }
+
+          h3 {
+            font-size: 26px;
+            font-weight: 500;
+            margin-top: 10px;
+          }
+
+          h4 {
+            margin: 0;
+            font-weight: normal;
+            font-size: 17px;
+          }
+
+          h5 {
+            color: $light-grey;
+            font-size: 14px;
+            display: flex;
+            margin: 0;
+            font-weight: normal;
+
+            p {
+              margin-left: 3px;
+
+              &:last-child {
+              color: $main-blue; 
+                
+                &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+                }
+              }
+            }
+          }
+    
+        }
+      }
+
+      &.about {
+        margin-top: 40px;
+        
+        div {
+          display: flex;
+          justify-content: space-between;
+          margin: 20px;
+
+          h3 {
+            font-size: 18px;
+          }
+        }
       }
     }
   }
