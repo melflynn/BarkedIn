@@ -35,7 +35,6 @@ class Profile extends React.Component {
   }
 
   render () {
-
     let modal;
     if (this.props.modal === 'ContactInfo') {
       modal = <Modal name={this.props.modal} user={this.props.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} />;

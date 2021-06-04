@@ -113,8 +113,8 @@ class SignupForm extends React.Component {
         const user = {
           email: this.state.email,
           password: this.state.password,
-          first_name: this.state.firstName,
-          last_name: this.state.lastName
+          firstName: this.state.firstName,
+          lastName: this.state.lastName
         };
         this.props.formAction(user)
       } else {
