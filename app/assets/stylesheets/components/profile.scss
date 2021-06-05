@@ -160,13 +160,11 @@
         
         div:last-child {
           display: block;
-          // overflow: hidden;
           position: relative;
           margin-right: 20px;
           
           p {
             font-size: 14px;
-            // line-height: 16px;
 
             &.clipped {
               display: -webkit-box;

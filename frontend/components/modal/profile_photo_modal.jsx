@@ -50,7 +50,6 @@ class ProfilePhotoModal extends React.Component {
   }
 
   toggleDeletePhotoModal () {
-    // debugger;
     this.setState({
       deletePhotoModal: !this.state.deletePhotoModal
     })

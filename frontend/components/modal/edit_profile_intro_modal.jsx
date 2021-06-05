@@ -36,7 +36,6 @@ class EditProfileIntroModal extends React.Component {
   }
 
   render () {
-    console.log(this.state);
     return (
       <div className="modal-box edit-profile-intro-modal-box" onClick={(e) => e.stopPropagation()}>
         <header>
@@ -78,27 +77,6 @@ class EditProfileIntroModal extends React.Component {
   }
 
 }
-// const EditProfileModal = (props) => (
-//   <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-//     <h5>Contact Info</h5>
-//     <ul>
-//       <li>
-//         <img src={window.inOnlyLogoWhite} />
-//         <div>
-//           <p>{props.user.id === props.currentUser.id ? 'Your Profile' : `${props.user.firstName}'s Profile`}</p>
-//           <p>{process.env.NODE_ENV === "production" ? `https://barked-in.herokuapp.com/users/${props.user.id}` : `localhost:3000/users/${props.user.id}`}</p>
-//         </div>
-//       </li>
-//       <li>
-//         <i className="far fa-envelope"></i>
-//         <div>
-//           <p>Email</p>
-//           <p>{props.user.email}</p>
-//         </div>
-//       </li>
-//     </ul>
-//   </div>
-// )
 
 
 export default EditProfileIntroModal;

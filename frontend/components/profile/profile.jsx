@@ -68,7 +68,6 @@ class Profile extends React.Component {
   }
 
   render () {
-    console.log(this.state);
     let modal;
     switch (this.props.modal) {
       case 'ContactInfo':

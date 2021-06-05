@@ -86,7 +86,6 @@ class SignupForm extends React.Component {
         this.props.validateEmail(this.state.email)
           .then(
             (user) => {
-              console.log(user);
               if (user) {
                 page1Errors['email'] = "Someone's already using that email";
               }
