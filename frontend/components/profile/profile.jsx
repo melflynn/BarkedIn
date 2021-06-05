@@ -99,7 +99,6 @@ class Profile extends React.Component {
             <section className="intro">
               <div className="background">
                 <div>
-                  {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-camera"></i> : ''}
                 </div>
                 <div>
                   {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt" onClick={() => this.props.updateModal('EditProfileIntro')}></i> : ''}

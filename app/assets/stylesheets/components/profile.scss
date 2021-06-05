@@ -49,20 +49,6 @@
             border-top-right-radius: 5px;
             display: flex;
             justify-content: flex-end;
-
-            i {
-              margin-right: 10px;
-              margin-top: 20px;
-              padding: 7px;
-              border-radius: 50%;
-              background-color: white;
-              height: 30px;
-              color: $main-blue;
-              
-              &:hover {
-                cursor: pointer;
-              }
-            }
           }
 
           div:last-child {
