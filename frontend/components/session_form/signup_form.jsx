@@ -160,7 +160,7 @@ class SignupForm extends React.Component {
           </header>
           <form>
             <label>{firstInput === 'email' ? 'Email' : 'First Name'}
-                <input type="text" id={firstInput === 'email' ? 'email' : ''}className={this.state.errors.firstInput ? 'login-input-errors' : ''} value={this.state.firstInput} onChange={this.updateItem(firstInput)} />
+                <input type="text" id={firstInput === 'email' ? 'email' : ''} className={this.state.errors.firstInput ? 'login-input-errors' : ''} value={this.state.firstInput} onChange={this.updateItem(firstInput)} />
             </label>
             {this.state.errors.firstInput ? <p className="login-errors">{this.state.errors.firstInput}</p> : ''}
             <label>{secondInput === 'password' ? "Password (6 or more characters)" : "Last Name"}

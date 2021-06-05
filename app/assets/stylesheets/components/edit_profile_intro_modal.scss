@@ -8,6 +8,16 @@
 
     div {
       display: flex;
+
+      div {
+        display: flex;
+        flex-direction: column;
+
+        p {
+          color: $error-red;
+          margin-left: 10px;
+        }
+      }
     }
     
     input {
