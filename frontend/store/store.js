@@ -5,7 +5,7 @@ import logger from 'redux-logger';
 
 let myMiddlewares;
 if (process.env.NODE_ENV === "production") {
-  myMiddlewares = thunk;
+  myMiddlewares = [thunk];
 } else {
   myMiddlewares = [thunk, logger];
 }
