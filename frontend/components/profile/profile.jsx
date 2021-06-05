@@ -10,10 +10,12 @@ class Profile extends React.Component {
       photo: null,
       hiddenText: true,
       redirect: false,
-      currentPageUserId: props.userId
+      currentPageUserId: props.userId,
+      aboutMeUpdated: false
     }
     this.updatePhoto = this.updatePhoto.bind(this);
     this.seeMore = this.seeMore.bind(this);
+    this.toggleAboutMe = this.toggleAboutMe.bind(this);
   }
 
   updatePhoto (photoUrl) {
@@ -30,16 +32,24 @@ class Profile extends React.Component {
     $('.blurb').removeClass('clipped');
   }
 
+  toggleAboutMe () {
+    this.setState({
+      aboutMeUpdated: true
+    })
+  }
+
   componentDidUpdate () {
     if (!this.state.redirect) {
-      if (!this.props.user || this.props.userId !== this.state.currentPageUserId) { 
+      if (!this.props.user || this.props.userId !== this.state.currentPageUserId || this.state.aboutMeUpdated) { 
         this.props.fetchUser(this.props.userId)
           .then(
             () => {
               this.setState({
                 currentPageUserId: this.props.userId,
-                hiddenText: true
+                hiddenText: true,
+                aboutMeUpdated: false
               })
+              $('.blurb').addClass('clipped');
             },
             () => this.setState({
             redirect: true
@@ -58,7 +68,7 @@ class Profile extends React.Component {
   }
 
   render () {
-    console.log($('.blurb').scrollHeight);
+    console.log(this.state);
     let modal;
     switch (this.props.modal) {
       case 'ContactInfo':
@@ -71,7 +81,7 @@ class Profile extends React.Component {
         modal = <Modal name={this.props.modal} user={this.props.user} updateModal={this.props.updateModal} updatePhoto={this.updatePhoto} />;
         break;
       case 'EditAboutMe':
-        modal = <Modal name={this.props.modal} user={this.props.user} updateModal={this.props.updateModal} updateUser={this.props.updateUser} />;
+        modal = <Modal name={this.props.modal} user={this.props.user} updateModal={this.props.updateModal} updateUser={this.props.updateUser} toggleAboutMe={this.toggleAboutMe}/>;
         break;
       default:
         modal = '';

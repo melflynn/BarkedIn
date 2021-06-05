@@ -17,6 +17,7 @@ class EditAboutMeModal extends React.Component {
   handleSubmit (e) {
     e.preventDefault();
     this.props.updateUser(this.state);
+    this.props.toggleAboutMe();
     this.props.updateModal();
   }
 
