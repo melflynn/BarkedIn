@@ -6,3 +6,6 @@ end
 
 json.extract! user, :id, :first_name, :last_name, :email, :breed, :country, :region, :about_me
 json.profilePhotoUrl profilePhotoUrl
+json.connections do 
+  json.extract! user.connections, :ids
+end

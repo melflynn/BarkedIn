@@ -45,7 +45,9 @@ ActiveRecord::Schema.define(version: 2021_06_05_165140) do
     t.index ["user_id1", "user_id2"], name: "index_connections_on_user_id1_and_user_id2", unique: true
     t.index ["user_id1"], name: "index_connections_on_user_id1"
     t.index ["user_id2"], name: "index_connections_on_user_id2"
+    #check constraint connected_check CHECK (user_id1 < user_id2)
   end
+
 
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
