@@ -9,3 +9,6 @@ json.profilePhotoUrl profilePhotoUrl
 json.connections do 
   json.extract! user.connections, :ids
 end
+json.connectedUsers do 
+  json.extract! user.connected_users, :ids
+end

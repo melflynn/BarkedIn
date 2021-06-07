@@ -7,13 +7,13 @@ import SignupContainer from './session_form/signup_container';
 import FeedContainer from './home_page/feed_container';
 import { validateEmail } from "../util/session_util";
 import ProfileContainer from './profile/profile_container';
-import ConnectionsPage from './network/connections_page';
+import ConnectionsPageContainer from './network/connections_page_container';
 
 const App = () => (
   <div>
     <Switch>
       <LoginAuthRoute path="/feed" component={FeedContainer} />
-      <LoginAuthRoute path="/users/:userId/connections" component={ConnectionsPage} />
+      <LoginAuthRoute path="/users/:userId/connections" component={ConnectionsPageContainer} />
       <LoginAuthRoute path="/users/:userId" component={ProfileContainer} />
       <LogoutAuthRoute path="/login" component={LoginContainer} />
       <LogoutAuthRoute path="/signup" component={() => <SignupContainer validateEmail={validateEmail}/>} />
