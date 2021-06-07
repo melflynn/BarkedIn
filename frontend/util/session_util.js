@@ -26,6 +26,6 @@ export const validateEmail = (email) => (
   $.ajax({
     method: 'GET',
     url: '/api/users',
-    data: {email: email}
+    data: {email}
   })
 )

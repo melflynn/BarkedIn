@@ -12,8 +12,13 @@ class Api::UsersController < ApplicationController
   end
 
   def index 
-    @user = User.find_by(email: params[:email])
-    render json: @user
+    if params[:email]
+      @user = User.find_by(email: params[:email])
+      render json: @user
+    elsif params[:userIds]
+      @users = User.find(params[:userIds])
+      render :index
+    end
   end
 
   def show

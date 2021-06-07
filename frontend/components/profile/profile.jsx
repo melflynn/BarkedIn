@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import HeaderContainer from '../header/header_container';
 import Modal from '../modal/modal';
+import { Link } from 'react-router-dom';
 
 class Profile extends React.Component {
   constructor (props) {
@@ -86,10 +87,12 @@ class Profile extends React.Component {
         modal = '';
     }
 
-    let connectionCount = this.props.user.connections.ids.length;
+    let connectionCount = this.props.user ? this.props.user.connections.ids.length : null;
 
     if (this.state.redirect) {
       return <Redirect to="/" />;
+    } else if (!this.props.user) {
+      return null;
     } else {
       return (
         <div className="profile-page">
@@ -106,13 +109,18 @@ class Profile extends React.Component {
               </div>
               <div>
                 {this.props.userId === this.props.currentUser.id.toString() ? 
-                  <img src={this.state.photo ? this.state.photo : this.props.user ? this.props.user.profilePhotoUrl || window.defaultProfPic : ''} id="editable-prof-pic" onClick={() => this.props.updateModal('ProfilePhoto')} /> :
-                  <img src={this.props.user ? this.props.user.profilePhotoUrl || window.defaultProfPic: ''}/>
+                  <img src={this.state.photo ? this.state.photo : this.props.user ? this.props.user.profilePhotoUrl || window.defaultProfPic : ''} 
+                  id="editable-prof-pic" 
+                  onClick={() => this.props.updateModal('ProfilePhoto')} /> :
+                  <img src={this.props.user.profilePhotoUrl || window.defaultProfPic}/>
                 }
-                <h3>{this.props.user ? this.props.user.firstName : ''} {this.props.user ? this.props.user.lastName : ''}</h3>
-                <h4>{this.props.user ? this.props.user.breed : ''}</h4>
-                <h5>{this.props.user ? `${this.props.user.region ? `${this.props.user.region}, ` : ''} ${this.props.user.country ? this.props.user.country : ''}` : ''}<p>•</p><p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p></h5>
-                <p id="connectionCount">{connectionCount === 1 ? `${connectionCount} connection` : connectionCount > 500 ? `500+ connections` : `${connectionCount} connections`}</p>
+                <h3>{this.props.user.firstName} {this.props.user.lastName}</h3>
+                <h4>{this.props.user.breed}</h4>
+                <h5>{`${this.props.user.region ? `${this.props.user.region}, ` : ''} ${this.props.user.country ? this.props.user.country : ''}`}
+                  <p>•</p>
+                  <p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p>
+                </h5>
+                <Link to={`/users/${this.props.user.id}/connections`}><p id="connectionCount">{connectionCount === 1 ? `${connectionCount} connection` : connectionCount > 500 ? `500+ connections` : `${connectionCount} connections`}</p></Link>
               </div>
             </section>
             <section className="about">
@@ -122,7 +130,9 @@ class Profile extends React.Component {
               </div>
               <div>
                 <p className="blurb clipped">{this.props.user ? this.props.user.aboutMe : ''}</p>
-                {this.state.hiddenText && ($('.blurb').prop('scrollHeight') > $('.blurb').prop('clientHeight') || this.props.user && this.props.user.aboutMe && this.props.user.aboutMe.length > 315) ? <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
+                {this.state.hiddenText && ($('.blurb').prop('scrollHeight') > $('.blurb').prop('clientHeight') 
+                || this.props.user && this.props.user.aboutMe && this.props.user.aboutMe.length > 315) ? 
+                <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
               </div>
             </section>
           </div>

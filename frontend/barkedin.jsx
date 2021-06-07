@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { configureStore } from './store/store';
 import Root from './components/root';
-import { requestConnection, acceptConnection, deleteConnection } from './actions/connection_actions';
+import { fetchUsers } from './actions/user_actions';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,9 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
 
-  window.requestConnection = requestConnection;
-  window.acceptConnection = acceptConnection;
-  window.deleteConnection = deleteConnection;
+  window.fetchUsers = fetchUsers;
   window.dispatch = store.dispatch;
   ReactDOM.render(<Root store={store}/>, root);
 })

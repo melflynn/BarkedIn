@@ -5,6 +5,14 @@ export const fetchUser = (userId) => (
   })
 )
 
+export const fetchUsers = (userIds) => (
+  $.ajax({
+    method: 'GET',
+    url: '/api/users',
+    data: {userIds}
+  })
+)
+
 export const updateUser = (user) => (
   $.ajax({
     method: 'PATCH',

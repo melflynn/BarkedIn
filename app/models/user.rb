@@ -11,18 +11,6 @@ class User < ApplicationRecord
   has_one_attached :profile_photo
 
   def connections
-    # first = User
-    #   .joins("FULL OUTER JOIN connections ON users.id = connections.user_id1")
-    #   .where("connections.user_id2 = ?", self.id)
-    #   .where("connections.status = 'connected'")
-
-    # second = User
-    #   .joins("FULL OUTER JOIN connections ON users.id = connections.user_id2")
-    #   .where("connections.user_id1 = ?", self.id)
-    #   .where("connections.status = 'connected'")
-
-    # first + second
-
     Connection.where("(user_id1 = ? OR user_id2 = ?) AND status = 'connected'", self.id, self.id)    
   end
 
