@@ -39,13 +39,20 @@ class ConnectionsPage extends React.Component {
       return (
         <div className="profile-page">
             <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />
-            <div className="connections">
-              <ul>
-                {this.state.connectedUsers.map((connectedUser, i) => {
-                  return <ConnectedUserItem key={i} connectedUser={connectedUser}/>
-                })}
-              </ul>
-            </div>
+
+            {this.props.currentUser.id === this.props.user.id ? `Your connections` : `${this.props.user.firstName}'s connections`}
+            
+            {this.state.connectedUsers.length > 0 ? 
+              <div className="connections">
+                <ul>
+                  {this.state.connectedUsers.map((connectedUser, i) => {
+                    return <ConnectedUserItem key={i} connectedUser={connectedUser}/>
+                  })}
+                </ul>
+              </div> :
+              <div>
+                You don't have any connections yet 
+              </div>}
         </div>
       )
     } else {

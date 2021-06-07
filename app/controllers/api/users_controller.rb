@@ -18,6 +18,8 @@ class Api::UsersController < ApplicationController
     elsif params[:userIds]
       @users = User.find(params[:userIds])
       render :index
+    else
+      render json: {}
     end
   end
 

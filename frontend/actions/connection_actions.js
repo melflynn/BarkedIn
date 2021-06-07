@@ -15,7 +15,7 @@ export const removeConnection = (connection) => ({
 
 export const requestConnection = (requesterId, requesteeId) => (dispatch) => (
   APIUtil.requestConnection(requesterId, requesteeId)
-    .then((connection) => {debugger; dispatch(receiveConnection(connection))})
+    .then((connection) => dispatch(receiveConnection(connection)))
 )
 
 export const acceptConnection = (connectionId) => (dispatch) => (
