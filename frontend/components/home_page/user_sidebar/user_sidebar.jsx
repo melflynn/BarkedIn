@@ -11,9 +11,10 @@ const UserSidebar = (props) => (
       <p className="profile-photo"><img src={props.user.profilePhotoUrl || window.defaultProfPic} /></p>
       <Link to={`/users/${props.user.id}`}>{props.user.firstName} {props.user.lastName}</Link>
       <p>{props.user.breed}</p>
-    </div>
-    <div>
-      
+      <div>
+        <p>Connections</p>
+        <p>{props.user.connections.ids.length}</p>
+      </div>
     </div>
   </div>
 )

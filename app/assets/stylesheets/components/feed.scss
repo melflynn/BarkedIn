@@ -70,10 +70,26 @@
           }          
         }
 
-        p:last-child {
+        p:last-of-type {
           color: $light-grey;
           font-size: 14px;
           margin: 5px;
+          margin-bottom: 10px;
+        }
+
+        div {
+          width: 100%;
+          padding: 5px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          color: $light-grey;
+          font-size: 14px;
+          border-top: 1px solid $lighter-grey;
+
+          p:last-child {
+            color: $main-blue;
+          }
         }
       }
 
