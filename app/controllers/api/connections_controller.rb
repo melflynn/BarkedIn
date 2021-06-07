@@ -28,8 +28,12 @@ class Api::ConnectionsController < ApplicationController
   end
 
   def destroy 
-    # @connection = Connection.find_by(params[:id])
-    # if current_user.id == @connection.user_id1 || current_user.id == @connection.user_id2
+    @connection = Connection.find_by(id: params[:id])
+    if current_user.id == @connection.user_id1 || current_user.id == @connection.user_id2
+      @connection.destroy
+    else
+      render json: "You can't delete other people's connections!", status: 422
+    end
   end
 
 end
