@@ -11,45 +11,63 @@ class User < ApplicationRecord
   has_one_attached :profile_photo
 
   def connections
-    first = User
-      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id1")
-      .where("connections.user_id2 = ?", self.id)
-      .where("connections.status = 'connected'")
+    # first = User
+    #   .joins("FULL OUTER JOIN connections ON users.id = connections.user_id1")
+    #   .where("connections.user_id2 = ?", self.id)
+    #   .where("connections.status = 'connected'")
 
-    second = User
-      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id2")
-      .where("connections.user_id1 = ?", self.id)
-      .where("connections.status = 'connected'")
+    # second = User
+    #   .joins("FULL OUTER JOIN connections ON users.id = connections.user_id2")
+    #   .where("connections.user_id1 = ?", self.id)
+    #   .where("connections.status = 'connected'")
 
-    first + second
+    # first + second
+
+    Connection.where("(user_id1 = ? OR user_id2 = ?) AND status = 'connected'", self.id, self.id)    
+  end
+
+  def connected_users
+    users = connections.map do |connection|
+      if connection.user_id1 == self.id
+        connection.user_id2
+      else
+        connection.user_id1
+      end
+    end
+
+    User.where("id IN (?)", users)
   end
 
   def connection_requests
-    first = User
-      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id1")
-      .where("connections.user_id2 = ?", self.id)
-      .where("connections.status = 'pending_user2'")
+    Connection.where("(user_id1 = ? AND status = 'pending_user1') OR (user_id2 = ? AND status = 'pending_user2')", self.id, self.id)
+  end
 
-    second = User
-      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id2")
-      .where("connections.user_id1 = ?", self.id)
-      .where("connections.status = 'pending_user1'")
+  def users_requesting_connection
+    users = connection_requests.map do |request|
+      if request.user_id1 == self.id
+        request.user_id2
+      else
+        request.user_id1
+      end
+    end
 
-    first + second
+    User.where('id IN (?)', users)
   end
 
   def requested_connections
-    first = User
-      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id1")
-      .where("connections.user_id2 = ?", self.id)
-      .where("connections.status = 'pending_user1'")
+    Connection.where("(user_id1 = ? AND status = 'pending_user2') OR (user_id2 = ? AND status = 'pending_user1')", self.id, self.id)
+  end
 
-    second = User
-      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id2")
-      .where("connections.user_id1 = ?", self.id)
-      .where("connections.status = 'pending_user2'")
+  def users_pending_connection
+    users = requested_connections.map do |request|
+      if request.user_id1 == self.id
+        request.user_id2
+      else
+        request.user_id1
+      end
+    end
 
-    first + second
+    User.where('id IN (?)', users)
   end
 
   def self.generate_session_token
