@@ -23,7 +23,7 @@ class ConnectionsPage extends React.Component {
 
     if (!this.props.user) {
       this.props.fetchUser(this.props.userId)
-        .then((user) => mountFunction(user.connectedUsers.ids.slice(0,10)))
+        .then((user) => {mountFunction(user.user.connectedUsers.ids.slice(0,10))})
     } else {
       mountFunction(this.props.connectedUsers.ids.slice(0, 10));
     } 
@@ -46,7 +46,7 @@ class ConnectionsPage extends React.Component {
               <div className="connections">
                 <ul>
                   {this.state.connectedUsers.map((connectedUser, i) => {
-                    return <ConnectedUserItem key={i} connectedUser={connectedUser}/>
+                    return <ConnectedUserItem key={i} connectedUser={connectedUser} currentUser={this.props.currentUser}/>
                   })}
                 </ul>
               </div> :
