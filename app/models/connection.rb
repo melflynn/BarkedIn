@@ -3,6 +3,7 @@ class Connection < ApplicationRecord
   validates :status, inclusion: {in: ['pending_user1', 'pending_user2', 'connected']}
   validate :user_id_order
 
+
   private
 
   def user_id_order

@@ -10,6 +10,48 @@ class User < ApplicationRecord
 
   has_one_attached :profile_photo
 
+  def connections
+    first = User
+      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id1")
+      .where("connections.user_id2 = ?", self.id)
+      .where("connections.status = 'connected'")
+
+    second = User
+      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id2")
+      .where("connections.user_id1 = ?", self.id)
+      .where("connections.status = 'connected'")
+
+    first + second
+  end
+
+  def connection_requests
+    first = User
+      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id1")
+      .where("connections.user_id2 = ?", self.id)
+      .where("connections.status = 'pending_user2'")
+
+    second = User
+      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id2")
+      .where("connections.user_id1 = ?", self.id)
+      .where("connections.status = 'pending_user1'")
+
+    first + second
+  end
+
+  def requested_connections
+    first = User
+      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id1")
+      .where("connections.user_id2 = ?", self.id)
+      .where("connections.status = 'pending_user1'")
+
+    second = User
+      .joins("FULL OUTER JOIN connections ON users.id = connections.user_id2")
+      .where("connections.user_id1 = ?", self.id)
+      .where("connections.status = 'pending_user2'")
+
+    first + second
+  end
+
   def self.generate_session_token
     SecureRandom::urlsafe_base64
   end
