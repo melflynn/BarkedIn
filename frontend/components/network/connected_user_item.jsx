@@ -1,17 +1,44 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 
-const ConnectedUserItem = (props) => (
-  <li className="connected-user-item">
-    <img src={props.connectedUser.profilePhotoUrl || window.defaultProfPic} />
-    <div>
-      <article>
-        <h3>{props.connectedUser.firstName} {props.connectedUser.lastName}</h3>
-        <p>{props.connectedUser.breed ? props.connectedUser.breed : ''}</p>
-        <p>{props.connectedUser.region ? `${props.connectedUser.region}, ` : ''} {props.connectedUser.country ? `${props.connectedUser.country}` : ''}</p>
-      </article>
-      {props.currentUser.connectedUsers.ids.includes(props.connectedUser.id) ? '' : <button>Connect</button>}
-    </div>
-  </li>
-)
+class ConnectedUserItem extends React.Component {
+  constructor (props) {
+    super(props);
+    const requested = this.props.currentUser.pendingUsers.ids.includes(this.props.connectedUser.id);
+    const connected = this.props.currentUser.connectedUsers.ids.includes(this.props.connectedUser.id);
+    this.state = {
+      requested,
+      connected
+    }
+    this.makeRequest = this.makeRequest.bind(this);
+  }
+
+  makeRequest (e) {
+    e.preventDefault();
+    this.props.requestConnection(this.props.currentUser.id, this.props.connectedUser.id)
+    this.setState({
+      requested: true
+    })
+  }
+
+  render () {
+    return (
+      <li className="connected-user-item">
+        <img src={this.props.connectedUser.profilePhotoUrl || window.defaultProfPic} />
+        <div>
+          <article>
+            <h3>{this.props.connectedUser.firstName} {this.props.connectedUser.lastName}</h3>
+            <p>{this.props.connectedUser.breed ? this.props.connectedUser.breed : ''}</p>
+            <p>{this.props.connectedUser.region ? `${this.props.connectedUser.region}, ` : ''} {this.props.connectedUser.country ? `${this.props.connectedUser.country}` : ''}</p>
+          </article>
+          {this.state.connected ? '' :
+          this.state.requested ?
+          <p>Pending</p> :
+          <button onClick={this.makeRequest}>Connect</button>}
+        </div>
+      </li>
+    )
+  }
+}
 
 export default ConnectedUserItem;

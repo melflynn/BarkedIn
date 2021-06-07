@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/connection_util';
+import { fetchUsers } from '../actions/user_actions';
 
 export const RECEIVE_CONNECTION = 'RECEIVE_CONNECTION';
 export const REMOVE_CONNECTION = 'REMOVE_CONNECTION';
@@ -15,7 +16,12 @@ export const removeConnection = (connection) => ({
 
 export const requestConnection = (requesterId, requesteeId) => (dispatch) => (
   APIUtil.requestConnection(requesterId, requesteeId)
-    .then((connection) => dispatch(receiveConnection(connection)))
+    .then(
+      (connection) => {
+        dispatch(receiveConnection(connection));
+        dispatch(fetchUsers([connection.user_id1, connection.user_id2]))
+      }
+    )
 )
 
 export const acceptConnection = (connectionId) => (dispatch) => (
@@ -25,5 +31,10 @@ export const acceptConnection = (connectionId) => (dispatch) => (
 
 export const deleteConnection = (connectionId) => (dispatch) => (
   APIUtil.deleteConnection(connectionId)
-    .then((connection) => dispatch(removeConnection(connection)))
+    .then(
+      (connection) => {
+        dispatch(removeConnection(connection));
+      
+      }
+    )
 )

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchUser, fetchUsers } from '../../actions/user_actions';
+import { requestConnection } from '../../actions/connection_actions';
 import ConnectionsPage from './connections_page';
 
 const mapStateToProps = (state, ownProps) => {
@@ -21,7 +22,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUsers: (userIds) => dispatch(fetchUsers(userIds)),
-  fetchUser: (userId) => dispatch(fetchUser(userId))
+  fetchUser: (userId) => dispatch(fetchUser(userId)),
+  requestConnection: (requesterId, requesteeId) => dispatch(requestConnection(requesterId, requesteeId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConnectionsPage);

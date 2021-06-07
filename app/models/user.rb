@@ -46,7 +46,7 @@ class User < ApplicationRecord
     Connection.where("(user_id1 = ? AND status = 'pending_user2') OR (user_id2 = ? AND status = 'pending_user1')", self.id, self.id)
   end
 
-  def users_pending_connection
+  def pending_users
     users = requested_connections.map do |request|
       if request.user_id1 == self.id
         request.user_id2

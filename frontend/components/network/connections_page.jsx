@@ -46,7 +46,11 @@ class ConnectionsPage extends React.Component {
               <div className="connections">
                 <ul>
                   {this.state.connectedUsers.map((connectedUser, i) => {
-                    return <ConnectedUserItem key={i} connectedUser={connectedUser} currentUser={this.props.currentUser}/>
+                    return <ConnectedUserItem 
+                      key={i} 
+                      connectedUser={connectedUser} 
+                      currentUser={this.props.currentUser}
+                      requestConnection={this.props.requestConnection}/>
                   })}
                 </ul>
               </div> :

@@ -12,3 +12,6 @@ end
 json.connectedUsers do 
   json.extract! user.connected_users, :ids
 end
+json.pendingUsers do
+  json.extract! user.pending_users, :ids
+end
