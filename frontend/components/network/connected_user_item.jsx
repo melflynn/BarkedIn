@@ -1,5 +1,5 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class ConnectedUserItem extends React.Component {
   constructor (props) {
@@ -27,7 +27,7 @@ class ConnectedUserItem extends React.Component {
         <img src={this.props.connectedUser.profilePhotoUrl || window.defaultProfPic} />
         <div>
           <article>
-            <h3>{this.props.connectedUser.firstName} {this.props.connectedUser.lastName}</h3>
+            <Link to={`/users/${this.props.connectedUser.id}`}><h3>{this.props.connectedUser.firstName} {this.props.connectedUser.lastName}</h3></Link>
             <p>{this.props.connectedUser.breed ? this.props.connectedUser.breed : ''}</p>
             <p>{this.props.connectedUser.region ? `${this.props.connectedUser.region}, ` : ''} {this.props.connectedUser.country ? `${this.props.connectedUser.country}` : ''}</p>
           </article>
