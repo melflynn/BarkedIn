@@ -17,11 +17,13 @@ class Api::ConnectionsController < ApplicationController
   end
 
   def update
-    @connection = Connection.find_by(params[:id])
+    @connection = Connection.find_by(id: params[:id])
     if current_user.id == @connection.user_id1 && @connection.status == 'pending_user1' || current_user.id == @connection.user_id2 && @connection.status == 'pending_user2'
       if !@connection.update(status: 'connected')
         render json: @connection.errors.full_messages, status: 422
       end
+    else
+      render json: "Something went wrong", status: 422
     end
   end
 
