@@ -12,8 +12,10 @@ const UserSidebar = (props) => (
       <Link to={`/users/${props.user.id}`}>{props.user.firstName} {props.user.lastName}</Link>
       <p>{props.user.breed}</p>
       <div>
-        <p>Connections</p>
-        <p>{props.user.connections.ids.length}</p>
+        <Link to={`/users/${props.user.id}/connections`}>
+          <p>Connections</p>
+          <p>{props.user.connections.ids.length}</p>
+        </Link>
       </div>
     </div>
   </div>
