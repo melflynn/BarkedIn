@@ -22,7 +22,7 @@ export const acceptConnection = (connectionId) => (
   })
 )
 
-export const removeConnection = (connectionId) => (
+export const deleteConnection = (connectionId) => (
   $.ajax({
     method: 'DELETE',
     url: `/api/connections/${connectionId}`

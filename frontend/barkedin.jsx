@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { configureStore } from './store/store';
 import Root from './components/root';
-import { requestConnection, acceptConnection, removeConnection } from './util/connection_util';
+import { requestConnection, acceptConnection, deleteConnection } from './actions/connection_actions';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "currentUserId": window.currentUser.id
       }
     }
+
     store = configureStore(preloadedState);
     delete window.currentUser;
   } else {
@@ -27,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.requestConnection = requestConnection;
-  window.removeConnection = removeConnection;
   window.acceptConnection = acceptConnection;
+  window.deleteConnection = deleteConnection;
   window.dispatch = store.dispatch;
   ReactDOM.render(<Root store={store}/>, root);
 })
