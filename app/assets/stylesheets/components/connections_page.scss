@@ -1,0 +1,49 @@
+.connections {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+
+  ul {
+    grid-column: 1;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid $lighter-grey;
+    width: 700px;
+
+    li {
+      display: flex;
+
+      img {
+        object-fit: cover;
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+        margin: 10px;
+      }
+
+      div {
+        margin: 10px;
+        padding-bottom: 15px;
+        padding-top: 5px;
+        width: 100%;
+        border-bottom: 1px solid $lighter-grey;
+
+        h3 {
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        p {
+          font-size: 14px;
+
+          &:last-of-type {
+            color: $light-grey;
+          }
+        }
+      }
+    }
+    
+  }
+}
