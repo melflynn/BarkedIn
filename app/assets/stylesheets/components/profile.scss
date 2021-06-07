@@ -32,7 +32,7 @@
       }
     
       &.intro {
-        height: 300px;
+        height: 350px;
         display: grid;
     
         .background {
@@ -116,6 +116,13 @@
                 }
               }
             }
+          }
+
+          #connectionCount {
+            color: $main-blue;
+            text-align: left;
+            font-size: 14px;
+            padding-top: 10px;
           }
     
         }

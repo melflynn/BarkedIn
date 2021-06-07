@@ -86,7 +86,7 @@ class Profile extends React.Component {
         modal = '';
     }
 
-    let clickMore;
+    let connectionCount = this.props.user.connections.ids.length;
 
     if (this.state.redirect) {
       return <Redirect to="/" />;
@@ -112,6 +112,7 @@ class Profile extends React.Component {
                 <h3>{this.props.user ? this.props.user.firstName : ''} {this.props.user ? this.props.user.lastName : ''}</h3>
                 <h4>{this.props.user ? this.props.user.breed : ''}</h4>
                 <h5>{this.props.user ? `${this.props.user.region ? `${this.props.user.region}, ` : ''} ${this.props.user.country ? this.props.user.country : ''}` : ''}<p>•</p><p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p></h5>
+                <p id="connectionCount">{connectionCount === 1 ? `${connectionCount} connection` : connectionCount > 500 ? `500+ connections` : `${connectionCount} connections`}</p>
               </div>
             </section>
             <section className="about">
