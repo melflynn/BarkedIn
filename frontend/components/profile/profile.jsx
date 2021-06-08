@@ -13,13 +13,15 @@ class Profile extends React.Component {
       hiddenText: true,
       redirect: false,
       currentPageUserId: props.userId,
-      aboutMeUpdated: false
+      aboutMeUpdated: false,
+      accepted: 0
     }
     this.updatePhoto = this.updatePhoto.bind(this);
     this.seeMore = this.seeMore.bind(this);
     this.toggleAboutMe = this.toggleAboutMe.bind(this);
     this.removeConnection = this.removeConnection.bind(this);
     this.makeRequest = this.makeRequest.bind(this);
+    this.acceptRequest = this.acceptRequest.bind(this);
   }
 
   updatePhoto (photoUrl) {
@@ -47,7 +49,13 @@ class Profile extends React.Component {
     findConnection(this.props.currentUser.id, this.props.user.id)
       .then((connection) => {
         this.props.deleteConnection(connection.id);
-        this.props.fetchUser(this.props.currentUser.id);
+        this.props.fetchUser(this.props.currentUser.id)
+          .then(() => {
+            this.addAccept(-1);
+            this.setState({
+              status: "not connected"
+            })
+          });
       })
   }
 
@@ -55,8 +63,57 @@ class Profile extends React.Component {
     e.preventDefault();
     this.props.requestConnection(this.props.currentUser.id, this.props.user.id)
       .then(() => {
-        this.props.fetchUser(this.props.currentUser.id);
+        this.props.fetchUser(this.props.currentUser.id)
+          .then(() => this.setState({
+            status: "pending"
+          }))
       })
+  }
+
+  acceptRequest(e) {
+    e.preventDefault();
+
+    findConnection(this.props.currentUser.id, this.props.user.id)
+      .then((connection) => {
+        this.props.acceptConnection(connection.id)
+          .then(() => {
+            this.addAccept(1);
+            this.setState({
+              status: "connected"
+            })
+          });
+      })
+  }
+
+  addAccept (num) {
+    debugger
+    this.setState((prevState) => ({
+      accepted: prevState.accepted + num
+    }))
+  }
+
+  setConnectionStatus () {
+    if (this.props.userId === this.props.currentUser.id.toString()) {
+      this.setState({
+        status: "self"
+      })
+    } else if (this.props.currentUser.connectedUsers.ids.includes(this.props.user.id)) {
+      this.setState({
+        status: "connected"
+      })
+    } else if (this.props.currentUser.usersRequestingConnection.ids.includes(this.props.user.id)) {
+      this.setState({
+        status: "requested"
+      })
+    } else if (this.props.currentUser.pendingUsers.ids.includes(this.props.user.id)) {
+      this.setState({
+        status: "pending"
+      })
+    } else {
+      this.setState({
+        status: "not connected"
+      })
+    }
   }
 
   componentDidUpdate () {
@@ -68,9 +125,11 @@ class Profile extends React.Component {
               this.setState({
                 currentPageUserId: this.props.userId,
                 hiddenText: true,
-                aboutMeUpdated: false
-              })
+                aboutMeUpdated: false,
+                accepted: 0
+              });
               $('.blurb').addClass('clipped');
+              this.setConnectionStatus();
             },
             () => this.setState({
             redirect: true
@@ -82,10 +141,12 @@ class Profile extends React.Component {
   componentDidMount () {
       this.props.fetchUser(this.props.userId)
         .then(
-          null,
+          () => this.setConnectionStatus(),
           () => this.setState({
             redirect: true
           }));
+
+      
   }
 
   render () {
@@ -107,39 +168,63 @@ class Profile extends React.Component {
         modal = '';
     }
 
-    let connectionCount = this.props.user && this.props.user.connections ? this.props.user.connections.ids.length : null;
-
-    let interact;
-
-    if (this.props.user) {
-      if (this.props.userId === this.props.currentUser.id.toString()) {
-        interact = '';
-      } else if (this.props.currentUser.connectedUsers.ids.includes(this.props.user.id)) {
-        interact = 
-          <div className="connection-response">
-            <p>Connected</p>
-            <button className="remove-connection" onClick={this.removeConnection}>Remove Connection</button>
-          </div>;
-      } else if (this.props.currentUser.usersRequestingConnection.ids.includes(this.props.user.id)) {
-        interact = 
-          <div className="connection-response">
-            <button onClick={() => this.props.acceptConnection(this.props.requestId)}>Accept</button>
-            <button onClick={() => this.props.deleteConnection(this.props.requestId)}>Ignore</button>
-          </div>;
-      } else if (this.props.currentUser.pendingUsers.ids.includes(this.props.user.id)) {
-        interact = 
-          <p>Pending</p>
-      } else {
-        interact = 
-          <button onClick={this.makeRequest}>Connect</button>;
-      }
-    }
+    
 
     if (this.state.redirect) {
       return <Redirect to="/" />;
     } else if (!this.props.user) {
       return null;
     } else {
+      const connectionCount = this.props.user.connections ? this.props.user.connections.ids.length + this.state.accepted : null;
+      let interact;
+      switch (this.state.status) {
+        case "self":
+          interact = '';
+          break;
+        case "connected":
+          interact =
+            <div className="connection-response">
+              <p>Connected</p>
+              <button className="remove-connection" onClick={this.removeConnection}>Remove Connection</button>
+            </div>;
+          break;
+        case "requested":
+          interact =
+            <div className="connection-response">
+              <button onClick={this.acceptRequest}>Accept</button>
+              <button onClick={this.removeConnection}>Ignore</button>
+            </div>;
+          break;
+        case "pending":
+          interact =
+            <p>Pending</p>;
+          break;
+        default: 
+          interact =
+            <button onClick={this.makeRequest}>Connect</button>;
+      }
+        // if (this.props.userId === this.props.currentUser.id.toString()) {
+          
+        // } else if (this.props.currentUser.connectedUsers.ids.includes(this.props.user.id) || this.state.accepted) {
+        //   interact =
+        //     <div className="connection-response">
+        //       <p>Connected</p>
+        //       <button className="remove-connection" onClick={this.removeConnection}>Remove Connection</button>
+        //     </div>;
+        // } else if (this.props.currentUser.usersRequestingConnection.ids.includes(this.props.user.id)) {
+        //   interact =
+        //     <div className="connection-response">
+        //       <button onClick={this.acceptRequest}>Accept</button>
+        //       <button onClick={this.removeConnection}>Ignore</button>
+        //     </div>;
+        // } else if (this.props.currentUser.pendingUsers.ids.includes(this.props.user.id)) {
+        //   interact =
+        //     <p>Pending</p>
+        // } else {
+        //   interact =
+        //     <button onClick={this.makeRequest}>Connect</button>;
+        // }
+
       return (
         <div className="profile-page">
           {modal}
