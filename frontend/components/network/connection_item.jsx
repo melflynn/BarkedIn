@@ -9,10 +9,12 @@ class ConnectionItem extends React.Component {
     this.state = {
       requested,
       connected,
-      accepted: false
+      accepted: false,
+      declined: false
     }
     this.makeRequest = this.makeRequest.bind(this);
     this.acceptRequest = this.acceptRequest.bind(this);
+    this.declineRequest = this.declineRequest.bind(this);
   }
 
   makeRequest (e) {
@@ -27,12 +29,20 @@ class ConnectionItem extends React.Component {
     e.preventDefault();
 
     this.props.acceptConnection(this.props.requestId);
-    // debugger;
     this.setState({
       accepted: true
     })
-    // debugger;
     this.props.addAccept();
+  }
+
+  declineRequest (e) {
+    e.preventDefault();
+
+    this.props.deleteConnection(this.props.requestId);
+
+    this.setState({
+      declined: true
+    })
   }
 
   render () {
@@ -49,7 +59,7 @@ class ConnectionItem extends React.Component {
       case "invitation":
         actions = 
           <div className="connection-response">
-            <button onClick={() => this.props.deleteConnection(this.props.requestId)}>Ignore</button>
+            <button onClick={this.declineRequest}>Ignore</button>
             <button onClick={this.acceptRequest}>Accept</button>
           </div>;
         break;
@@ -63,6 +73,8 @@ class ConnectionItem extends React.Component {
         
           {this.state.accepted ? 
             <div>{`${this.props.user.firstName} is now a connection`}</div>
+          : this.state.declined ?
+            <div>Invitation declined</div>
           :
             <div> 
               <article>
