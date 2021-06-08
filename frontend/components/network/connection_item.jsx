@@ -8,9 +8,11 @@ class ConnectionItem extends React.Component {
     const connected = this.props.currentUser.connectedUsers.ids.includes(this.props.user.id);
     this.state = {
       requested,
-      connected
+      connected,
+      accepted: false
     }
     this.makeRequest = this.makeRequest.bind(this);
+    this.acceptRequest = this.acceptRequest.bind(this);
   }
 
   makeRequest (e) {
@@ -19,6 +21,18 @@ class ConnectionItem extends React.Component {
     this.setState({
       requested: true
     })
+  }
+
+  acceptRequest (e) {
+    e.preventDefault();
+
+    this.props.acceptConnection(this.props.requestId);
+    // debugger;
+    this.setState({
+      accepted: true
+    })
+    // debugger;
+    this.props.addAccept();
   }
 
   render () {
@@ -36,7 +50,7 @@ class ConnectionItem extends React.Component {
         actions = 
           <div className="connection-response">
             <button onClick={() => this.props.deleteConnection(this.props.requestId)}>Ignore</button>
-            <button onClick={() => this.props.acceptConnection(this.props.requestId)}>Accept</button>
+            <button onClick={this.acceptRequest}>Accept</button>
           </div>;
         break;
     }
@@ -46,14 +60,19 @@ class ConnectionItem extends React.Component {
     return (
       <li className="connection-item">
         <img src={this.props.user.profilePhotoUrl || window.defaultProfPic} />
-        <div>
-          <article>
-            <Link to={`/users/${this.props.user.id}`}><h3>{this.props.user.firstName} {this.props.user.lastName}</h3></Link>
-            <p>{this.props.user.breed ? this.props.user.breed : ''}</p>
-            <p>{this.props.user.region ? `${this.props.user.region}, ` : ''} {this.props.user.country ? `${this.props.user.country}` : ''}</p>
-          </article>
-          {actions}
-        </div>
+        
+          {this.state.accepted ? 
+            <div>{`${this.props.user.firstName} is now a connection`}</div>
+          :
+            <div> 
+              <article>
+                <Link to={`/users/${this.props.user.id}`}><h3>{this.props.user.firstName} {this.props.user.lastName}</h3></Link>
+                <p>{this.props.user.breed ? this.props.user.breed : ''}</p>
+                <p>{this.props.user.region ? `${this.props.user.region}, ` : ''} {this.props.user.country ? `${this.props.user.country}` : ''}</p>
+              </article>
+              {actions}
+            </div>
+          }
       </li>
     )
   }

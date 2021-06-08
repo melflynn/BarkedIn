@@ -7,8 +7,10 @@ class MyNetworkPage extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      usersRequestingConnection: undefined
+      usersRequestingConnection: undefined,
+      accepted: 0
     }
+    this.addAccept = this.addAccept.bind(this);
   }
 
 
@@ -17,6 +19,12 @@ class MyNetworkPage extends React.Component {
       .then((users) => this.setState({
         usersRequestingConnection: Object.values(users.users)
       }))
+  }
+
+  addAccept (prevState) {
+    this.setState((prevState) => ({
+      accepted: prevState.accepted + 1
+    }))
   }
 
   render () {
@@ -32,7 +40,7 @@ class MyNetworkPage extends React.Component {
                 <i className="fas fa-user-friends"></i>
                 <div>
                   <p>Connections</p>
-                  <p>{this.props.user.connections.ids.length}</p>
+                  <p>{this.props.user.connections.ids.length + this.state.accepted}</p>
                 </div>
               </Link>
             </div>
@@ -54,6 +62,8 @@ class MyNetworkPage extends React.Component {
                         currentUser={this.props.user}
                         deleteConnection={this.props.deleteConnection}
                         acceptConnection={this.props.acceptConnection}
+                        fetchUser={this.props.fetchUser}
+                        addAccept={this.addAccept}
                       />
                     }) :
                     <li>No current invitations</li>
