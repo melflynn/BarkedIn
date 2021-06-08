@@ -6,7 +6,6 @@ import { acceptConnection, deleteConnection } from "../../actions/connection_act
 
 
 const mapStateToProps = (state, ownProps) => {
-  
   return {
     userId: ownProps.match.params.userId,
     user: state.entities.users[ownProps.match.params.userId],

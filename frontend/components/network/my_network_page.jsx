@@ -27,7 +27,7 @@ class MyNetworkPage extends React.Component {
           <HeaderContainer photo={this.props.user.profilePhotoUrl} />
           <div className="network-page">
             <div className="network-left">
-              <p>Manage my network</p>
+              <h3>Manage my network</h3>
               <Link to={`/users/${this.props.user.id}/connections`}>
                 <i className="fas fa-user-friends"></i>
                 <div>
@@ -38,10 +38,10 @@ class MyNetworkPage extends React.Component {
             </div>
 
             <div className="network-right">
-              <div>
+              <div className="invitations">
                 <div>
                   <h3>Invitations</h3>
-                  <p>Manage</p>
+                  <Link to="#">Manage</Link>
                 </div>
                 <ul>
                   { this.props.connectionRequests.ids.length > 0 ?

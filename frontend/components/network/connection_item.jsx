@@ -34,7 +34,7 @@ class ConnectionItem extends React.Component {
         break;
       case "invitation":
         actions = 
-          <div>
+          <div id="connection-response">
             <button onClick={() => this.props.deleteConnection(this.props.requestId)}>Ignore</button>
             <button onClick={() => this.props.acceptConnection(this.props.requestId)}>Accept</button>
           </div>;
