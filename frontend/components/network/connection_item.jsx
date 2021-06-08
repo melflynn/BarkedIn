@@ -27,7 +27,7 @@ class ConnectionItem extends React.Component {
     switch (this.props.type) {
       case "connection":
         actions =
-          this.state.connected || this.props.user.id === this.props.currentUser.id ? '' :
+          this.state.connected ? '' :
           this.state.requested ?
             <p>Pending</p> :
             <button onClick={this.makeRequest}>Connect</button>;

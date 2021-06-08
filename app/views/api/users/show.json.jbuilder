@@ -1,26 +1,28 @@
-if @user == current_user
+if @userOptions[:connectedUsers]
   connectedUsers = @user.connected_users
-  pendingUsers = @user.pending_users
-  usersRequestingConnection = @user.users_requesting_connection
-else 
-  if @userOptions[:connectedUsers]
-    connectedUsers = @user.connected_users
-  else
-    connectedUsers = nil
-  end
-
-  if @userOptions[:pendingUsers]
-    pendingUsers = @user.pending_users
-  else
-    pendingUsers = nil
-  end
-
-  if @userOptions[:usersRequestingConnection]
-    usersRequestingConnection = @user.users_requesting_connection
-  else
-    usersRequestingConnection = nil
-  end
+else
+  connectedUsers = nil
 end
+
+if @userOptions[:pendingUsers]
+  pendingUsers = @user.pending_users
+else
+  pendingUsers = nil
+end
+
+if @userOptions[:usersRequestingConnection]
+  usersRequestingConnection = @user.users_requesting_connection
+else
+  usersRequestingConnection = nil
+end
+
+if @userOptions[:ConnectionRequests]
+  connectionRequests = @user.connection_requests
+else
+  connectionRequests = nil
+end
+
+
 
 json.partial! '/api/users/user', user: @user
 json.connections do 
@@ -36,9 +38,11 @@ json.pendingUsers do
     json.extract! pendingUsers, :ids
   end
 end
-# json.connectionRequests do
-#   json.extract! @user.connection_requests, :ids
-# end
+json.connectionRequests do
+  if connectionRequests
+    json.extract! connectionRequests, :ids
+  end
+end
 json.usersRequestingConnection do 
   if usersRequestingConnection
     json.extract! usersRequestingConnection, :ids
