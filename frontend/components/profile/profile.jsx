@@ -94,16 +94,22 @@ class Profile extends React.Component {
     if (this.props.user) {
       if (this.props.currentUser.connectedUsers.ids.includes(this.props.user.id)) {
         interact = 
-          <div>
+          <div className="connection-response">
             <p>Connected</p>
-            <button>Remove Connection</button>
+            <button className="remove-connection">Remove Connection</button>
           </div>;
       } else if (this.props.currentUser.usersRequestingConnection.ids.includes(this.props.user.id)) {
         interact = 
-          <div>
-            <button onClick={() => this.props.deleteConnection(this.props.requestId)}>Ignore</button>
+          <div className="connection-response">
             <button onClick={() => this.props.acceptConnection(this.props.requestId)}>Accept</button>
+            <button onClick={() => this.props.deleteConnection(this.props.requestId)}>Ignore</button>
           </div>;
+      } else if (this.props.currentUser.pendingUsers.ids.includes(this.props.user.id)) {
+        interact = 
+          <p>Pending</p>
+      } else {
+        interact = 
+          <button onClick={this.makeRequest}>Connect</button>;
       }
     }
 
@@ -139,6 +145,8 @@ class Profile extends React.Component {
                   <p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p>
                 </h5>
                 <Link to={`/users/${this.props.user.id}/connections`}><p id="connectionCount">{connectionCount === 1 ? `${connectionCount} connection` : connectionCount > 500 ? `500+ connections` : `${connectionCount} connections`}</p></Link>
+
+                {interact}
 
                 
               </div>

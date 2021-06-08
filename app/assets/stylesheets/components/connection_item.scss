@@ -21,7 +21,7 @@ li.connection-item {
         justify-content: space-between;
         align-items: center;
 
-        &#connection-response {
+        &.connection-response {
           justify-content: flex-end;
           border: none;
           width: 200px;

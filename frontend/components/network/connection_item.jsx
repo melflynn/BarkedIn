@@ -27,14 +27,14 @@ class ConnectionItem extends React.Component {
     switch (this.props.type) {
       case "connection":
         actions =
-          this.state.connected ? '' :
+          this.state.connected || this.props.user.id === this.props.currentUser.id ? '' :
           this.state.requested ?
             <p>Pending</p> :
             <button onClick={this.makeRequest}>Connect</button>;
         break;
       case "invitation":
         actions = 
-          <div id="connection-response">
+          <div className="connection-response">
             <button onClick={() => this.props.deleteConnection(this.props.requestId)}>Ignore</button>
             <button onClick={() => this.props.acceptConnection(this.props.requestId)}>Accept</button>
           </div>;
