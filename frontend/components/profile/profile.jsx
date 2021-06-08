@@ -19,6 +19,7 @@ class Profile extends React.Component {
     this.seeMore = this.seeMore.bind(this);
     this.toggleAboutMe = this.toggleAboutMe.bind(this);
     this.removeConnection = this.removeConnection.bind(this);
+    this.makeRequest = this.makeRequest.bind(this);
   }
 
   updatePhoto (photoUrl) {
@@ -46,6 +47,14 @@ class Profile extends React.Component {
     findConnection(this.props.currentUser.id, this.props.user.id)
       .then((connection) => {
         this.props.deleteConnection(connection.id);
+        this.props.fetchUser(this.props.currentUser.id);
+      })
+  }
+
+  makeRequest(e) {
+    e.preventDefault();
+    this.props.requestConnection(this.props.currentUser.id, this.props.user.id)
+      .then(() => {
         this.props.fetchUser(this.props.currentUser.id);
       })
   }
