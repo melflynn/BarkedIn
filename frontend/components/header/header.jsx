@@ -13,9 +13,9 @@ const Header = (props) => (
           <i className="fas fa-home"></i>
           <p>Home</p>
         </Link>
-        <Link to="#">
+        <Link to="/mynetwork">
           <i className="fas fa-user-friends"></i>
-          <p>Network</p>
+          <p>My Network</p>
         </Link>
         <MeDropdown user={props.user} logout={props.logout} photo={props.photo}/>
       </nav>

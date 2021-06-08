@@ -1,0 +1,49 @@
+.network-page {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 2;
+  margin-top: 40px;
+
+  .network-left {
+    grid-column: 1;
+    background-color: white;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+    p {
+      margin: 5px;
+    }
+
+    a {
+      display: flex;
+      width: 100%;
+      color: $light-grey;
+      width: 200px;
+      margin-bottom: 10px;
+
+      i {
+        padding: 5px;
+        display: flex;
+        align-items: center;
+      }
+
+      div {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 5px;
+
+      }
+
+      &:hover {
+        background-color: $lighter-grey;
+      }
+    }
+  }
+
+  .network-right {
+    grid-column: 2;
+  }
+
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderContainer from '../header/header_container';
-import ConnectedUserItem from './connected_user_item';
+import ConnectionItem from './connection_item';
 
 class ConnectionsPage extends React.Component {
   constructor (props) {
@@ -45,10 +45,11 @@ class ConnectionsPage extends React.Component {
             {this.state.connectedUsers.length > 0 ? 
               <div className="connections">
                 <ul>
-                  {this.state.connectedUsers.map((connectedUser, i) => {
-                    return <ConnectedUserItem 
+                  {this.state.connectedUsers.map((user, i) => {
+                    return <ConnectionItem 
                       key={i} 
-                      connectedUser={connectedUser} 
+                      type="connection"
+                      user={user} 
                       currentUser={this.props.currentUser}
                       requestConnection={this.props.requestConnection}/>
                   })}

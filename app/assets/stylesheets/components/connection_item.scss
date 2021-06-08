@@ -1,0 +1,58 @@
+li.connection-item {
+      display: flex;
+      
+      img {
+        object-fit: cover;
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+        margin: 10px;
+        margin-right: 10px;
+      }
+
+      div {
+        margin: 10px;
+        padding-bottom: 15px;
+        padding-top: 5px;
+        width: 100%;
+        border-bottom: 1px solid $lighter-grey;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a:hover {
+          text-decoration: underline;
+          color: $main-blue;
+        }
+
+        h3 {
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        p {
+          font-size: 14px;
+
+          &:last-of-type {
+            color: $light-grey;
+          }
+        }
+
+        button {
+          border: 1px solid $main-blue;
+          color: $main-blue;
+          padding-left: 5px;
+          padding-right: 5px;
+          border-radius: 24px;
+          height: 30px;
+          width: 85px;
+          text-align: center;
+
+          &:hover {
+            border: 2px solid $main-blue;
+            background-color: $lightest-blue;
+            padding: 4px;
+          }
+        }
+      }
+    }
