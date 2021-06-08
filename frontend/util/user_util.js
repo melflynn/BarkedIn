@@ -1,7 +1,8 @@
-export const fetchUser = (userId) => (
+export const fetchUser = (userId, userOptions) => (
   $.ajax({
     method: 'GET',
-    url: `/api/users/${userId}`
+    url: `/api/users/${userId}`,
+    data: { userOptions }
   })
 )
 
@@ -9,7 +10,7 @@ export const fetchUsers = (userIds) => (
   $.ajax({
     method: 'GET',
     url: '/api/users',
-    data: {userIds}
+    data: { userIds }
   })
 )
 

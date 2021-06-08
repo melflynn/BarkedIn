@@ -19,8 +19,8 @@ export const receiveUsers = (users) => ({
   users
 })
 
-export const fetchUser = (userId) => (dispatch) => (
-  APIUtil.fetchUser(userId)
+export const fetchUser = (userId, userOptions) => (dispatch) => (
+  APIUtil.fetchUser(userId, userOptions)
     .then(
       ((user) => dispatch(receiveUser(user))),
       ((errors) => dispatch(receiveErrors(errors.responseJSON)))

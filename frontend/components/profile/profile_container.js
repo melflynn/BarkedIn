@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (userId) => dispatch(fetchUser(userId)),
+  fetchUser: (userId, userOptions) => dispatch(fetchUser(userId, userOptions)),
   updateUser: (user) => dispatch(updateUser(user)),
   updateModal: (modalName) => dispatch(updateModal(modalName)),
   deleteConnection: (connectionId) => dispatch(deleteConnection(connectionId)),

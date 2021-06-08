@@ -24,6 +24,8 @@ class Api::UsersController < ApplicationController
   end
 
   def show
+    # debugger
+    @userOptions = params[:userOptions] || {}
     @user = User.find_by(id: params[:id])
     if @user
       render :show

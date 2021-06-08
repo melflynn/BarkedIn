@@ -41,7 +41,8 @@ class Profile extends React.Component {
 
   componentDidUpdate () {
     if (!this.state.redirect) {
-      if (!this.props.user || this.props.userId !== this.state.currentPageUserId || this.state.aboutMeUpdated) { 
+      // debugger;
+      if (!this.props.user || !this.props.user.connections || this.props.userId !== this.state.currentPageUserId || this.state.aboutMeUpdated) { 
         this.props.fetchUser(this.props.userId)
           .then(
             () => {
@@ -60,12 +61,37 @@ class Profile extends React.Component {
   }
 
   componentDidMount () {
-    this.props.fetchUser(this.props.userId)
-      .then(
-        null,
-        () => this.setState({
-        redirect: true
-      }))
+    // const getUser = () => this.props.fetchUser(this.props.userId)
+    //   .then(
+    //     null,
+    //     () => this.setState({
+    //     redirect: true
+    //   }));
+
+    // let userOptions = {};
+    // if (!this.props.currentUser.connectedUsers) {
+    //   userOptions['connectedUsers'] = true;
+    // }
+    // if (!this.props.currentUser.usersRequestingConnection) {
+    //   userOptions['usersRequestingConnection'] = true;
+    // }
+    // if (!this.props.currentUser.pendingUsers) {
+    //   userOptions['pendingUsers'] = true;
+    // }
+
+
+    // debugger;
+    // if (Object.keys(userOptions).length === 0) {
+      this.props.fetchUser(this.props.userId)
+        .then(
+          null,
+          () => this.setState({
+            redirect: true
+          }));
+    // } else {
+    //   this.props.fetchUser(this.props.currentUser.id, userOptions)
+    // }
+
   }
 
   render () {
@@ -87,12 +113,14 @@ class Profile extends React.Component {
         modal = '';
     }
 
-    let connectionCount = this.props.user ? this.props.user.connections.ids.length : null;
+    let connectionCount = this.props.user && this.props.user.connections ? this.props.user.connections.ids.length : null;
 
     let interact;
 
     if (this.props.user) {
-      if (this.props.currentUser.connectedUsers.ids.includes(this.props.user.id)) {
+      if (this.props.userId === this.props.currentUser.id.toString()) {
+        interact = '';
+      } else if (this.props.currentUser.connectedUsers.ids.includes(this.props.user.id)) {
         interact = 
           <div className="connection-response">
             <p>Connected</p>

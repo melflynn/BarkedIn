@@ -12,6 +12,7 @@ class Feed extends React.Component {
   }
 
   render () {
+    console.log(this.props)
     return <div className="feed-page">
       <header>  
         <HeaderContainer photo={this.props.user.profilePhotoUrl}/>

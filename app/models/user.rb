@@ -58,6 +58,34 @@ class User < ApplicationRecord
     User.where('id IN (?)', users)
   end
 
+  def pups_you_may_know 
+    pups = [];
+    connects = connected_users;
+
+    if connects.empty? 
+      pups = User.where("id <> ?", self.id).limit(10);
+    end
+
+    connects.each do |user|
+      user.connected_users.each do |second_connection|
+        unless second_connection == self || connects.include?(second_connection) || pups.include?(second_connection)
+          pups << second_connection
+        end
+      end
+    end
+
+    
+    debugger
+
+    if pups.length < 5 
+      ids = connects.pluck(:id).concat(pups.pluck(:id)) << self.id
+      length = 5 - pups.length
+      pups << User.where("id NOT IN (?)", ids).limit(length)
+    end
+
+    pups
+  end 
+
   def self.generate_session_token
     SecureRandom::urlsafe_base64
   end

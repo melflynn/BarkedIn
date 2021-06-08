@@ -21,11 +21,15 @@ class ConnectionsPage extends React.Component {
         )
     }
 
-    if (!this.props.user) {
-      this.props.fetchUser(this.props.userId)
-        .then((user) => {mountFunction(user.user.connectedUsers.ids.slice(0,10))})
+    if (!this.props.user || !this.props.user.connectedUsers) {
+      this.props.fetchUser(this.props.userId, {connectedUsers: true, pendingUsers: true})
+        .then((user) => {
+          const userIds = user.user.connectedUsers.ids.filter((val) => val !== this.props.currentUser.id).slice(0,10);
+          mountFunction(userIds)
+        })
     } else {
-      mountFunction(this.props.connectedUsers.ids.slice(0, 10));
+      const userIds = this.props.connectedUsers.ids.filter((val) => val !== this.props.currentUser.id).slice(0, 10);
+      mountFunction(userIds);
     } 
   }
 
