@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderContainer from '../header/header_container';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import ConnectionItem from './connection_item';
 
 class MyNetworkPage extends React.Component {
@@ -8,7 +8,8 @@ class MyNetworkPage extends React.Component {
     super(props);
     this.state = {
       usersRequestingConnection: undefined,
-      accepted: 0
+      accepted: 0,
+      redirect: false
     }
     this.addAccept = this.addAccept.bind(this);
   }
@@ -29,20 +30,22 @@ class MyNetworkPage extends React.Component {
 
   render () {
 
-    if (this.state.usersRequestingConnection) {
+    if (this.state.redirect) {
+      return <Redirect to={`/users/${this.props.user.id}/connections`}/>
+    } else if (this.state.usersRequestingConnection) {
       return (
         <div className="profile-page">
           <HeaderContainer photo={this.props.user.profilePhotoUrl} />
           <div className="network-page">
             <div className="network-left">
               <h3>Manage my network</h3>
-              <Link to={`/users/${this.props.user.id}/connections`}>
+              <a onClick={() => {this.props.fetchUser(this.props.user.id).then(() => this.setState({redirect: true}))}}>
                 <i className="fas fa-user-friends"></i>
                 <div>
                   <p>Connections</p>
                   <p>{this.props.user.connections.ids.length + this.state.accepted}</p>
                 </div>
-              </Link>
+              </a>
             </div>
 
             <div className="network-right">
@@ -62,7 +65,6 @@ class MyNetworkPage extends React.Component {
                         currentUser={this.props.user}
                         deleteConnection={this.props.deleteConnection}
                         acceptConnection={this.props.acceptConnection}
-                        fetchUser={this.props.fetchUser}
                         addAccept={this.addAccept}
                       />
                     }) :

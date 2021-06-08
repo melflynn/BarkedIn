@@ -19,7 +19,7 @@ export const requestConnection = (requesterId, requesteeId) => (dispatch) => (
     .then(
       (connection) => {
         dispatch(receiveConnection(connection));
-        dispatch(fetchUsers([connection.user_id1, connection.user_id2]))
+        // dispatch(fetchUsers([connection.user_id1, connection.user_id2]))
       }
     )
 )

@@ -8,7 +8,9 @@ class Feed extends React.Component {
   }
 
   componentDidMount () {
-    this.props.fetchUser(this.props.userId)
+    if (!this.props.user) {
+      this.props.fetchUser(this.props.userId)
+    }
   }
 
   render () {
