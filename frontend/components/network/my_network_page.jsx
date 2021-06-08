@@ -52,6 +52,8 @@ class MyNetworkPage extends React.Component {
                         type="invitation"
                         user={this.state.usersRequestingConnection[i]} 
                         currentUser={this.props.user}
+                        deleteConnection={this.props.deleteConnection}
+                        acceptConnection={this.props.acceptConnection}
                       />
                     }) :
                     <li>No current invitations</li>

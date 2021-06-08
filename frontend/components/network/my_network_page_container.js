@@ -14,8 +14,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUsers: (userIds) => dispatch(fetchUsers(userIds)),
-  deleteConnection = (connectionId) => dispatch(deleteConnection(connectionId)),
-  acceptConnection = (connectionId) => dispatch(acceptConnection(connectionId))
+  deleteConnection: (connectionId) => dispatch(deleteConnection(connectionId)),
+  acceptConnection: (connectionId) => dispatch(acceptConnection(connectionId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyNetworkPage);

@@ -30,13 +30,15 @@ class ConnectionItem extends React.Component {
           this.state.connected ? '' :
           this.state.requested ?
             <p>Pending</p> :
-            <button onClick={this.makeRequest}>Connect</button>
+            <button onClick={this.makeRequest}>Connect</button>;
+        break;
       case "invitation":
         actions = 
           <div>
-          <button onClick={this.makeRequest}>Ignore</button>
-          <button onClick={this.makeRequest}>Accept</button>
-          </div>
+            <button onClick={() => this.props.deleteConnection(this.props.requestId)}>Ignore</button>
+            <button onClick={() => this.props.acceptConnection(this.props.requestId)}>Accept</button>
+          </div>;
+        break;
     }
 
     console.log(this.props)

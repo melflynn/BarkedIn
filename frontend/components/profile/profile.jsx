@@ -89,6 +89,24 @@ class Profile extends React.Component {
 
     let connectionCount = this.props.user ? this.props.user.connections.ids.length : null;
 
+    let interact;
+
+    if (this.props.user) {
+      if (this.props.currentUser.connectedUsers.ids.includes(this.props.user.id)) {
+        interact = 
+          <div>
+            <p>Connected</p>
+            <button>Remove Connection</button>
+          </div>;
+      } else if (this.props.currentUser.usersRequestingConnection.ids.includes(this.props.user.id)) {
+        interact = 
+          <div>
+            <button onClick={() => this.props.deleteConnection(this.props.requestId)}>Ignore</button>
+            <button onClick={() => this.props.acceptConnection(this.props.requestId)}>Accept</button>
+          </div>;
+      }
+    }
+
     if (this.state.redirect) {
       return <Redirect to="/" />;
     } else if (!this.props.user) {
@@ -121,6 +139,8 @@ class Profile extends React.Component {
                   <p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p>
                 </h5>
                 <Link to={`/users/${this.props.user.id}/connections`}><p id="connectionCount">{connectionCount === 1 ? `${connectionCount} connection` : connectionCount > 500 ? `500+ connections` : `${connectionCount} connections`}</p></Link>
+
+                
               </div>
             </section>
             <section className="about">
