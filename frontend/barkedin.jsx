@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { configureStore } from './store/store';
 import Root from './components/root';
-import { fetchUsers } from './actions/user_actions';
+import { findConnection } from './util/connection_util';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -26,8 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     store = configureStore();
   }
-
-  window.fetchUsers = fetchUsers;
+  
   window.dispatch = store.dispatch;
   ReactDOM.render(<Root store={store}/>, root);
 })

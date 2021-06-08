@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 import HeaderContainer from '../header/header_container';
 import Modal from '../modal/modal';
 import { Link } from 'react-router-dom';
+import { findConnection } from '../../util/connection_util';
 
 class Profile extends React.Component {
   constructor (props) {
@@ -17,6 +18,7 @@ class Profile extends React.Component {
     this.updatePhoto = this.updatePhoto.bind(this);
     this.seeMore = this.seeMore.bind(this);
     this.toggleAboutMe = this.toggleAboutMe.bind(this);
+    this.removeConnection = this.removeConnection.bind(this);
   }
 
   updatePhoto (photoUrl) {
@@ -39,9 +41,17 @@ class Profile extends React.Component {
     })
   }
 
+  removeConnection (e) {
+    e.preventDefault();
+    findConnection(this.props.currentUser.id, this.props.user.id)
+      .then((connection) => {
+        this.props.deleteConnection(connection.id);
+        this.props.fetchUser(this.props.currentUser.id);
+      })
+  }
+
   componentDidUpdate () {
     if (!this.state.redirect) {
-      // debugger;
       if (!this.props.user || !this.props.user.connections || this.props.userId !== this.state.currentPageUserId || this.state.aboutMeUpdated) { 
         this.props.fetchUser(this.props.userId)
           .then(
@@ -61,37 +71,12 @@ class Profile extends React.Component {
   }
 
   componentDidMount () {
-    // const getUser = () => this.props.fetchUser(this.props.userId)
-    //   .then(
-    //     null,
-    //     () => this.setState({
-    //     redirect: true
-    //   }));
-
-    // let userOptions = {};
-    // if (!this.props.currentUser.connectedUsers) {
-    //   userOptions['connectedUsers'] = true;
-    // }
-    // if (!this.props.currentUser.usersRequestingConnection) {
-    //   userOptions['usersRequestingConnection'] = true;
-    // }
-    // if (!this.props.currentUser.pendingUsers) {
-    //   userOptions['pendingUsers'] = true;
-    // }
-
-
-    // debugger;
-    // if (Object.keys(userOptions).length === 0) {
       this.props.fetchUser(this.props.userId)
         .then(
           null,
           () => this.setState({
             redirect: true
           }));
-    // } else {
-    //   this.props.fetchUser(this.props.currentUser.id, userOptions)
-    // }
-
   }
 
   render () {
@@ -124,7 +109,7 @@ class Profile extends React.Component {
         interact = 
           <div className="connection-response">
             <p>Connected</p>
-            <button className="remove-connection">Remove Connection</button>
+            <button className="remove-connection" onClick={this.removeConnection}>Remove Connection</button>
           </div>;
       } else if (this.props.currentUser.usersRequestingConnection.ids.includes(this.props.user.id)) {
         interact = 

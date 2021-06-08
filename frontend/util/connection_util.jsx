@@ -28,3 +28,16 @@ export const deleteConnection = (connectionId) => (
     url: `/api/connections/${connectionId}`
   })
 )
+
+export const findConnection = (user_id1, user_id2) => {
+  if (user_id1 > user_id2) {
+    let temp = user_id1;
+    user_id1 = user_id2; 
+    user_id2 = temp;
+  }
+  return $.ajax({
+    method: 'GET',
+    url: '/api/connections',
+    data: { user_id1, user_id2 }
+  })
+}
