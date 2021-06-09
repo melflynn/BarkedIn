@@ -25,7 +25,8 @@ class InvitationManager extends React.Component {
   }
 
   render () {
-
+    console.log(this.props);
+    console.log(this.state);
     if (this.state.usersRequestingConnection) {
       return <div className="profile-page">
         <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />
@@ -37,7 +38,9 @@ class InvitationManager extends React.Component {
           </div>
           <ul>
             {this.state.page === 'received' ? 
-              this.props.sentRequests.ids.map((requestId, i) => {
+              this.state.usersRequestingConnection.length === 0 ?
+                <li>No current invitations</li> :
+              this.props.receivedRequests.ids.map((requestId, i) => {
                 return <ConnectionItem 
                   key={i}
                   requestId={requestId}

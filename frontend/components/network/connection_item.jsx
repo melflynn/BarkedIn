@@ -65,8 +65,6 @@ class ConnectionItem extends React.Component {
         break;
     }
 
-    console.log(this.props)
-    console.log(this.state)
     return (
       <li className="connection-item">
         <img src={this.props.user.profilePhotoUrl || window.defaultProfPic} />

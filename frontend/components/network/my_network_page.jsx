@@ -29,7 +29,8 @@ class MyNetworkPage extends React.Component {
   }
 
   render () {
-
+    console.log(this.props);
+    console.log(this.state);
     if (this.state.redirect) {
       return <Redirect to={`/users/${this.props.user.id}/connections`}/>
     } else if (this.state.usersRequestingConnection) {

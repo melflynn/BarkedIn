@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
   currentUser: state.entities.users[state.session.currentUserId],
   sentRequests: state.entities.users[state.session.currentUserId].requestedConnections,
   pendingUsers: state.entities.users[state.session.currentUserId].pendingUsers,
-  receievedRequests: state.entities.users[state.session.currentUserId].connectionRequests,
+  receivedRequests: state.entities.users[state.session.currentUserId].connectionRequests,
   usersRequestingConnection: state.entities.users[state.session.currentUserId].usersRequestingConnection
 })
 
