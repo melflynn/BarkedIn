@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_one_attached :profile_photo
 
   def connections
-    Connection.where("(user_id1 = ? OR user_id2 = ?) AND status = 'connected'", self.id, self.id)    
+    Connection.where("(user_id1 = ? OR user_id2 = ?) AND status = 'connected'", self.id, self.id)  
   end
 
   def connected_users

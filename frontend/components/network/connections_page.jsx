@@ -76,7 +76,9 @@ class ConnectionsPage extends React.Component {
                       type="connection"
                       user={user} 
                       currentUser={this.props.currentUser}
-                      requestConnection={this.props.requestConnection}/>
+                      requestConnection={this.props.requestConnection}
+                      fetchUser={this.props.fetchUser}
+                    />
                   })}
                 </ul>
               </div> :

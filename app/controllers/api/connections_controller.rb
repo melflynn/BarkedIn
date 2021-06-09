@@ -42,12 +42,16 @@ class Api::ConnectionsController < ApplicationController
   end
 
   def index
-    # debugger
-    connection = Connection.find_by(user_id1: params[:user_id1], user_id2: params[:user_id2])
-    if connection 
-      render json: connection
-    else
-      render json: "There is no connection between those two users", status: 422
+    if params[:user_id1]
+      connection = Connection.find_by(user_id1: params[:user_id1], user_id2: params[:user_id2])
+      if connection 
+        render json: connection
+      else
+        render json: "There is no connection between those two users", status: 422
+      end
+    elsif params[:connectionIds]
+      @connections = Connection.find(params[:connectionIds])
+      render :index
     end
   end
 
