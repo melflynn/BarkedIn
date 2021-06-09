@@ -4,19 +4,18 @@ import { requestConnection } from '../../actions/connection_actions';
 import ConnectionsPage from './connections_page';
 
 const mapStateToProps = (state, ownProps) => {
-  let connections;
-  let connectedUsers;
-  if (state.entities.users[ownProps.match.params.userId]) {
-    const userId = ownProps.match.params.userId;
-    connections = state.entities.users[ownProps.match.params.userId].connections;
-    connectedUsers = state.entities.users[ownProps.match.params.userId].connectedUsers;
-  }
+  // let connections;
+  // let connectedUsers;
+  // if (state.entities.users[ownProps.match.params.userId]) {
+  //   connections = state.entities.users[ownProps.match.params.userId].connections;
+  //   connectedUsers = state.entities.users[ownProps.match.params.userId].connectedUsers;
+  // }
   return {
   userId: ownProps.match.params.userId,
   user: state.entities.users[ownProps.match.params.userId],
   currentUser: state.entities.users[state.session.currentUserId],
-  connections,
-  connectedUsers
+  // connections,
+  // connectedUsers
   }
 }
 

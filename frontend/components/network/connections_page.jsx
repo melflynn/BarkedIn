@@ -12,24 +12,41 @@ class ConnectionsPage extends React.Component {
 
   componentDidMount () {
 
-    const mountFunction = (connectedUserIds) => {
+    const mountFunction = (connectedUserIds, currentUser) => {
+      // debugger;
+      const currentUserItem = this.props.currentUser
       this.props.fetchUsers(connectedUserIds)
-        .then((users => (
-          this.setState({
-            connectedUsers: Object.values(users.users)
-          })))
-        )
+        .then((users) => {
+          // debugger
+          if (currentUser) {
+            let connectedUsers = Object.values(users.users)
+            connectedUsers.push(this.props.currentUser)
+            this.setState({
+              connectedUsers
+            })
+          } else {
+            this.setState({
+              connectedUsers: Object.values(users.users)
+            })
+          }
+      })
     }
 
+    // debugger
     if (!this.props.user || !this.props.user.connectedUsers) {
+      const currentUserId = this.props.currentUser.id;
       this.props.fetchUser(this.props.userId, {connectedUsers: true, pendingUsers: true})
         .then((user) => {
-          const userIds = user.user.connectedUsers.ids.filter((val) => val !== this.props.currentUser.id).slice(0,10);
-          mountFunction(userIds)
+          // debugger
+          const currentUser = (user.user.connectedUsers.ids.includes(this.props.currentUser.id)) ? true : false;
+          const userIds = user.user.connectedUsers.ids.filter((val) => val !== this.props.currentUser.id).slice(0, 10);
+          mountFunction(userIds, currentUser);
         })
     } else {
-      const userIds = this.props.connectedUsers.ids.filter((val) => val !== this.props.currentUser.id).slice(0, 10);
-      mountFunction(userIds);
+      // debugger
+      const currentUser = (this.props.user.connectedUsers.ids.includes(this.props.currentUser.id)) ? true : false;
+      const userIds = this.props.user.connectedUsers.ids.filter((val) => val !== this.props.currentUser.id).slice(0, 10);
+      mountFunction(userIds, currentUser);
     } 
   }
 
