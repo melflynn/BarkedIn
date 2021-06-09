@@ -1,17 +1,16 @@
 # == Schema Information
 #
-# Table name: connections
+# Table name: posts
 #
 #  id         :bigint           not null, primary key
-#  user_id1   :integer          not null
-#  user_id2   :integer          not null
+#  author_id  :integer          not null
+#  body       :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  status     :string           not null
 #
 require 'test_helper'
 
-class ConnectionTest < ActiveSupport::TestCase
+class PostTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
