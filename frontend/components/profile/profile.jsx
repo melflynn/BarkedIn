@@ -139,14 +139,15 @@ class Profile extends React.Component {
   }
 
   componentDidMount () {
-      this.props.fetchUser(this.props.userId)
-        .then(
-          () => this.setConnectionStatus(),
-          () => this.setState({
-            redirect: true
-          }));
 
-      
+    
+    this.props.fetchUser(this.props.userId)
+      .then(() => this.props.fetchUser(this.props.currentUser.id))
+      .then(
+        () => this.setConnectionStatus(),
+        () => this.setState({
+          redirect: true
+        }));   
   }
 
   render () {
