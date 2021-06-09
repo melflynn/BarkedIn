@@ -57,7 +57,7 @@ class MyNetworkPage extends React.Component {
                 <div className="invitations">
                   <div>
                     <h3>Invitations</h3>
-                    <a onClick={() => { this.props.fetchUser(this.props.user.id).then(() => this.setState({ redirect: 'manage' })) }}>
+                    <a className="manage" onClick={() => { this.props.fetchUser(this.props.user.id).then(() => this.setState({ redirect: 'manage' })) }}>
                       Manage
                     </a>
                   </div>
@@ -74,7 +74,7 @@ class MyNetworkPage extends React.Component {
                           addAccept={this.addAccept}
                         />
                       }) :
-                      <li>No current invitations</li>
+                      <li className="empty-connection-item">No current invitations</li>
                     }
                   </ul>
                 </div>

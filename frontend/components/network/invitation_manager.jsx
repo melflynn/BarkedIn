@@ -65,7 +65,7 @@ class InvitationManager extends React.Component {
             <ul>
               {!this.state.page || this.state.page === 'received'? 
                 this.state.usersRequestingConnection.length === 0 ?
-                  <li>No current invitations</li> :
+                  <li className="empty-connection-item">No current invitations</li> :
                 this.state.usersRequestingConnection.map((user, i) => {
                   return <ConnectionItem 
                     key={i}
@@ -78,7 +78,7 @@ class InvitationManager extends React.Component {
                 })
               : this.state.page === 'sent' ?
                 this.state.pendingUsers.length === 0 ?
-                  <li>No sent invitations </li> :
+                    <li className="empty-connection-item">No sent invitations </li> :
                 this.state.pendingUsers.map((user, i) => {
                   return <ConnectionItem 
                     key={i}
