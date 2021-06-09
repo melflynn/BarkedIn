@@ -6,18 +6,25 @@ class ConnectionsPage extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      currentPageUserId: props.userId
+    }
+  }
 
+  componentDidUpdate () {
+    if (this.props.user.id !== this.state.currentPageUserId) {
+      this.componentDidMount();
+      this.setState({
+        currentPageUserId: this.props.user.id
+      })
     }
   }
 
   componentDidMount () {
 
     const mountFunction = (connectedUserIds, currentUser) => {
-      // debugger;
       const currentUserItem = this.props.currentUser
       this.props.fetchUsers(connectedUserIds)
         .then((users) => {
-          // debugger
           if (currentUser) {
             let connectedUsers = Object.values(users.users)
             connectedUsers.push(this.props.currentUser)
@@ -32,18 +39,15 @@ class ConnectionsPage extends React.Component {
       })
     }
 
-    // debugger
     if (!this.props.user || !this.props.user.connectedUsers) {
       const currentUserId = this.props.currentUser.id;
       this.props.fetchUser(this.props.userId, {connectedUsers: true, pendingUsers: true})
         .then((user) => {
-          // debugger
           const currentUser = (user.user.connectedUsers.ids.includes(this.props.currentUser.id)) ? true : false;
           const userIds = user.user.connectedUsers.ids.filter((val) => val !== this.props.currentUser.id).slice(0, 10);
           mountFunction(userIds, currentUser);
         })
     } else {
-      // debugger
       const currentUser = (this.props.user.connectedUsers.ids.includes(this.props.currentUser.id)) ? true : false;
       const userIds = this.props.user.connectedUsers.ids.filter((val) => val !== this.props.currentUser.id).slice(0, 10);
       mountFunction(userIds, currentUser);
