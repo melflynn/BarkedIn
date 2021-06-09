@@ -41,3 +41,11 @@ export const findConnection = (user_id1, user_id2) => {
     data: { user_id1, user_id2 }
   })
 }
+
+export const fetchConnections = (connectionIds) => (
+  $.ajax({
+    method: 'GET',
+    url: '/api/connections',
+    data: { connectionIds }
+  })
+)

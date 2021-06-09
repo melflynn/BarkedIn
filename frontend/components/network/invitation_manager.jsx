@@ -6,15 +6,16 @@ class InvitationManager extends React.Component {
   constructor (props) {
     super(props);
     this.state = ({
-      page: "received"
+   
     })
     this.toggleState = this.toggleState.bind(this);
   }
 
   toggleState (state) {
-    this.setState({
-      page: state
-    })
+    this.setState((prevState) => ({
+      page: state,
+      prevPage: prevState.page
+    }))
   }
 
   componentDidMount () {
@@ -28,6 +29,26 @@ class InvitationManager extends React.Component {
       }))
   }
 
+  componentDidUpdate () {
+    if (this.state.page === 'received' && this.state.prevPage !== this.state.page) {
+      this.props.fetchUser(this.props.currentUser.id)
+        .then(() => this.props.fetchUsers(this.props.usersRequestingConnection.ids)
+          .then((users) => this.setState((prevState) => ({
+            usersRequestingConnection: Object.values(users.users),
+            prevPage: prevState.page
+          })))
+        )
+    } else if (this.state.page === 'sent' && this.state.prevPage !== this.state.page) {
+      this.props.fetchUser(this.props.currentUser.id)
+        .then(() => this.props.fetchUsers(this.props.pendingUsers.ids)
+          .then((users) => this.setState((prevState) => ({
+            usersRequestingConnection: Object.values(users.users),
+            prevPage: prevState.page
+          })))
+        )
+    }
+  }
+
   render () {
     console.log(this.props);
     console.log(this.state);
@@ -38,19 +59,18 @@ class InvitationManager extends React.Component {
           <div className="invitation-manager">
             <h3 id="manage-invitations-header">Manage Invitations</h3>
             <div className={"invitation-manager-headers"}>
-              <p className={this.state.page === 'received' ? 'selected' : ''} onClick={() => this.toggleState('received')}>Received</p>
+              <p className={!this.state.page || this.state.page === 'received' ? 'selected' : ''} onClick={() => this.toggleState('received')}>Received</p>
               <p className={this.state.page === 'sent' ? 'selected' : ''} onClick={() => this.toggleState('sent')}>Sent</p>
             </div>
             <ul>
-              {this.state.page === 'received' ? 
+              {!this.state.page || this.state.page === 'received'? 
                 this.state.usersRequestingConnection.length === 0 ?
                   <li>No current invitations</li> :
-                this.props.receivedRequests.ids.map((requestId, i) => {
+                this.state.usersRequestingConnection.map((user, i) => {
                   return <ConnectionItem 
                     key={i}
-                    requestId={requestId}
                     type="invitation"
-                    user={this.state.usersRequestingConnection[i]}
+                    user={user}
                     currentUser={this.props.currentUser}
                     deleteConnection={this.props.deleteConnection}
                     acceptConnection={this.props.acceptConnection}
@@ -59,12 +79,11 @@ class InvitationManager extends React.Component {
               : this.state.page === 'sent' ?
                 this.state.pendingUsers.length === 0 ?
                   <li>No sent invitations </li> :
-                this.props.sentRequests.ids.map((requestId, i) => {
+                this.state.pendingUsers.map((user, i) => {
                   return <ConnectionItem 
                     key={i}
-                    requestId={requestId}
                     type="sentRequest"
-                    user={this.state.pendingUsers[i]}
+                    user={user}
                     currentUser={this.props.currentUser}
                     deleteConnection={this.props.deleteConnection}
                   />

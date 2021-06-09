@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { findConnection } from '../../util/connection_util';
 
 class ConnectionItem extends React.Component {
   constructor (props) {
@@ -25,42 +26,40 @@ class ConnectionItem extends React.Component {
     this.setState({
       requested: true
     })
-    this.props.fetchUser(this.props.currentUser.id)
   }
 
   acceptRequest (e) {
     e.preventDefault();
-
-    this.props.acceptConnection(this.props.requestId);
-    this.setState({
-      accepted: true
-    })
-    this.props.addAccept();
-    this.props.fetchUser(this.props.currentUser.id)
+    findConnection(this.props.currentUser.id, this.props.user.id)
+      .then((connection) => {
+        this.props.acceptConnection(connection.id);
+        this.setState({
+          accepted: true
+        })
+        this.props.addAccept();
+      })
   }
 
   declineRequest (e) {
     e.preventDefault();
-
-    this.props.deleteConnection(this.props.requestId);
-
-    this.setState({
-      declined: true
-    })
-    
-    this.props.fetchUser(this.props.currentUser.id)
+    findConnection(this.props.currentUser.id, this.props.user.id)
+      .then((connection) => {
+        this.props.deleteConnection(connection.id);
+        this.setState({
+          declined: true
+        });
+      })
   }
 
   withdrawRequest (e) {
     e.preventDefault();
-
-    this.props.deleteConnection(this.props.requestId);
-
-    this.setState({
-      withdrawn: true
-    })
-
-    this.props.fetchUser(this.props.currentUser.id)
+    findConnection(this.props.currentUser.id, this.props.user.id)
+      .then((connection) => {
+        this.props.deleteConnection(connection.id);
+        this.setState({
+          withdrawn: true
+        })
+      })
   }
 
   render () {

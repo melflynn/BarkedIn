@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { acceptConnection, deleteConnection } from "../../actions/connection_actions";
-import { fetchUsers } from "../../actions/user_actions"
+import { fetchUsers, fetchUser } from "../../actions/user_actions"
 import InvitationManager from './invitation_manager';
 
 const mapStateToProps = (state) => ({
@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  fetchUser: (userId, userOptions) => dispatch(fetchUser(userId, userOptions)),
   fetchUsers: (userIds) => dispatch(fetchUsers(userIds)),
   deleteConnection: (connectionId) => dispatch(deleteConnection(connectionId)),
   acceptConnection: (connectionId) => dispatch(acceptConnection(connectionId))

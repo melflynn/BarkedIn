@@ -3,6 +3,7 @@ import HeaderContainer from '../header/header_container';
 import { Link, Redirect } from 'react-router-dom';
 import ConnectionItem from './connection_item';
 
+
 class MyNetworkPage extends React.Component {
   constructor (props) {
     super(props);
@@ -16,7 +17,7 @@ class MyNetworkPage extends React.Component {
 
 
   componentDidMount () {
-    this.props.fetchUsers(this.props.usersRequestingConnection.ids.slice(0, 3))
+    this.props.fetchUsers(this.props.usersRequestingConnection.ids)
       .then((users) => this.setState({
         usersRequestingConnection: Object.values(users.users)
       }))
@@ -29,10 +30,12 @@ class MyNetworkPage extends React.Component {
   }
 
   render () {
-    console.log(this.props);
-    console.log(this.state);
-    if (this.state.redirect) {
+    console.log(this.state.connectionRequests);
+    console.log(this.state.usersRequestingConnection);
+    if (this.state.redirect === 'connections') {
       return <Redirect to={`/users/${this.props.user.id}/connections`}/>
+    } else if (this.state.redirect === 'manage') {
+      return <Redirect to="/mynetwork/invitation-manager" />
     } else if (this.state.usersRequestingConnection) {
       return (
         <div>
@@ -41,7 +44,7 @@ class MyNetworkPage extends React.Component {
             <div className="network-page">
               <div className="network-left">
                 <h3>Manage my network</h3>
-                <a onClick={() => {this.props.fetchUser(this.props.user.id).then(() => this.setState({redirect: true}))}}>
+                <a onClick={() => {this.props.fetchUser(this.props.user.id).then(() => this.setState({redirect: 'connections'}))}}>
                   <i className="fas fa-user-friends"></i>
                   <div>
                     <p>Connections</p>
@@ -54,16 +57,17 @@ class MyNetworkPage extends React.Component {
                 <div className="invitations">
                   <div>
                     <h3>Invitations</h3>
-                    <Link to="/mynetwork/invitation-manager">Manage</Link>
+                    <a onClick={() => { this.props.fetchUser(this.props.user.id).then(() => this.setState({ redirect: 'manage' })) }}>
+                      Manage
+                    </a>
                   </div>
                   <ul>
                     { this.props.connectionRequests.ids.length > 0 ?
-                      this.props.connectionRequests.ids.map((requestId, i) => {
+                      this.state.usersRequestingConnection.map((user, i) => {
                         return <ConnectionItem
                           key={i} 
-                          requestId={requestId}
                           type="invitation"
-                          user={this.state.usersRequestingConnection[i]} 
+                          user={user} 
                           currentUser={this.props.user}
                           deleteConnection={this.props.deleteConnection}
                           acceptConnection={this.props.acceptConnection}
