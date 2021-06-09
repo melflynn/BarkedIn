@@ -63,6 +63,9 @@ class ConnectionItem extends React.Component {
             <button onClick={this.acceptRequest}>Accept</button>
           </div>;
         break;
+      case "sentRequest":
+        actions = 
+          <p onClick={() => this.props.deleteConnection(this.props.requestId)}>Withdraw</p>
     }
 
     return (

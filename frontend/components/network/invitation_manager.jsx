@@ -22,6 +22,10 @@ class InvitationManager extends React.Component {
       .then((users) => this.setState({
         usersRequestingConnection: Object.values(users.users)
       }))
+    this.props.fetchUsers(this.props.pendingUsers.ids)
+      .then((users) => this.setState({
+        pendingUsers: Object.values(users.users)
+      }))
   }
 
   render () {
@@ -51,7 +55,20 @@ class InvitationManager extends React.Component {
                   acceptConnection={this.props.acceptConnection}
                 />
               })
-            : ''
+            : this.state.page === 'sent' ?
+              this.state.pendingUsers.length === 0 ?
+                <li>No sent invitations </li> :
+              this.props.sentRequests.ids.map((requestId, i) => {
+                return <ConnectionItem 
+                  key={i}
+                  requestId={requestId}
+                  type="sentRequest"
+                  user={this.state.pendingUsers[i]}
+                  currentUser={this.props.currentUser}
+                  deleteConnection={this.props.deleteConnection}
+                />
+              }) :
+             ''
             }
           </ul>
 

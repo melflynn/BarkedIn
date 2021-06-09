@@ -207,49 +207,51 @@ class Profile extends React.Component {
       }
 
       return (
-        <div className="profile-page">
+        <div>
           {modal}
           <HeaderContainer photo={this.state.photo ? this.state.photo : this.props.currentUser.profilePhotoUrl}/>
-          <div className="profile">
-            <section className="intro">
-              <div className="background">
-                <div>
+          <div className="profile-page">
+            <div className="profile">
+              <section className="intro">
+                <div className="background">
+                  <div>
+                  </div>
+                  <div>
+                    {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt" onClick={() => this.props.updateModal('EditProfileIntro')}></i> : ''}
+                  </div>
                 </div>
                 <div>
-                  {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt" onClick={() => this.props.updateModal('EditProfileIntro')}></i> : ''}
-                </div>
-              </div>
-              <div>
-                {this.props.userId === this.props.currentUser.id.toString() ? 
-                  <img src={this.state.photo ? this.state.photo : this.props.user ? this.props.user.profilePhotoUrl || window.defaultProfPic : ''} 
-                  id="editable-prof-pic" 
-                  onClick={() => this.props.updateModal('ProfilePhoto')} /> :
-                  <img src={this.props.user.profilePhotoUrl || window.defaultProfPic}/>
-                }
-                <h3>{this.props.user.firstName} {this.props.user.lastName}</h3>
-                <h4>{this.props.user.breed ? this.props.user.breed : ''}</h4>
-                <h5>{`${this.props.user.region ? `${this.props.user.region}, ` : ''} ${this.props.user.country ? this.props.user.country : ''}`}
-                  <p>•</p>
-                  <p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p>
-                </h5>
-                <Link to={`/users/${this.props.user.id}/connections`}><p id="connectionCount">{connectionCount === 1 ? `${connectionCount} connection` : connectionCount > 500 ? `500+ connections` : `${connectionCount} connections`}</p></Link>
+                  {this.props.userId === this.props.currentUser.id.toString() ? 
+                    <img src={this.state.photo ? this.state.photo : this.props.user ? this.props.user.profilePhotoUrl || window.defaultProfPic : ''} 
+                    id="editable-prof-pic" 
+                    onClick={() => this.props.updateModal('ProfilePhoto')} /> :
+                    <img src={this.props.user.profilePhotoUrl || window.defaultProfPic}/>
+                  }
+                  <h3>{this.props.user.firstName} {this.props.user.lastName}</h3>
+                  <h4>{this.props.user.breed ? this.props.user.breed : ''}</h4>
+                  <h5>{`${this.props.user.region ? `${this.props.user.region}, ` : ''} ${this.props.user.country ? this.props.user.country : ''}`}
+                    <p>•</p>
+                    <p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p>
+                  </h5>
+                  <Link to={`/users/${this.props.user.id}/connections`}><p id="connectionCount">{connectionCount === 1 ? `${connectionCount} connection` : connectionCount > 500 ? `500+ connections` : `${connectionCount} connections`}</p></Link>
 
-                {interact}
-                
-              </div>
-            </section>
-            <section className="about">
-              <div>
-                <h3>About</h3>
-                {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt" onClick={() => this.props.updateModal('EditAboutMe')}></i> : ''}
-              </div>
-              <div>
-                <p className="blurb clipped">{this.props.user ? this.props.user.aboutMe : ''}</p>
-                {this.state.hiddenText && ($('.blurb').prop('scrollHeight') > $('.blurb').prop('clientHeight') 
-                || this.props.user && this.props.user.aboutMe && this.props.user.aboutMe.length > 315) ? 
-                <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
-              </div>
-            </section>
+                  {interact}
+                  
+                </div>
+              </section>
+              <section className="about">
+                <div>
+                  <h3>About</h3>
+                  {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt" onClick={() => this.props.updateModal('EditAboutMe')}></i> : ''}
+                </div>
+                <div>
+                  <p className="blurb clipped">{this.props.user ? this.props.user.aboutMe : ''}</p>
+                  {this.state.hiddenText && ($('.blurb').prop('scrollHeight') > $('.blurb').prop('clientHeight') 
+                  || this.props.user && this.props.user.aboutMe && this.props.user.aboutMe.length > 315) ? 
+                  <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
+                </div>
+              </section>
+            </div>
           </div>
 
         </div>
