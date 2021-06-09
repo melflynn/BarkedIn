@@ -5,7 +5,7 @@ class ProfilePhotoModal extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      photo: this.props.user.profilePhotoUrl || window.defaultProfPic,
+      photo: this.props.photo || this.props.user.profilePhotoUrl || window.defaultProfPic,
       photoFile: null,
       newPhoto: false,
       deletePhotoModal: false
@@ -44,6 +44,7 @@ class ProfilePhotoModal extends React.Component {
       contentType: false,
       processData: false
     }).then(() => {
+      debugger;
       this.props.updateModal();
       this.props.updatePhoto(this.state.photo);
     })
@@ -90,7 +91,7 @@ class ProfilePhotoModal extends React.Component {
               <ul>
                 <li>
                   <label>
-                    <input type="file" onChange={this.handleFile}/>
+                    <input type="file" accept=".png,.jpg,.jpeg" onChange={this.handleFile}/>
                   </label>
                   <i className="fas fa-camera"></i>
                   <p>Add Photo</p>

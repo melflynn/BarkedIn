@@ -3,6 +3,8 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validate :password_presence
   validates :password, length: { minimum: 6 }, allow_nil: true
+  validate :profile_photo_is_image
+  # validates :profile_photo, content_type: [:png, :jpg, :jpeg]
 
   after_initialize :ensure_session_token
 
@@ -74,9 +76,6 @@ class User < ApplicationRecord
       end
     end
 
-    
-    debugger
-
     if pups.length < 5 
       ids = connects.pluck(:id).concat(pups.pluck(:id)) << self.id
       length = 5 - pups.length
@@ -99,10 +98,6 @@ class User < ApplicationRecord
     self.save!
     self.session_token
   end
-
-  # def ensure_profile_photo! 
-  #   if !self.profile_photo.attached?
-  # end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
@@ -133,6 +128,13 @@ class User < ApplicationRecord
 
   def password_presence 
     errors.add(:password, "can't be blank") if self.password_digest.nil?
+  end
+
+  def profile_photo_is_image
+    if profile_photo.attached? && !['image/png', 'image/jpg', 'image/jpeg'].include?(profile_photo.blob.content_type)
+      profile_photo.purge
+      errors.add(:profile_photo, "must be an image (png, jpg, jpeg)")
+    end
   end
 
 end

@@ -160,7 +160,7 @@ class Profile extends React.Component {
         modal = <Modal name={this.props.modal} user={this.props.user} currentUser={this.props.currentUser} updateModal={this.props.updateModal} updateUser={this.props.updateUser} />;
         break;
       case 'ProfilePhoto':
-        modal = <Modal name={this.props.modal} user={this.props.user} updateModal={this.props.updateModal} updatePhoto={this.updatePhoto} />;
+        modal = <Modal name={this.props.modal} user={this.props.user} photo={this.state.photo} updateModal={this.props.updateModal} updatePhoto={this.updatePhoto} />;
         break;
       case 'EditAboutMe':
         modal = <Modal name={this.props.modal} user={this.props.user} updateModal={this.props.updateModal} updateUser={this.props.updateUser} toggleAboutMe={this.toggleAboutMe}/>;
