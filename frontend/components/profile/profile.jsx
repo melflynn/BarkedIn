@@ -201,7 +201,9 @@ class Profile extends React.Component {
           break;
         default: 
           interact =
-            <button onClick={this.makeRequest}>Connect</button>;
+            <div className="connection-response">
+              <button onClick={this.makeRequest}>Connect</button>
+            </div>;
       }
 
       return (
