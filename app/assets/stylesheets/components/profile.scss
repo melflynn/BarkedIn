@@ -189,6 +189,19 @@
             }
     
           }
+
+          p.connection-response {
+            border-radius: 24px;
+            background-color: $lighter-grey;
+            margin-top: 5px;
+            color: $light-grey;
+            height: 30px;
+            width: 90px;
+            text-align: center;
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+          }
         }
       }
 

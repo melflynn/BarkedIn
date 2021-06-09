@@ -197,33 +197,12 @@ class Profile extends React.Component {
           break;
         case "pending":
           interact =
-            <p>Pending</p>;
+            <p className="connection-response">Pending</p>;
           break;
         default: 
           interact =
             <button onClick={this.makeRequest}>Connect</button>;
       }
-        // if (this.props.userId === this.props.currentUser.id.toString()) {
-          
-        // } else if (this.props.currentUser.connectedUsers.ids.includes(this.props.user.id) || this.state.accepted) {
-        //   interact =
-        //     <div className="connection-response">
-        //       <p>Connected</p>
-        //       <button className="remove-connection" onClick={this.removeConnection}>Remove Connection</button>
-        //     </div>;
-        // } else if (this.props.currentUser.usersRequestingConnection.ids.includes(this.props.user.id)) {
-        //   interact =
-        //     <div className="connection-response">
-        //       <button onClick={this.acceptRequest}>Accept</button>
-        //       <button onClick={this.removeConnection}>Ignore</button>
-        //     </div>;
-        // } else if (this.props.currentUser.pendingUsers.ids.includes(this.props.user.id)) {
-        //   interact =
-        //     <p>Pending</p>
-        // } else {
-        //   interact =
-        //     <button onClick={this.makeRequest}>Connect</button>;
-        // }
 
       return (
         <div className="profile-page">
@@ -254,7 +233,6 @@ class Profile extends React.Component {
                 <Link to={`/users/${this.props.user.id}/connections`}><p id="connectionCount">{connectionCount === 1 ? `${connectionCount} connection` : connectionCount > 500 ? `500+ connections` : `${connectionCount} connections`}</p></Link>
 
                 {interact}
-
                 
               </div>
             </section>
