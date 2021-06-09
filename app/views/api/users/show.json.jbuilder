@@ -22,6 +22,11 @@ else
   connectionRequests = nil
 end
 
+if @userOptions[:requestedConnections]
+  requestedConnections = @user.requested_connections
+else
+  requestedConnections = nil
+end
 
 
 json.partial! '/api/users/user', user: @user
@@ -31,6 +36,11 @@ end
 json.connectedUsers do 
   if connectedUsers
     json.extract! connectedUsers, :ids
+  end
+end
+json.requestedConnections do 
+  if requestedConnections
+    json.extract! requestedConnections, :ids
   end
 end
 json.pendingUsers do

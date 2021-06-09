@@ -7,13 +7,14 @@ end
 if user == current_user 
   connections = user.connections
   connectedUsers = user.connected_users
+  requestedConnections = user.requested_connections
   pendingUsers = user.pending_users
   connectionRequests = user.connection_requests
   usersRequestingConnection = user.users_requesting_connection
-else
-  connections = nil
-  pendingUsers = nil
-  usersRequestingConnection = nil
+# else
+#   connections = nil
+#   pendingUsers = nil
+#   usersRequestingConnection = nil
 end
 
 json.extract! user, :id, :first_name, :last_name, :email, :breed, :country, :region, :about_me
@@ -26,6 +27,11 @@ end
 json.connectedUsers do 
   if connectedUsers
     json.extract! connectedUsers, :ids
+  end
+end
+json.requestedConnections do 
+  if requestedConnections
+    json.extract! requestedConnections, :ids
   end
 end
 json.pendingUsers do
