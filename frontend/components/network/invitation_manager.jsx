@@ -50,8 +50,6 @@ class InvitationManager extends React.Component {
   }
 
   render () {
-    console.log(this.props);
-    console.log(this.state);
     if (this.state.usersRequestingConnection) {
       return <div>
         <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />

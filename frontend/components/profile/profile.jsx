@@ -86,7 +86,6 @@ class Profile extends React.Component {
   }
 
   addAccept (num) {
-    debugger
     this.setState((prevState) => ({
       accepted: prevState.accepted + num
     }))

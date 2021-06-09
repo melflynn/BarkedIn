@@ -4,7 +4,6 @@ import { fetchUsers, fetchUser } from '../../actions/user_actions';
 import { acceptConnection, deleteConnection } from "../../actions/connection_actions";
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     user: state.entities.users[state.session.currentUserId],
     connectionRequests: state.entities.users[state.session.currentUserId].connectionRequests,

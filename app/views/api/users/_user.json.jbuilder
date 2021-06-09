@@ -11,10 +11,6 @@ if user == current_user
   pendingUsers = user.pending_users
   connectionRequests = user.connection_requests
   usersRequestingConnection = user.users_requesting_connection
-# else
-#   connections = nil
-#   pendingUsers = nil
-#   usersRequestingConnection = nil
 end
 
 json.extract! user, :id, :first_name, :last_name, :email, :breed, :country, :region, :about_me

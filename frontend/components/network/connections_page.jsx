@@ -55,11 +55,6 @@ class ConnectionsPage extends React.Component {
   }
 
   render () {
-    console.log(this.props);
-    if (this.state.connectedUsers) {
-      console.log(Object.values(this.state.connectedUsers));
-    }
-
     if (this.state.connectedUsers) {
       return (
           <div>

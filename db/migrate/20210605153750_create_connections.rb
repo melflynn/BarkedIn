@@ -4,7 +4,6 @@ class CreateConnections < ActiveRecord::Migration[5.2]
       t.integer :user_id1, null: false
       t.integer :user_id2, null: false
       t.string :type, inclusion: ['pending_user1', 'pending_user2', 'connected']
-      # t.check_constraint "connected_check", "user_id1 < user_id2"
       t.timestamps
     end
 

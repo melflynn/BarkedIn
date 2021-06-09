@@ -4,7 +4,6 @@ class User < ApplicationRecord
   validate :password_presence
   validates :password, length: { minimum: 6 }, allow_nil: true
   validate :profile_photo_is_image
-  # validates :profile_photo, content_type: [:png, :jpg, :jpeg]
 
   after_initialize :ensure_session_token
 

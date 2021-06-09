@@ -4,13 +4,6 @@ class Connection < ApplicationRecord
   validate :user_id_order
   validates_uniqueness_of :user_id1, scope: :user_id2, message: 'These users are already connected or pending connection'
 
-  # belongs_to :user,
-  #   foreign_key: :user_id2,
-  #   class_name: :User
-
-  # belongs_to :connection,
-  #   foreign_key: :user_id1,
-  #   class_name: :User
 
   private
 
