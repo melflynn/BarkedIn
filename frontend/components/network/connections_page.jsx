@@ -62,9 +62,9 @@ class ConnectionsPage extends React.Component {
 
     if (this.state.connectedUsers) {
       return (
-        <div className="profile-page">
+          <div>
             <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />
-
+            <div className="profile-page">
             {this.props.currentUser.id === this.props.user.id ? `Your connections` : `${this.props.user.firstName}'s connections`}
             
             {this.state.connectedUsers.length > 0 ? 
@@ -83,7 +83,8 @@ class ConnectionsPage extends React.Component {
               <div>
                 You don't have any connections yet 
               </div>}
-        </div>
+            </div>
+          </div>
       )
     } else {
       return null;

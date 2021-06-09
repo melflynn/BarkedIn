@@ -32,46 +32,48 @@ class InvitationManager extends React.Component {
     console.log(this.props);
     console.log(this.state);
     if (this.state.usersRequestingConnection) {
-      return <div className="profile-page">
+      return <div>
         <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />
-        <div className="invitation-manager">
-          <h3 id="manage-invitations-header">Manage Invitations</h3>
-          <div className={"invitation-manager-headers"}>
-            <p className={this.state.page === 'received' ? 'selected' : ''} onClick={() => this.toggleState('received')}>Received</p>
-            <p className={this.state.page === 'sent' ? 'selected' : ''} onClick={() => this.toggleState('sent')}>Sent</p>
-          </div>
-          <ul>
-            {this.state.page === 'received' ? 
-              this.state.usersRequestingConnection.length === 0 ?
-                <li>No current invitations</li> :
-              this.props.receivedRequests.ids.map((requestId, i) => {
-                return <ConnectionItem 
-                  key={i}
-                  requestId={requestId}
-                  type="invitation"
-                  user={this.state.usersRequestingConnection[i]}
-                  currentUser={this.props.currentUser}
-                  deleteConnection={this.props.deleteConnection}
-                  acceptConnection={this.props.acceptConnection}
-                />
-              })
-            : this.state.page === 'sent' ?
-              this.state.pendingUsers.length === 0 ?
-                <li>No sent invitations </li> :
-              this.props.sentRequests.ids.map((requestId, i) => {
-                return <ConnectionItem 
-                  key={i}
-                  requestId={requestId}
-                  type="sentRequest"
-                  user={this.state.pendingUsers[i]}
-                  currentUser={this.props.currentUser}
-                  deleteConnection={this.props.deleteConnection}
-                />
-              }) :
-             ''
-            }
-          </ul>
+        <div className="profile-page">
+          <div className="invitation-manager">
+            <h3 id="manage-invitations-header">Manage Invitations</h3>
+            <div className={"invitation-manager-headers"}>
+              <p className={this.state.page === 'received' ? 'selected' : ''} onClick={() => this.toggleState('received')}>Received</p>
+              <p className={this.state.page === 'sent' ? 'selected' : ''} onClick={() => this.toggleState('sent')}>Sent</p>
+            </div>
+            <ul>
+              {this.state.page === 'received' ? 
+                this.state.usersRequestingConnection.length === 0 ?
+                  <li>No current invitations</li> :
+                this.props.receivedRequests.ids.map((requestId, i) => {
+                  return <ConnectionItem 
+                    key={i}
+                    requestId={requestId}
+                    type="invitation"
+                    user={this.state.usersRequestingConnection[i]}
+                    currentUser={this.props.currentUser}
+                    deleteConnection={this.props.deleteConnection}
+                    acceptConnection={this.props.acceptConnection}
+                  />
+                })
+              : this.state.page === 'sent' ?
+                this.state.pendingUsers.length === 0 ?
+                  <li>No sent invitations </li> :
+                this.props.sentRequests.ids.map((requestId, i) => {
+                  return <ConnectionItem 
+                    key={i}
+                    requestId={requestId}
+                    type="sentRequest"
+                    user={this.state.pendingUsers[i]}
+                    currentUser={this.props.currentUser}
+                    deleteConnection={this.props.deleteConnection}
+                  />
+                }) :
+              ''
+              }
+            </ul>
 
+          </div>
         </div>
       </div>
     } else {

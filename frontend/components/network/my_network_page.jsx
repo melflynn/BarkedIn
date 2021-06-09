@@ -35,46 +35,48 @@ class MyNetworkPage extends React.Component {
       return <Redirect to={`/users/${this.props.user.id}/connections`}/>
     } else if (this.state.usersRequestingConnection) {
       return (
-        <div className="profile-page">
+        <div>
           <HeaderContainer photo={this.props.user.profilePhotoUrl} />
-          <div className="network-page">
-            <div className="network-left">
-              <h3>Manage my network</h3>
-              <a onClick={() => {this.props.fetchUser(this.props.user.id).then(() => this.setState({redirect: true}))}}>
-                <i className="fas fa-user-friends"></i>
-                <div>
-                  <p>Connections</p>
-                  <p>{this.props.user.connections.ids.length + this.state.accepted}</p>
-                </div>
-              </a>
-            </div>
-
-            <div className="network-right">
-              <div className="invitations">
-                <div>
-                  <h3>Invitations</h3>
-                  <Link to="/mynetwork/invitation-manager">Manage</Link>
-                </div>
-                <ul>
-                  { this.props.connectionRequests.ids.length > 0 ?
-                    this.props.connectionRequests.ids.map((requestId, i) => {
-                      return <ConnectionItem
-                        key={i} 
-                        requestId={requestId}
-                        type="invitation"
-                        user={this.state.usersRequestingConnection[i]} 
-                        currentUser={this.props.user}
-                        deleteConnection={this.props.deleteConnection}
-                        acceptConnection={this.props.acceptConnection}
-                        addAccept={this.addAccept}
-                      />
-                    }) :
-                    <li>No current invitations</li>
-                  }
-                </ul>
+          <div className="profile-page">
+            <div className="network-page">
+              <div className="network-left">
+                <h3>Manage my network</h3>
+                <a onClick={() => {this.props.fetchUser(this.props.user.id).then(() => this.setState({redirect: true}))}}>
+                  <i className="fas fa-user-friends"></i>
+                  <div>
+                    <p>Connections</p>
+                    <p>{this.props.user.connections.ids.length + this.state.accepted}</p>
+                  </div>
+                </a>
               </div>
-              <div>
 
+              <div className="network-right">
+                <div className="invitations">
+                  <div>
+                    <h3>Invitations</h3>
+                    <Link to="/mynetwork/invitation-manager">Manage</Link>
+                  </div>
+                  <ul>
+                    { this.props.connectionRequests.ids.length > 0 ?
+                      this.props.connectionRequests.ids.map((requestId, i) => {
+                        return <ConnectionItem
+                          key={i} 
+                          requestId={requestId}
+                          type="invitation"
+                          user={this.state.usersRequestingConnection[i]} 
+                          currentUser={this.props.user}
+                          deleteConnection={this.props.deleteConnection}
+                          acceptConnection={this.props.acceptConnection}
+                          addAccept={this.addAccept}
+                        />
+                      }) :
+                      <li>No current invitations</li>
+                    }
+                  </ul>
+                </div>
+                <div>
+
+                </div>
               </div>
             </div>
           </div>
