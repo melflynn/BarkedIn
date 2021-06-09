@@ -42,7 +42,7 @@ class InvitationManager extends React.Component {
       this.props.fetchUser(this.props.currentUser.id)
         .then(() => this.props.fetchUsers(this.props.pendingUsers.ids)
           .then((users) => this.setState((prevState) => ({
-            usersRequestingConnection: Object.values(users.users),
+            pendingUsers: Object.values(users.users),
             prevPage: prevState.page
           })))
         )
