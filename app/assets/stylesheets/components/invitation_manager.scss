@@ -1,0 +1,40 @@
+.invitation-manager {
+      background-color: white;
+      margin-top: 40px;
+      border-radius: 5px;
+      width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid $lighter-grey;
+
+      #manage-invitations-header {
+        margin: 10px;
+        font-size: 18px;
+      }
+
+      .invitation-manager-headers {
+        display: flex;
+        justify-content: flex-start;
+        padding: 10px;
+        padding-bottom: 0;
+        border-bottom: 1px solid $lighter-grey;
+
+        p {
+          padding: 5px;
+
+          &:first-child {
+            margin-right: 10px;
+          }
+
+          &.selected {
+            color: $main-blue;
+            border-bottom: 2px solid $main-blue;
+            padding: 4px;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+}

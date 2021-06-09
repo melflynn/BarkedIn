@@ -22,7 +22,7 @@ class MyNetworkPage extends React.Component {
       }))
   }
 
-  addAccept (prevState) {
+  addAccept () {
     this.setState((prevState) => ({
       accepted: prevState.accepted + 1
     }))
@@ -52,7 +52,7 @@ class MyNetworkPage extends React.Component {
               <div className="invitations">
                 <div>
                   <h3>Invitations</h3>
-                  <Link to="#">Manage</Link>
+                  <Link to="/mynetwork/invitation-manager">Manage</Link>
                 </div>
                 <ul>
                   { this.props.connectionRequests.ids.length > 0 ?

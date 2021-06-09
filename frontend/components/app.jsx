@@ -9,11 +9,13 @@ import { validateEmail } from "../util/session_util";
 import ProfileContainer from './profile/profile_container';
 import ConnectionsPageContainer from './network/connections_page_container';
 import MyNetworkPageContainer from './network/my_network_page_container';
+import InvitationManagerContainer from './network/invitation_manager_container';
 
 const App = () => (
   <div>
     <Switch>
       <LoginAuthRoute path="/feed" component={FeedContainer} />
+      <LoginAuthRoute path="/mynetwork/invitation-manager" component={InvitationManagerContainer} />
       <LoginAuthRoute path="/mynetwork" component={MyNetworkPageContainer} />
       <LoginAuthRoute path="/users/:userId/connections" component={ConnectionsPageContainer} />
       <LoginAuthRoute path="/users/:userId" component={ProfileContainer} />
