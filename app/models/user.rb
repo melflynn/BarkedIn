@@ -28,6 +28,10 @@ class User < ApplicationRecord
 
   has_one_attached :profile_photo
 
+  has_many :posts,
+    foreign_key: :author_id,
+    class_name: :Post
+
   def connections
     Connection.where("(user_id1 = ? OR user_id2 = ?) AND status = 'connected'", self.id, self.id)  
   end

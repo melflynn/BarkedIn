@@ -9,4 +9,10 @@
 #  updated_at :datetime         not null
 #
 class Post < ApplicationRecord
+  validates_presence_of :author_id, :body
+
+  belongs_to :author,
+    foreign_key: :author_id,
+    class_name: :User
+
 end
