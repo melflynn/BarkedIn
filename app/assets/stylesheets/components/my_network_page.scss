@@ -74,6 +74,13 @@
         a {
           color: $light-grey;
           font-weight: bold;
+          cursor: pointer;
+          padding: 5px; 
+          border-radius: 5px;
+
+          &:hover {
+            background-color: $lighter-grey;
+          }
         }
       }
     }

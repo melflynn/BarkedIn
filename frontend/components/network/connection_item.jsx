@@ -82,7 +82,7 @@ class ConnectionItem extends React.Component {
         break;
       case "sentRequest":
         actions = 
-          <p onClick={this.withdrawRequest}>Withdraw</p>
+          <p className="button" onClick={this.withdrawRequest}>Withdraw</p>
     }
 
     return (
