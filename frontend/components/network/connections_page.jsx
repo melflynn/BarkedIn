@@ -65,26 +65,30 @@ class ConnectionsPage extends React.Component {
           <div>
             <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />
             <div className="profile-page">
-            {this.props.currentUser.id === this.props.user.id ? `Your connections` : `${this.props.user.firstName}'s connections`}
-            
-            {this.state.connectedUsers.length > 0 ? 
-              <div className="connections">
-                <ul>
-                  {this.state.connectedUsers.map((user, i) => {
-                    return <ConnectionItem 
-                      key={i} 
-                      type="connection"
-                      user={user} 
-                      currentUser={this.props.currentUser}
-                      requestConnection={this.props.requestConnection}
-                      fetchUser={this.props.fetchUser}
-                    />
-                  })}
-                </ul>
-              </div> :
-              <div>
-                You don't have any connections yet 
-              </div>}
+              <div className="connections-page">
+                <div className="connections">
+                  <div className="connections-header">
+                    {this.props.currentUser.id === this.props.user.id ? `Your connections` : `${this.props.user.firstName}'s connections`}
+                  </div>
+                  {this.state.connectedUsers.length > 0 ? 
+                    <ul>
+                      {this.state.connectedUsers.map((user, i) => {
+                        return <ConnectionItem 
+                          key={i} 
+                          type="connection"
+                          user={user} 
+                          currentUser={this.props.currentUser}
+                          requestConnection={this.props.requestConnection}
+                          fetchUser={this.props.fetchUser}
+                        />
+                      })}
+                    </ul>
+                    :
+                    <div>
+                      You don't have any connections yet 
+                    </div>}
+                </div>
+              </div>
             </div>
           </div>
       )
