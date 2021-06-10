@@ -43,15 +43,17 @@ class ActivityPage extends React.Component {
         </header>
         <main className="feed-main">
           <UserSidebar user={this.props.user} />
-          <div className="activity-header">
-            <h3>{`${this.props.user.firstName}'s Activity`}</h3>
-            <p>Posts</p>
+          <div className="activity-feed">
+            <header>
+              <h3>{`${this.props.user.firstName}'s Activity`}</h3>
+              <p>Posts</p>
+            </header>
+            <ul className="activity-feed">
+              {this.state.posts.map((post, i) => {
+                return <PostItem key={i} user={this.props.user} post={post} />
+              })}
+            </ul>
           </div>
-          <ul className="activity-feed">
-            {this.state.posts.map((post, i) => {
-              return <PostItem key={i} user={this.props.user} post={post} />
-            })}
-          </ul>
         </main>
       </div>
     } else {
