@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 import HeaderContainer from '../header/header_container';
 import Modal from '../modal/modal';
 import ProfileIntro from './profile_intro';
+import ProfileAboutMe from './profile_about_me';
 
 class Profile extends React.Component {
   constructor (props) {
@@ -13,7 +14,7 @@ class Profile extends React.Component {
       redirect: false,
       currentPageUserId: props.userId,
       aboutMeUpdated: false,
-      accepted: 0
+      // accepted: 0
     }
     this.updatePhoto = this.updatePhoto.bind(this);
     this.seeMore = this.seeMore.bind(this);
@@ -66,7 +67,7 @@ class Profile extends React.Component {
 
   componentDidUpdate () {
     if (!this.state.redirect) {
-      if (!this.props.user || !this.props.user.connections || this.props.userId !== this.state.currentPageUserId || this.state.aboutMeUpdated) { 
+      if (!this.props.user || !this.props.user.connections || this.props.userId !== this.state.currentPageUserId || this.state.aboutMeUpdated) {
         this.props.fetchUser(this.props.userId)
           .then(
             () => {
@@ -74,7 +75,7 @@ class Profile extends React.Component {
                 currentPageUserId: this.props.userId,
                 hiddenText: true,
                 aboutMeUpdated: false,
-                accepted: 0
+                // accepted: 0
               });
               $('.blurb').addClass('clipped');
               this.setConnectionStatus();
@@ -145,7 +146,14 @@ class Profile extends React.Component {
                 fetchUser={this.props.fetchUser}
               />
 
-              <section className="about">
+              <ProfileAboutMe 
+                userId={this.props.userId}
+                currentUser={this.props.currentUser}
+                updateModal={this.props.updateModal}
+                user={this.props.user}
+                hiddenText={this.state.hiddenText}
+              />
+              {/* <section className="about">
                 <div>
                   <h3>About</h3>
                   {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt" onClick={() => this.props.updateModal('EditAboutMe')}></i> : ''}
@@ -156,7 +164,7 @@ class Profile extends React.Component {
                   || this.props.user && this.props.user.aboutMe && this.props.user.aboutMe.length > 315) ? 
                   <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
                 </div>
-              </section>
+              </section> */}
             </div>
           </div>
 

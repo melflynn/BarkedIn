@@ -7,6 +7,7 @@ class ProfileIntro extends React.Component {
     super(props);
     this.state = {
       accepted: 0,
+      currentPageUserId: props.userId,
     }
     this.removeConnection = this.removeConnection.bind(this);
     this.makeRequest = this.makeRequest.bind(this);
@@ -58,6 +59,15 @@ class ProfileIntro extends React.Component {
     this.setState((prevState) => ({
       accepted: prevState.accepted + num
     }))
+  }
+
+  componentDidUpdate () {
+    if (this.props.userId !== this.state.currentPageUserId) {
+      this.setState({
+        currentPageUserId: this.props.userId,
+        accepted: 0
+      })
+    }
   }
 
 
