@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import EditPostDropdown from './edit_post_dropdown';
 
 class PostItem extends React.Component {
 
@@ -15,7 +16,7 @@ class PostItem extends React.Component {
               <p>{this.props.user.breed ? this.props.user.breed : ''}</p>
             </div>
           </article>
-          <p>...</p>
+          <EditPostDropdown />
         </header>
         <div>
           {this.props.post.body}

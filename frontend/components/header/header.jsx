@@ -1,6 +1,7 @@
 import MeDropdown from './me_dropdown';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Dropdown from '../dropdown/dropdown';
 
 const Header = (props) => (
   <header className="main-header">

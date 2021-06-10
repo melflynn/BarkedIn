@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PostItem from '../activity/post_item';
+import PostItem from '../activity/posts/post_item';
 
 const ProfileActivity = (props) => {
   return <section className="activity">

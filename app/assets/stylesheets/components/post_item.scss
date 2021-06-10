@@ -36,7 +36,7 @@ li.post-item {
       color: $light-grey;
     }
 
-    > p {
+    #edit-post-dropdown-parent {
       display: flex;
       align-items: center;
       font-family: 'Trebuchet MS';
@@ -57,6 +57,36 @@ li.post-item {
         cursor: pointer;
       }
     }
+
+    #edit-post-dropdown {
+      position: absolute; 
+      right: 10px;
+      top: 35px;
+      background-color: white;
+      border-radius: 5px;
+      border: 1px solid $lighter-grey;
+      z-index: 1;
+      width: 150px;
+      height: 90px;
+      padding-top: 18px;
+
+      li {
+        display: flex;
+        padding: 5px;
+        padding-left: 10px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $lighter-grey;
+        }
+
+        p {
+          margin-left: 10px;
+        }
+      }
+
+    }
+
   }
   
   // article {
