@@ -17,7 +17,8 @@ class EditPostModal extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.editPost(this.state);
+    this.props.editPost(this.state)
+      .then(() => this.props.updatedPost());
     this.props.updateModal();
   }
 

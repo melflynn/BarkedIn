@@ -11,25 +11,41 @@ class ActivityPage extends React.Component {
     this.state = {
 
     }
+    this.updatedPost = this.updatedPost.bind(this);
+  }
+
+  updatedPost () {
+    this.setState({
+      updatedPost: true
+    })
+  }
+
+  componentDidUpdate () {
+    if (this.state.updatedPost) {
+      this.setState({
+        updatedPost: false
+      })
+      this.posts(this.props.user.posts.ids);
+    }
+  }
+
+  posts = (postIds) => {
+    fetchPosts(postIds)
+      .then((posts) => {
+        this.setState({
+          posts
+        })
+      })
   }
 
   componentDidMount() {
-    const posts = (postIds) => {
-      fetchPosts(postIds)
-        .then((posts) => {
-          this.setState({
-            posts
-          })
-        })
-    }
-
     if (!this.props.user || !this.props.user.posts) {
       this.props.fetchUser(this.props.userId, {posts: true})
         .then((user) => {
-          posts(user.user.posts.ids);
+          this.posts(user.user.posts.ids);
         })
     } else {
-      posts(this.props.user.posts.ids)
+      this.posts(this.props.user.posts.ids)
     }
 
   }
@@ -44,6 +60,7 @@ class ActivityPage extends React.Component {
           updateModal={this.props.updateModal}
           editPost={this.props.editPost}
           post={this.props.modalPost}
+          updatedPost={this.updatedPost}
         />
         break;
       default:
