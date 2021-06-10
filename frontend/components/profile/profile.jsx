@@ -2,8 +2,8 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import HeaderContainer from '../header/header_container';
 import Modal from '../modal/modal';
-import { Link } from 'react-router-dom';
 import { findConnection } from '../../util/connection_util';
+import ProfileIntro from './profile_intro';
 
 class Profile extends React.Component {
   constructor (props) {
@@ -175,70 +175,25 @@ class Profile extends React.Component {
     } else if (!this.props.user) {
       return null;
     } else {
-      const connectionCount = this.props.user.connections ? this.props.user.connections.ids.length + this.state.accepted : null;
-      let interact;
-      switch (this.state.status) {
-        case "self":
-          interact = '';
-          break;
-        case "connected":
-          interact =
-            <div className="connection-response">
-              <p>Connected</p>
-              <button className="remove-connection" onClick={this.removeConnection}>Remove Connection</button>
-            </div>;
-          break;
-        case "requested":
-          interact =
-            <div className="connection-response">
-              <button onClick={this.acceptRequest}>Accept</button>
-              <button onClick={this.removeConnection}>Ignore</button>
-            </div>;
-          break;
-        case "pending":
-          interact =
-            <p className="connection-response">Pending</p>;
-          break;
-        default: 
-          interact =
-            <div className="connection-response">
-              <button onClick={this.makeRequest}>Connect</button>
-            </div>;
-      }
-
       return (
         <div>
           {modal}
           <HeaderContainer photo={this.state.photo ? this.state.photo : this.props.currentUser.profilePhotoUrl}/>
           <div className="profile-page">
             <div className="profile">
-              <section className="intro">
-                <div className="background">
-                  <div>
-                  </div>
-                  <div>
-                    {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt" onClick={() => this.props.updateModal('EditProfileIntro')}></i> : ''}
-                  </div>
-                </div>
-                <div>
-                  {this.props.userId === this.props.currentUser.id.toString() ? 
-                    <img src={this.state.photo ? this.state.photo : this.props.user ? this.props.user.profilePhotoUrl || window.defaultProfPic : ''} 
-                    id="editable-prof-pic" 
-                    onClick={() => this.props.updateModal('ProfilePhoto')} /> :
-                    <img src={this.props.user.profilePhotoUrl || window.defaultProfPic}/>
-                  }
-                  <h3>{this.props.user.firstName} {this.props.user.lastName}</h3>
-                  <h4>{this.props.user.breed ? this.props.user.breed : ''}</h4>
-                  <h5>{`${this.props.user.region ? `${this.props.user.region}, ` : ''} ${this.props.user.country ? this.props.user.country : ''}`}
-                    <p>•</p>
-                    <p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p>
-                  </h5>
-                  <Link to={`/users/${this.props.user.id}/connections`}><p id="connectionCount">{connectionCount === 1 ? `${connectionCount} connection` : connectionCount > 500 ? `500+ connections` : `${connectionCount} connections`}</p></Link>
-
-                  {interact}
-                  
-                </div>
-              </section>
+              <ProfileIntro 
+                currentUser={this.props.currentUser}
+                updateModal={this.props.updateModal}
+                userId={this.props.userId}
+                photo={this.state.photo}
+                user={this.props.user}
+                accepted={this.state.accepted}
+                status={this.state.status}
+                removeConnection={this.removeConnection}
+                acceptRequest={this.acceptRequest}
+                makeRequest={this.makeRequest}
+              />
+              
               <section className="about">
                 <div>
                   <h3>About</h3>
