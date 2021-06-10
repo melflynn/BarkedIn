@@ -113,5 +113,37 @@
       }
 
     }
+
+    .new-post {
+      background-color: white;
+      border-radius: 5px;
+      border: 1px solid $lighter-grey;
+      height: 100px;
+      display: flex;
+      align-items: center;
+
+      img {
+        object-fit: cover;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        margin: 10px;
+      }
+
+      button {
+        color: $light-grey;
+        border: 1px solid $lighter-grey;
+        border-radius: 24px;
+        width: 80%;
+        height: 50px;
+        padding: 10px;
+        font-weight: 600;
+        font-size: 14px;
+
+        &:hover {
+          background-color: $lighter-grey;
+        }
+      }
+    }
   }
 }
