@@ -92,6 +92,12 @@ class Profile extends React.Component {
 
     
     this.props.fetchUser(this.props.userId, {posts: true})
+      .then((user) => {
+          this.props.fetchPost(user.user.posts.ids[user.user.posts.ids.length - 1])
+            .then((post) => this.setState({
+              post: post.post
+            }))
+      })
       .then(() => this.props.fetchUser(this.props.currentUser.id))
       .then(
         () => this.setConnectionStatus(),
@@ -127,7 +133,6 @@ class Profile extends React.Component {
     } else if (!this.props.user) {
       return null;
     } else {
-      console.log(`profile: `, this.props)
       return (
         <div>
           {modal}
@@ -158,6 +163,8 @@ class Profile extends React.Component {
 
               <ProfileActivity 
                 userId={this.props.userId}
+                user={this.props.user}
+                post={this.state.post}
               />
             </div>
           </div>

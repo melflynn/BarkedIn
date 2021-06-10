@@ -72,7 +72,6 @@ class ProfileIntro extends React.Component {
 
 
   render () {
-    console.log(`intro: `, this.props)
     const connectionCount = this.props.user.connections ? this.props.user.connections.ids.length + this.state.accepted : null;
     let interact;
     switch (this.state.status || this.props.status) {

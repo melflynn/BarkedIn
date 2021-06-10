@@ -1,0 +1,38 @@
+li.post-item {
+  list-style: none;
+
+  header {
+    display: flex;
+    align-items: center;
+
+    img {
+      object-fit: cover;
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+      margin: 10px;
+      margin-right: 10px;
+    }
+
+    a:hover {
+        color: $main-blue;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+    h2 {
+      font-weight: 600;
+    }
+
+    p {
+      color: $light-grey;
+    }
+
+  }
+  
+  div {
+    width: 80%;
+    margin-left: 70px;
+    padding-bottom: 20px;
+  }
+}
