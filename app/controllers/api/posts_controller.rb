@@ -10,11 +10,18 @@ class Api::PostsController < ApplicationController
     end
   end
 
-  def update
-
+  def index 
+    if (params[:postIds])
+      @posts = Post.find(params[:postIds])
+      render :index
+    end
   end
 
-  def destroy
+  # def update
+
+  # end
+
+  # def destroy
   
-  end
+  # end
 end

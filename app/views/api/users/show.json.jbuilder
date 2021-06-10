@@ -1,33 +1,36 @@
 if @userOptions[:connectedUsers]
   connectedUsers = @user.connected_users
-else
-  connectedUsers = nil
+# else
+#   connectedUsers = nil
 end
 
 if @userOptions[:pendingUsers]
   pendingUsers = @user.pending_users
-else
-  pendingUsers = nil
+# else
+#   pendingUsers = nil
 end
 
 if @userOptions[:usersRequestingConnection]
   usersRequestingConnection = @user.users_requesting_connection
-else
-  usersRequestingConnection = nil
+# else
+#   usersRequestingConnection = nil
 end
 
 if @userOptions[:ConnectionRequests]
   connectionRequests = @user.connection_requests
-else
-  connectionRequests = nil
+# else
+#   connectionRequests = nil
 end
 
 if @userOptions[:requestedConnections]
   requestedConnections = @user.requested_connections
-else
-  requestedConnections = nil
+# else
+#   requestedConnections = nil
 end
 
+if @userOptions[:posts]
+  posts = @user.posts
+end
 
 json.partial! '/api/users/user', user: @user
 json.connections do 
@@ -56,5 +59,10 @@ end
 json.usersRequestingConnection do 
   if usersRequestingConnection
     json.extract! usersRequestingConnection, :ids
+  end
+end
+json.posts do 
+  if posts
+    json.extract! posts, :ids
   end
 end
