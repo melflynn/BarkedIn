@@ -29,7 +29,7 @@ class Dropdown extends React.Component {
   }
 
   dropdownDisplay(e) {
-    debugger;
+    // debugger;
     e.preventDefault();
     this.setState({
       showDropdown: true
@@ -45,19 +45,23 @@ class Dropdown extends React.Component {
 
   render() {
 
-    debugger;
 
     let { name, ...otherProps } = this.props;
-
+    let dropdown;
     switch (this.props.name) {
-      case 'meDropdown':
-        return <MeDropdown 
+      case 'MeDropdown':
+        dropdown =  <MeDropdown 
           dropdownDisplay={this.dropdownDisplay}
           dropdownHide={this.dropdownHide}
           showDropdown={this.state.showDropdown}
           {...otherProps}
         />
+        break;
+      default: 
+        dropdown = '';
     }
+
+    return <div>{dropdown}</div>
   }
 }
 

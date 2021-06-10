@@ -18,7 +18,7 @@ const Header = (props) => (
           <i className="fas fa-user-friends"></i>
           <p>My Network</p>
         </Link>
-        <MeDropdown user={props.user} logout={props.logout} photo={props.photo}/>
+        <Dropdown name='MeDropdown' user={props.user} logout={props.logout} photo={props.photo}/>
       </nav>
     </nav>
   </header>
