@@ -16,7 +16,11 @@ class PostItem extends React.Component {
               <p>{this.props.user.breed ? this.props.user.breed : ''}</p>
             </div>
           </article>
-          <EditPostDropdown post={this.props.post} updateModal={this.props.updateModal} />
+          {!this.props.profile && this.props.currentUser.id === this.props.user.id ?
+            <EditPostDropdown post={this.props.post} updateModal={this.props.updateModal} />
+            :
+            ''
+          }
         </header>
         <div>
           {this.props.post.body}

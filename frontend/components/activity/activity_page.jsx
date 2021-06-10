@@ -95,6 +95,7 @@ class ActivityPage extends React.Component {
                   return <PostItem 
                     key={i} 
                     user={this.props.user} 
+                    currentUser={this.props.currentUser}
                     post={post} 
                     updateModal={this.props.updateModal}
                   />

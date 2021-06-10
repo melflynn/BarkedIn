@@ -164,6 +164,7 @@ class Profile extends React.Component {
               <ProfileActivity 
                 userId={this.props.userId}
                 user={this.props.user}
+                currentUser={this.props.currentUser}
                 post={this.state.post}
               />
             </div>
