@@ -63,12 +63,22 @@ class ActivityPage extends React.Component {
           updatedPost={this.updatedPost}
         />
         break;
+      case 'DeletePost':
+        modal = <Modal 
+          name={this.props.modal}
+          post={this.props.modalPost}
+          deletePost={this.props.deletePost}
+          updateModal={this.props.updateModal}
+          updatedPost={this.updatedPost}
+        />
+        break;
       default:
         modal = '';
 
     }
 
     if (this.props.user && this.state.posts) {
+      console.log(this.props.modal)
       return <div> 
         {modal}
         <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />

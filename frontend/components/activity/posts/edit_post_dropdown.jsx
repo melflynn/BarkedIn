@@ -41,11 +41,6 @@ class EditPostDropdown extends React.Component {
     })
   }
 
-  // editPost (e) {
-  //   e.preventDefault();
-  //   this.props.editPost(this.state.post);
-  // }
-
   render () {
     return <div>
       <p id="edit-post-dropdown-parent" onClick={this.dropdownDisplay}>...</p>
@@ -56,7 +51,7 @@ class EditPostDropdown extends React.Component {
               <i className="fas fa-pencil-alt"></i>
               <p>Edit Post</p>
             </li>
-            <li>
+            <li onClick={(e) => { this.dropdownHide(e); this.props.updateModal('DeletePost', this.props.post) }}>
               <i className="fas fa-trash-alt"></i>
               <p>Delete Post</p>
             </li>

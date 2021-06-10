@@ -6,6 +6,7 @@ import EditAboutMeModal from './edit_about_me_modal';
 import DeletePhotoModal from './delete_photo_modal';
 import NewPostModal from './new_post_modal';
 import EditPostModal from './edit_post_modal';
+import DeletePostModal from './delete_post_modal';
 
 const Modal = (props) => {
 
@@ -33,6 +34,9 @@ const Modal = (props) => {
       break;
     case 'EditPost':
       modal = <EditPostModal {...otherProps}/>;
+      break;
+    case 'DeletePost':
+      modal = <DeletePostModal {...otherProps}/>
       break;
   }
 

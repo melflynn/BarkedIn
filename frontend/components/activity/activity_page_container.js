@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import ActivityPage from './activity_page';
 import { fetchUser } from '../../actions/user_actions';
-import { fetchPosts, updatePost } from '../../actions/post_actions';
+import { deletePost, fetchPosts, updatePost } from '../../actions/post_actions';
 import { updateModal } from "../../actions/ui_actions";
 
 const mapStateToProps = (state, ownProps) => ({
@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUser: (userId, userOptions) => dispatch(fetchUser(userId, userOptions)),
   fetchPosts: (postIds) => dispatch(fetchPosts(postIds)),
   updateModal: (modalName, post) => dispatch(updateModal(modalName, post)),
-  editPost: (post) => dispatch(updatePost(post))
+  editPost: (post) => dispatch(updatePost(post)),
+  deletePost: (postId) => dispatch(deletePost(postId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityPage);

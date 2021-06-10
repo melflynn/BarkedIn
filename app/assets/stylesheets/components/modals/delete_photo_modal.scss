@@ -9,55 +9,56 @@
     z-index: 2;
   }
 
-  .modal-box.delete-photo-modal-box {
-    grid-column: 1;
-    grid-row: 1;
-    background-color: white;
-    height: 190px;
-    width: 300px;
-    color: black;
-    margin: auto;
-    margin-top: 100px;
-    padding: 0;
+}
 
-    div {
-      margin: 10px;
-      padding: 10px;
+.modal-box.delete-photo-modal-box {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: white;
+  height: 190px;
+  width: 300px;
+  color: black;
+  margin: auto;
+  margin-top: 100px;
+  padding: 0;
+
+  div {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  footer {
+    border-top: 1px solid $lighter-grey;
+    padding: 10px;
+    margin-bottom: 0;
+    display: flex; 
+    justify-content: flex-end;
+
+    button:first-child {
+      color: $main-blue;
+      border: 1px solid $main-blue;
+      border-radius: 24px;
+      padding: 5px 7px;
+      margin: 5px;
+
+      &:hover {
+        color: $main-blue;
+        border: 2px solid $main-blue;
+        border-radius: 24px;
+        background-color: $lightest-blue;
+        padding: 4px 6px;
+      }
     }
 
-    footer {
-      border-top: 1px solid $lighter-grey;
-      padding: 10px;
-      margin-bottom: 0;
-      display: flex; 
-      justify-content: flex-end;
+    button:last-child {
+      background-color: $main-blue;
+      color: white;
+      padding: 5px 7px;
+      margin: 5px;
+      border-radius: 24px;
 
-      button:first-child {
-        color: $main-blue;
-        border: 1px solid $main-blue;
-        border-radius: 24px;
-        padding: 5px 7px;
-        margin: 5px;
-
-        &:hover {
-          color: $main-blue;
-          border: 2px solid $main-blue;
-          border-radius: 24px;
-          background-color: $lightest-blue;
-          padding: 4px 6px;
-        }
-      }
-
-      button:last-child {
-        background-color: $main-blue;
-        color: white;
-        padding: 5px 7px;
-        margin: 5px;
-        border-radius: 24px;
-
-        &:hover {
-          background-color: $dark-blue;
-        }
+      &:hover {
+        background-color: $dark-blue;
       }
     }
   }
