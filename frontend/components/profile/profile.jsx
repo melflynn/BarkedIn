@@ -91,7 +91,7 @@ class Profile extends React.Component {
   componentDidMount () {
 
     
-    this.props.fetchUser(this.props.userId)
+    this.props.fetchUser(this.props.userId, {posts: true})
       .then(() => this.props.fetchUser(this.props.currentUser.id))
       .then(
         () => this.setConnectionStatus(),

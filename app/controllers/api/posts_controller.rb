@@ -17,6 +17,15 @@ class Api::PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find_by(id: params[:id])
+    if @post 
+      render :show
+    else
+      render json: {postId: 'a post with that id does not exist'}, status: 422
+    end
+  end
+
   # def update
 
   # end

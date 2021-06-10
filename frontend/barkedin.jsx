@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { configureStore } from './store/store';
 import Root from './components/root';
-import { createPost } from './actions/post_actions';
+import { fetchPosts, fetchPost } from './actions/post_actions';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,7 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
   
-  window.createPost = createPost;
+  window.fetchPosts = fetchPosts;
+  window.fetchPost = fetchPost;
   window.dispatch = store.dispatch;
   ReactDOM.render(<Root store={store}/>, root);
 })
