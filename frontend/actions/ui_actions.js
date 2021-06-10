@@ -1,6 +1,7 @@
 export const UPDATE_MODAL = 'UPDATE_MODAL';
 
-export const updateModal = (modalName) => ({
+export const updateModal = (modalName, post) => ({
   type: 'UPDATE_MODAL',
-  modalName
+  modalName,
+  post
 });

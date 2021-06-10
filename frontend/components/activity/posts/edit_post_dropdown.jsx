@@ -4,7 +4,8 @@ class EditPostDropdown extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      showDropdown: false
+      showDropdown: false,
+      // post: this.props.post
     }
     this.dropdownDisplay = this.dropdownDisplay.bind(this);
     this.dropdownHide = this.dropdownHide.bind(this);
@@ -40,13 +41,18 @@ class EditPostDropdown extends React.Component {
     })
   }
 
+  // editPost (e) {
+  //   e.preventDefault();
+  //   this.props.editPost(this.state.post);
+  // }
+
   render () {
     return <div>
       <p id="edit-post-dropdown-parent" onClick={this.dropdownDisplay}>...</p>
       {this.state.showDropdown ? (
         <div id="edit-post-dropdown" onClick={(e) => e.stopPropagation()}>
           <ul>
-            <li>
+            <li onClick={(e) => {this.dropdownHide(e); this.props.updateModal('EditPost', this.props.post)}}>
               <i className="fas fa-pencil-alt"></i>
               <p>Edit Post</p>
             </li>

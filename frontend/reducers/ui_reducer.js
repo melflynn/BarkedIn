@@ -14,6 +14,11 @@ const UIReducer = (state = _defaultUi, action) => {
         newState['modal'] = false;
       } else {
         newState['modal'] = action.modalName;
+        if (action.post) {
+          newState['post'] = action.post;
+        } else {
+          delete newState['post'];
+        }
       }
       return newState;
     default:

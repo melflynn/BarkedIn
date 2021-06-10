@@ -3,6 +3,7 @@ import HeaderContainer from '../header/header_container';
 import UserSidebar from '../home_page/user_sidebar';
 import PostItem from './posts/post_item';
 import { fetchPosts } from '../../util/post_util';
+import Modal from '../modal/modal';
 
 class ActivityPage extends React.Component {
   constructor (props) {
@@ -34,10 +35,25 @@ class ActivityPage extends React.Component {
   }
 
   render () {
-    console.log(this.state.posts)
+    let modal;
+    switch (this.props.modal) {
+      case 'EditPost':
+        modal = <Modal 
+          name={this.props.modal}
+          user={this.props.currentUser}
+          updateModal={this.props.updateModal}
+          editPost={this.props.editPost}
+          post={this.props.modalPost}
+        />
+        break;
+      default:
+        modal = '';
+
+    }
 
     if (this.props.user && this.state.posts) {
       return <div> 
+        {modal}
         <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />
         <div className="feed-page">
           <main className="feed-main">
@@ -49,7 +65,12 @@ class ActivityPage extends React.Component {
               </header>
               <ul>
                 {this.state.posts.map((post, i) => {
-                  return <PostItem key={i} user={this.props.user} post={post} />
+                  return <PostItem 
+                    key={i} 
+                    user={this.props.user} 
+                    post={post} 
+                    updateModal={this.props.updateModal}
+                  />
                 })}
               </ul>
             </div>
