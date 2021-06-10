@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 }}
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (userId) => dispatch(fetchUser(userId)),
+  fetchUser: (userId, userOptions) => dispatch(fetchUser(userId, userOptions)),
   updateModal: (modalName) => dispatch(updateModal(modalName)),
   createPost: (body) => dispatch(createPost(body))
 })
