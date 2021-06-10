@@ -2,7 +2,6 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import HeaderContainer from '../header/header_container';
 import Modal from '../modal/modal';
-import { findConnection } from '../../util/connection_util';
 import ProfileIntro from './profile_intro';
 
 class Profile extends React.Component {
@@ -19,9 +18,6 @@ class Profile extends React.Component {
     this.updatePhoto = this.updatePhoto.bind(this);
     this.seeMore = this.seeMore.bind(this);
     this.toggleAboutMe = this.toggleAboutMe.bind(this);
-    this.removeConnection = this.removeConnection.bind(this);
-    this.makeRequest = this.makeRequest.bind(this);
-    this.acceptRequest = this.acceptRequest.bind(this);
   }
 
   updatePhoto (photoUrl) {
@@ -42,53 +38,6 @@ class Profile extends React.Component {
     this.setState({
       aboutMeUpdated: true
     })
-  }
-
-  removeConnection (e) {
-    e.preventDefault();
-    findConnection(this.props.currentUser.id, this.props.user.id)
-      .then((connection) => {
-        this.props.deleteConnection(connection.id);
-        this.props.fetchUser(this.props.currentUser.id)
-          .then(() => {
-            this.addAccept(-1);
-            this.setState({
-              status: "not connected"
-            })
-          });
-      })
-  }
-
-  makeRequest(e) {
-    e.preventDefault();
-    this.props.requestConnection(this.props.currentUser.id, this.props.user.id)
-      .then(() => {
-        this.props.fetchUser(this.props.currentUser.id)
-          .then(() => this.setState({
-            status: "pending"
-          }))
-      })
-  }
-
-  acceptRequest(e) {
-    e.preventDefault();
-
-    findConnection(this.props.currentUser.id, this.props.user.id)
-      .then((connection) => {
-        this.props.acceptConnection(connection.id)
-          .then(() => {
-            this.addAccept(1);
-            this.setState({
-              status: "connected"
-            })
-          });
-      })
-  }
-
-  addAccept (num) {
-    this.setState((prevState) => ({
-      accepted: prevState.accepted + num
-    }))
   }
 
   setConnectionStatus () {
@@ -144,6 +93,7 @@ class Profile extends React.Component {
       .then(() => this.props.fetchUser(this.props.currentUser.id))
       .then(
         () => this.setConnectionStatus(),
+        null,
         () => this.setState({
           redirect: true
         }));   
@@ -175,6 +125,7 @@ class Profile extends React.Component {
     } else if (!this.props.user) {
       return null;
     } else {
+      console.log(`profile: `, this.props)
       return (
         <div>
           {modal}
@@ -187,13 +138,13 @@ class Profile extends React.Component {
                 userId={this.props.userId}
                 photo={this.state.photo}
                 user={this.props.user}
-                accepted={this.state.accepted}
                 status={this.state.status}
-                removeConnection={this.removeConnection}
-                acceptRequest={this.acceptRequest}
-                makeRequest={this.makeRequest}
+                deleteConnection={this.props.deleteConnection}
+                requestConnection={this.props.requestConnection}
+                acceptConnection={this.props.acceptConnection}
+                fetchUser={this.props.fetchUser}
               />
-              
+
               <section className="about">
                 <div>
                   <h3>About</h3>
