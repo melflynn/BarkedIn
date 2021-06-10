@@ -4,6 +4,7 @@ import HeaderContainer from '../header/header_container';
 import Modal from '../modal/modal';
 import ProfileIntro from './profile_intro';
 import ProfileAboutMe from './profile_about_me';
+import ProfileActivity from './profile_activity';
 
 class Profile extends React.Component {
   constructor (props) {
@@ -152,19 +153,12 @@ class Profile extends React.Component {
                 updateModal={this.props.updateModal}
                 user={this.props.user}
                 hiddenText={this.state.hiddenText}
+                seeMore={this.seeMore}
               />
-              {/* <section className="about">
-                <div>
-                  <h3>About</h3>
-                  {this.props.userId === this.props.currentUser.id.toString() ? <i className="fas fa-pencil-alt" onClick={() => this.props.updateModal('EditAboutMe')}></i> : ''}
-                </div>
-                <div>
-                  <p className="blurb clipped">{this.props.user ? this.props.user.aboutMe : ''}</p>
-                  {this.state.hiddenText && ($('.blurb').prop('scrollHeight') > $('.blurb').prop('clientHeight') 
-                  || this.props.user && this.props.user.aboutMe && this.props.user.aboutMe.length > 315) ? 
-                  <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
-                </div>
-              </section> */}
+
+              <ProfileActivity 
+                userId={this.props.userId}
+              />
             </div>
           </div>
 

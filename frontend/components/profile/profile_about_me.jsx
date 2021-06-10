@@ -3,28 +3,7 @@ import React from 'react';
 class ProfileAboutMe extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      currentPageUserId: props.userId,
-    }
-    // this.seeMore = this.seeMore.bind(this);
   }
-
-  // seeMore(e) {
-  //   e.preventDefault();
-  //   this.setState({
-  //     hiddenText: false
-  //   });
-  //   $('.blurb').removeClass('clipped');
-  // }
-
-  // componentDidUpdate () {
-  //   if (this.props.userId !== this.state.currentPageUserId) {
-  //     this.setState({
-  //       currentPageUserId: this.props.userId,
-  //       hiddenText: true
-  //     })
-  //   }
-  // }
 
   render () {
     return <section className="about">
@@ -36,7 +15,7 @@ class ProfileAboutMe extends React.Component {
         <p className="blurb clipped">{this.props.user ? this.props.user.aboutMe : ''}</p>
         {this.props.hiddenText && ($('.blurb').prop('scrollHeight') > $('.blurb').prop('clientHeight')
           || this.props.user && this.props.user.aboutMe && this.props.user.aboutMe.length > 315) ?
-          <span>...<a onClick={this.seeMore}>see more</a></span> : ''}
+          <span>...<a onClick={this.props.seeMore}>see more</a></span> : ''}
       </div>
     </section>
   }

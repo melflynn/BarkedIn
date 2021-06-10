@@ -10,6 +10,7 @@ import ProfileContainer from './profile/profile_container';
 import ConnectionsPageContainer from './network/connections_page_container';
 import MyNetworkPageContainer from './network/my_network_page_container';
 import InvitationManagerContainer from './network/invitation_manager_container';
+import ActivityPageContainer from './activity/activity_page_container';
 
 const App = () => (
   <div>
@@ -18,6 +19,7 @@ const App = () => (
       <LoginAuthRoute path="/mynetwork/invitation-manager" component={InvitationManagerContainer} />
       <LoginAuthRoute path="/mynetwork" component={MyNetworkPageContainer} />
       <LoginAuthRoute path="/users/:userId/connections" component={ConnectionsPageContainer} />
+      <LoginAuthRoute path="/users/:userId/activity" component={ActivityPageContainer} />
       <LoginAuthRoute path="/users/:userId" component={ProfileContainer} />
       <LogoutAuthRoute path="/login" component={LoginContainer} />
       <LogoutAuthRoute path="/signup" component={() => <SignupContainer validateEmail={validateEmail}/>} />

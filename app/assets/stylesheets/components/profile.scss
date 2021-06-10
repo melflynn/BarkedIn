@@ -265,6 +265,30 @@
 
         } 
       }
+
+      &.activity {
+        margin-top: 40px;
+        
+        h3 {
+          font-size: 20px;
+          padding: 20px;
+        }
+
+        footer {
+          border-top: 1px solid $lighter-grey;
+          
+          a {
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+
+            &:hover {
+              background-color: $lighter-grey;
+            }
+          }
+        }
+      }
     }
   }
 
