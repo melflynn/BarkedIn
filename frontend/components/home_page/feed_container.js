@@ -6,7 +6,7 @@ import { createPost } from '../../actions/post_actions';
 
 const mapStateToProps = (state) => {
   return {
-  user: state.entities.users[state.session.currentUserId],
+  currentUser: state.entities.users[state.session.currentUserId],
   userId: state.session.currentUserId,
   modal: state.ui.modal
 }}

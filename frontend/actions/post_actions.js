@@ -42,3 +42,11 @@ export const fetchPost = (postId) => (dispatch) => (
       (errors) => dispatch(receivePostErrors(errors.responseJSON))
     )
 )
+
+export const updatePost = (post) => (dispatch) => (
+  APIUtil.updatePost(post) 
+    .then(
+      (post) => dispatch(receivePost(post)),
+      (errors) => dispatch(receivePostErrors(errors.responseJSON))
+    )
+)

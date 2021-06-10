@@ -20,3 +20,11 @@ export const fetchPost = (postId) => (
     url: `/api/posts/${postId}`
   })
 )
+
+export const updatePost = (post) => (
+  $.ajax({
+    method: 'PATCH',
+    url: `/api/posts/${post.id}`,
+    data: { post }
+  })
+) 

@@ -7,6 +7,7 @@ li.post-item {
   margin-left: 5px;
   margin-right: 5px;
   padding: 5px;
+  position: relative;
 
   header {
     display: flex;
@@ -35,11 +36,39 @@ li.post-item {
       color: $light-grey;
     }
 
+    > p {
+      display: flex;
+      align-items: center;
+      font-family: 'Trebuchet MS';
+      font-size: 20px;
+      font-weight: bold;
+      transform: rotate(180deg);
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      border-radius: 50%;
+      padding: 5px;
+      padding-top: 0;
+      padding-bottom: 10px;
+      line-height: 15px;
+
+      &:hover {
+        background-color: $lighter-grey;
+        cursor: pointer;
+      }
+    }
   }
   
-  div {
+  // article {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   width: 100%;  
+  // }
+
+
+  > div {
     width: 80%;
-    margin-left: 70px;
+    margin-left: 10px;
     padding-bottom: 20px;
   }
 }

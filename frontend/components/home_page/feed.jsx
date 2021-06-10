@@ -10,7 +10,7 @@ class Feed extends React.Component {
   }
 
   componentDidMount () {
-    if (!this.props.user) {
+    if (!this.props.currentUser) {
       this.props.fetchUser(this.props.userId)
     }
   }
@@ -21,7 +21,7 @@ class Feed extends React.Component {
       case 'NewPost':
         modal = <Modal 
           name={this.props.modal} 
-          user={this.props.user} 
+          user={this.props.currentUser} 
           updateModal={this.props.updateModal}
           createPost={this.props.createPost}
           />
@@ -30,16 +30,23 @@ class Feed extends React.Component {
         modal = '';
     }
 
-    return <div className="feed-page">
-      {modal}
-      <header>  
-        <HeaderContainer photo={this.props.user.profilePhotoUrl}/>
-      </header>
-      <main className="feed-main">
-        <UserSidebar user={this.props.user} />
-        <NewPost user={this.props.user} modal={this.props.modal} updateModal={this.props.updateModal}/>
-      </main>
-    </div>
+    return <div>
+        {modal}
+        <HeaderContainer photo={this.props.currentUser.profilePhotoUrl}/>
+        <div className="feed-page">
+          <main className="feed-main">
+            <UserSidebar user={this.props.currentUser} />
+            <div className="activity-feed">
+              <NewPost user={this.props.currentUser} modal={this.props.modal} updateModal={this.props.updateModal}/>
+              <ul>
+                {/* {this.state.posts.map((post, i) => {
+                  return <PostItem key={i} user={} post={post} />
+                })} */}
+              </ul>
+            </div>
+          </main>
+        </div>
+      </div>
   }
 }
 

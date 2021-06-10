@@ -37,24 +37,24 @@ class ActivityPage extends React.Component {
     console.log(this.state.posts)
 
     if (this.props.user && this.state.posts) {
-      return <div className="feed-page">
-        <header>
-          <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />
-        </header>
-        <main className="feed-main">
-          <UserSidebar user={this.props.user} />
-          <div className="activity-feed">
-            <header>
-              <h3>{`${this.props.user.firstName}'s Activity`}</h3>
-              <p>Posts</p>
-            </header>
-            <ul className="activity-feed">
-              {this.state.posts.map((post, i) => {
-                return <PostItem key={i} user={this.props.user} post={post} />
-              })}
-            </ul>
-          </div>
-        </main>
+      return <div> 
+        <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />
+        <div className="feed-page">
+          <main className="feed-main">
+            <UserSidebar user={this.props.user} />
+            <div className="activity-feed">
+              <header>
+                <h3>{`${this.props.user.firstName}'s Activity`}</h3>
+                <p>Posts</p>
+              </header>
+              <ul>
+                {this.state.posts.map((post, i) => {
+                  return <PostItem key={i} user={this.props.user} post={post} />
+                })}
+              </ul>
+            </div>
+          </main>
+        </div>
       </div>
     } else {
       return null;
@@ -63,44 +63,3 @@ class ActivityPage extends React.Component {
 }
 
 export default ActivityPage;
-
-// class Feed extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   componentDidMount() {
-//     if (!this.props.user) {
-//       this.props.fetchUser(this.props.userId)
-//     }
-//   }
-
-//   render() {
-//     let modal;
-//     switch (this.props.modal) {
-//       case 'NewPost':
-//         modal = <Modal
-//           name={this.props.modal}
-//           user={this.props.user}
-//           updateModal={this.props.updateModal}
-//           createPost={this.props.createPost}
-//         />
-//         break;
-//       default:
-//         modal = '';
-//     }
-
-//     return <div className="feed-page">
-//       {modal}
-//       <header>
-//         <HeaderContainer photo={this.props.user.profilePhotoUrl} />
-//       </header>
-//       <main className="feed-main">
-//         <UserSidebar user={this.props.user} />
-//         <NewPost user={this.props.user} modal={this.props.modal} updateModal={this.props.updateModal} />
-//       </main>
-//     </div>
-//   }
-// }
-
-// export default Feed;

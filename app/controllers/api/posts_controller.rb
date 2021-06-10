@@ -11,9 +11,11 @@ class Api::PostsController < ApplicationController
   end
 
   def index 
-    if (params[:postIds])
+    if (params[:postIds] && !params[:postIds].empty?)
       posts = Post.where('id IN (?)',params[:postIds]).order(updated_at: :desc)
       render json: posts
+    else
+      render json: []
     end
   end
 
@@ -26,11 +28,24 @@ class Api::PostsController < ApplicationController
     end
   end
 
-  # def update
-
-  # end
+  def update
+    @post = Post.find_by(id: params[:id])
+    if @post.author_id == current_user.id
+      if @post.update(post_params)
+        render :show
+      else
+        render json: @post.errors.full_messages, status: 422
+      end
+    end
+  end
 
   # def destroy
   
   # end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:body)
+  end
 end

@@ -10,9 +10,12 @@ class PostItem extends React.Component {
         <header>
           <img src={this.props.user.profilePhotoUrl || window.defaultProfPic} />
           <article>
-            <Link to={`/users/${this.props.user.id}`}><h2>{this.props.user.firstName} {this.props.user.lastName}</h2></Link>
-            <p>{this.props.user.breed ? this.props.user.breed : ''}</p>
+            <div>
+              <Link to={`/users/${this.props.user.id}`}><h2>{this.props.user.firstName} {this.props.user.lastName}</h2></Link>
+              <p>{this.props.user.breed ? this.props.user.breed : ''}</p>
+            </div>
           </article>
+          <p>...</p>
         </header>
         <div>
           {this.props.post.body}
