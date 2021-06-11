@@ -32,6 +32,10 @@ class User < ApplicationRecord
     foreign_key: :author_id,
     class_name: :Post
 
+  has_many :reactions,
+    foreign_key: :liker_id, 
+    class_name: :Reaction
+
   def connections
     Connection.where("(user_id1 = ? OR user_id2 = ?) AND status = 'connected'", self.id, self.id)  
   end
