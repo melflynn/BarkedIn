@@ -2,8 +2,32 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import EditPostDropdown from '../../dropdown/edit_post_dropdown';
 import Dropdown from '../../dropdown/dropdown';
+import { createReaction } from '../../../util/reaction_util';
 
 class PostItem extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      
+    }
+    this.addReaction = this.addReaction.bind(this);
+  }
+
+
+  addReaction (type) {
+    createReaction(this.props.post.id, type);
+    this.setState((prevState) => ({
+      reactionCount: prevState.reactionCount + 1
+    }));
+  }
+
+  // componentDidUpdate () {
+  //   if (!this.state.reactionCount) {
+  //     this.setState({
+  //       reactionCount: this.props.post.reactions.ids.length
+  //     })
+  //   }
+  // }
 
   render () {
 
@@ -23,15 +47,39 @@ class PostItem extends React.Component {
             ''
           }
         </header>
-        <div>
+        <div className="body">
           {this.props.post.body}
         </div>
         {!this.props.profile ? 
-        <div className="reactions">
-          <button>
+        <div>
+          {this.props.post.reactions.ids.length > 0 ? 
+            <div className="reactions-count">
               <i className="fas fa-dog"></i>
-              <p>Wag</p>
-          </button>
+              <i className="fas fa-paw"></i>
+              <i className="fas fa-bone"></i>
+              <p>{this.props.post.reactions.ids.length}</p>
+            </div>
+          : ''}
+          <div className="reactions">
+            <div className="react-button">
+                <div className="select-reactions">
+                  <div className="reaction">
+                    <i className="fas fa-dog" onClick={() => this.addReaction('wag')}></i>
+                    <p>Wag</p>
+                  </div>
+                  <div className="reaction">
+                    <i className="fas fa-paw" onClick={() => this.addReaction('high five')}></i>
+                    <p>High five</p>
+                  </div>
+                  <div className="reaction">
+                    <i className="fas fa-bone" onClick={() => this.addReaction('throw a bone')}></i>
+                    <p>Throw a bone</p>
+                  </div>
+                </div>
+                <i className="fas fa-dog"></i>
+                <p>Wag</p>
+            </div>
+          </div>
         </div>
         :
         ''}

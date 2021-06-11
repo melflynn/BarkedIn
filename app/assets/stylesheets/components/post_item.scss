@@ -94,10 +94,38 @@ li.post-item {
   }
 
 
-  > div {
-    width: 80%;
-    margin-left: 10px;
-    padding-bottom: 20px;
+  div.body {
+    padding: 0 10px;
+    padding-bottom: 10px;
+    margin: 0;
+  }
+
+  div.reactions-count {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+
+    i {
+      font-size: 12px;
+      border-radius: 50%; 
+      padding: 2px;
+      margin: 2px;
+
+      &:first-child {
+        background-color: $main-blue;
+        color: rgb(130, 168, 230)
+      }
+
+      &:nth-child(2) {
+        background-color: purple;
+        color: rgb(221, 151, 221)
+      }
+
+      &:last-of-type {
+        background-color: green;
+        color: rgb(171, 235, 171)
+      }
+    }
   }
 
   div.reactions {
@@ -106,12 +134,14 @@ li.post-item {
     padding: 0;
     margin: 0;
 
-    button {
+    .react-button {
       display: flex;
       color: $light-grey;
+      width: 65px;
       border-radius: 5px;
       padding: 5px;
       margin: 5px;
+      position: relative;
 
       p {
         margin-left: 5px;
@@ -119,7 +149,92 @@ li.post-item {
 
       &:hover {
         background-color: $lighter-grey;
+        cursor: pointer;
       }
+    }
+
+    .select-reactions {
+      display: none;
+      position: absolute;
+      justify-content: space-between;
+      background-color: white;
+      border-radius: 24px;
+      border: 1px solid $lighter-grey;
+      bottom: 28px;
+      left: -5px;
+      padding: 5px;
+      z-index: 1;
+      height: 38px;
+      width: 150px;
+
+      .reaction {
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 5px;
+        margin-right: 10px;
+        margin-left: 10px;
+        
+        &:first-child {
+          i {
+            color: $main-blue;
+            position: relative;
+          }
+
+          p {
+            bottom: 40px;
+            left: 5px;
+          }
+          
+        }
+
+        &:nth-child(2) {
+          i {
+            color: purple;
+            position: relative;
+          }
+
+          p {
+            bottom: 40px;
+            left: 30px;
+          }
+        }
+
+        &:last-child {
+          i {
+            color: green;
+          }
+          
+          p {
+            width: 115px;
+            bottom: 40px;
+            left: 55px;
+          }
+        
+        }
+
+        p {
+          display: none;
+          position: absolute;
+          color: white;
+          background-color: black;
+          border-radius: 24px;
+          padding: 2px 8px;
+        }
+
+        i:hover {
+          zoom: 1.75;
+        }
+
+        i:hover + p {
+          display: block;
+        }
+
+      }
+
+    }
+
+    .react-button:hover .select-reactions {
+      display: flex;
     }
   }
 }

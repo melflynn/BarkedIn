@@ -25,27 +25,18 @@ class ActivityPage extends React.Component {
       this.setState({
         updatedPost: false
       })
-      this.posts(this.props.user.posts.ids);
+      this.props.fetchPosts(this.props.user.posts.ids);
     }
-  }
-
-  posts = (postIds) => {
-    fetchPosts(postIds)
-      .then((posts) => {
-        this.setState({
-          posts
-        })
-      })
   }
 
   componentDidMount() {
     if (!this.props.user || !this.props.user.posts) {
       this.props.fetchUser(this.props.userId, {posts: true})
         .then((user) => {
-          this.posts(user.user.posts.ids);
+          this.props.fetchPosts(user.user.posts.ids);
         })
     } else {
-      this.posts(this.props.user.posts.ids)
+      this.props.fetchPosts(this.props.user.posts.ids)
     }
 
   }
@@ -77,8 +68,8 @@ class ActivityPage extends React.Component {
 
     }
 
-    if (this.props.user && this.state.posts) {
-      console.log(this.props.modal)
+    if (this.props.user && Object.keys(this.props.posts).length !== 0) {
+      console.log(this.props.posts)
       return <div> 
         {modal}
         <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />
@@ -91,7 +82,7 @@ class ActivityPage extends React.Component {
                 <p>Posts</p>
               </header>
               <ul>
-                {this.state.posts.length > 0 ? this.state.posts.map((post, i) => {
+                {Object.keys(this.props.posts).length > 0 ? Object.values(this.props.posts).map((post, i) => {
                   return <PostItem 
                     key={i} 
                     user={this.props.user} 

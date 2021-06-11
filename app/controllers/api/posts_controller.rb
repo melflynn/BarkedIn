@@ -12,8 +12,8 @@ class Api::PostsController < ApplicationController
 
   def index 
     if (params[:postIds] && !params[:postIds].empty?)
-      posts = Post.where('id IN (?)',params[:postIds]).order(updated_at: :desc)
-      render json: posts
+      @posts = Post.where('id IN (?)',params[:postIds]).order(updated_at: :desc)
+      render :index
     else
       render json: []
     end
