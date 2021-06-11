@@ -44,7 +44,7 @@ Devising a plan for implementing connections and connection requests was a large
 
 As such, there is only one data table for both connections and connection requests, and only one entry per connection. While there was a bit more code required to find a user on the table, this approach ensured that connections were always reciprocal and that updates to connection statuses (from pending to connected, or a withdrawn request or connection) were smooth. 
 
-The data table includes a column for `user_id1`, `user_id2` and the connection `status`. There are check constraints on the table as well as model level validations to ensure that `user_id1` < `user_id2` (ensuring no duplicate connections and `status` is either 'connected', 'pending_user1' or 'pending_user2'. 
+The data table includes a column for `user_id1`, `user_id2` and the connection `status`. There are check constraints on the table as well as model level validations to ensure that `user_id1` < `user_id2` (ensuring no duplicate connections) and `status` is either 'connected', 'pending_user1' or 'pending_user2'. 
 
 Joins Table
 | **Column**       | **Data Type**  | **Details**                    |
