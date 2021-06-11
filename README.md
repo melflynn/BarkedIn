@@ -26,6 +26,16 @@ A user's profile displays their profile photo (hosted through S3), headline info
 
 User's can add posts to the network. If a post is their own, they have the ability to edit or delete it. User's can also react to posts with a variety of reactions including 'wag', 'high five' or 'throw a bone'. 
 
+### Other features
+- User Authentication
+- Connections
+#### To be built
+- News Feed
+- Skills and endorsements
+- People you may know
+- Degree of connectivity
+- Search
+
 ## Code Snippets
 
 ### Connections
