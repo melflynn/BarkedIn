@@ -8,7 +8,7 @@ class PostItem extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      
+      reactionCount: this.props.post.reactions.ids.length
     }
     this.addReaction = this.addReaction.bind(this);
   }
@@ -20,14 +20,6 @@ class PostItem extends React.Component {
       reactionCount: prevState.reactionCount + 1
     }));
   }
-
-  // componentDidUpdate () {
-  //   if (!this.state.reactionCount) {
-  //     this.setState({
-  //       reactionCount: this.props.post.reactions.ids.length
-  //     })
-  //   }
-  // }
 
   render () {
 
@@ -52,12 +44,12 @@ class PostItem extends React.Component {
         </div>
         {!this.props.profile ? 
         <div>
-          {this.props.post.reactions.ids.length > 0 ? 
+          {this.state.reactionCount > 0 ? 
             <div className="reactions-count">
               <i className="fas fa-dog"></i>
               <i className="fas fa-paw"></i>
               <i className="fas fa-bone"></i>
-              <p>{this.props.post.reactions.ids.length}</p>
+              <p>{this.state.reactionCount}</p>
             </div>
           : ''}
           <div className="reactions">

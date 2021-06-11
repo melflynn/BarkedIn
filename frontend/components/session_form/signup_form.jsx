@@ -151,7 +151,7 @@ class SignupForm extends React.Component {
 
     return (
       <div>
-        <div className="feed-page"></div>
+        <div className="feed-page-no-header"></div>
         <div className="signup-page">
           <header className="top-form-text" id="signup-header">
             <img id="in-logo-signup" src={window.inLogoBeige} />
