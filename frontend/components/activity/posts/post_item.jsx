@@ -26,6 +26,15 @@ class PostItem extends React.Component {
         <div>
           {this.props.post.body}
         </div>
+        {!this.props.profile ? 
+        <div className="reactions">
+          <button>
+              <i className="fas fa-dog"></i>
+              <p>Wag</p>
+          </button>
+        </div>
+        :
+        ''}
       </li>
     } else {
       return null;

@@ -13,6 +13,7 @@ class Api::UsersController < ApplicationController
   end
 
   def index 
+    debugger
     if params[:email]
       @user = User.find_by(email: params[:email])
       render json: @user

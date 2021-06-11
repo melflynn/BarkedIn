@@ -4,7 +4,7 @@ class Api::ReactionsController < ApplicationController
     reaction = Reaction.new()
     reaction.liker_id = current_user.id
     reaction.post_id = params[:post_id]
-    reaction.reaction_type = params[:reaction_type]
+    reaction.reaction_type = params[:reactionType]
     if reaction.save
       render json: reaction
     else
