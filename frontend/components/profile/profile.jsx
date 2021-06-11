@@ -69,17 +69,20 @@ class Profile extends React.Component {
   componentDidUpdate () {
     if (!this.state.redirect) {
       if (!this.props.user || !this.props.user.connections || this.props.userId !== this.state.currentPageUserId || this.state.aboutMeUpdated) {
-        this.props.fetchUser(this.props.userId)
+        this.props.fetchUser(this.props.userId, {posts: true})
           .then(
-            () => {
-              this.setState({
-                currentPageUserId: this.props.userId,
-                hiddenText: true,
-                aboutMeUpdated: false,
-                // accepted: 0
-              });
-              $('.blurb').addClass('clipped');
-              this.setConnectionStatus();
+            (user) => {
+              this.props.fetchPost(user.user.posts.ids[user.user.posts.ids.length - 1])
+                .then((post) => {
+                  this.setState({
+                    currentPageUserId: this.props.userId,
+                    hiddenText: true,
+                    aboutMeUpdated: false,
+                    post: post.post
+                  });
+                  $('.blurb').addClass('clipped');
+                  this.setConnectionStatus();
+                })
             },
             () => this.setState({
             redirect: true

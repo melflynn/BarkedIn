@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EditPostDropdown from './edit_post_dropdown';
+import EditPostDropdown from '../../dropdown/edit_post_dropdown';
+import Dropdown from '../../dropdown/dropdown';
 
 class PostItem extends React.Component {
 
@@ -17,7 +18,7 @@ class PostItem extends React.Component {
             </div>
           </article>
           {!this.props.profile && this.props.currentUser.id === this.props.user.id ?
-            <EditPostDropdown post={this.props.post} updateModal={this.props.updateModal} />
+            <Dropdown name="EditPost" post={this.props.post} updateModal={this.props.updateModal} />
             :
             ''
           }

@@ -1,5 +1,6 @@
 import React from 'react';
-import MeDropdown from '../header/me_dropdown';
+import EditPostDropdown from './edit_post_dropdown';
+import MeDropdown from './me_dropdown';
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -29,7 +30,6 @@ class Dropdown extends React.Component {
   }
 
   dropdownDisplay(e) {
-    // debugger;
     e.preventDefault();
     this.setState({
       showDropdown: true
@@ -51,6 +51,14 @@ class Dropdown extends React.Component {
     switch (this.props.name) {
       case 'MeDropdown':
         dropdown =  <MeDropdown 
+          dropdownDisplay={this.dropdownDisplay}
+          dropdownHide={this.dropdownHide}
+          showDropdown={this.state.showDropdown}
+          {...otherProps}
+        />
+        break;
+      case 'EditPost':
+        dropdown = <EditPostDropdown
           dropdownDisplay={this.dropdownDisplay}
           dropdownHide={this.dropdownHide}
           showDropdown={this.state.showDropdown}
