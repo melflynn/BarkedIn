@@ -5,11 +5,13 @@ import { findConnection } from '../../util/connection_util';
 class ConnectionItem extends React.Component {
   constructor (props) {
     super(props);
-    const requested = this.props.currentUser.pendingUsers.ids.includes(this.props.user.id);
+    const pending = this.props.currentUser.pendingUsers.ids.includes(this.props.user.id);
     const connected = this.props.currentUser.connectedUsers.ids.includes(this.props.user.id);
+    const requested = this.props.currentUser.usersRequestingConnection.ids.includes(this.props.user.id);
     this.state = {
-      requested,
+      pending,
       connected,
+      requested,
       accepted: false,
       declined: false,
       withdrawn: false
@@ -24,7 +26,7 @@ class ConnectionItem extends React.Component {
     e.preventDefault();
     this.props.requestConnection(this.props.currentUser.id, this.props.user.id)
     this.setState({
-      requested: true
+      pending: true
     })
   }
 
@@ -69,8 +71,13 @@ class ConnectionItem extends React.Component {
       case "connection":
         actions =
           this.state.connected || this.props.user.id === this.props.currentUser.id ? '' :
-          this.state.requested ?
+          this.state.pending ?
             <p>Pending</p> :
+          this.state.requested ?
+              <div className="connection-response">
+                <button onClick={this.declineRequest}>Ignore</button>
+                <button onClick={this.acceptRequest}>Accept</button>
+              </div> :
             <button onClick={this.makeRequest}>Connect</button>;
         break;
       case "invitation":
