@@ -82,7 +82,7 @@ end
 ```
 ### Dropdowns and Modals
 
-Dropdowns and modals enlisted a lot of reused code, so they were exported into individual components that passed out information depending on the name of the modal or dropdown being triggered. 
+Dropdowns and modals enlisted a lot of reused code, so they were exported into individual components that passed out information depending on the name of the modal or dropdown being triggered. Modal rendering is handled via the Redux State.
 
 - modal slice of state
 
