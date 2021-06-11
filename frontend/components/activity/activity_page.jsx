@@ -91,7 +91,7 @@ class ActivityPage extends React.Component {
                 <p>Posts</p>
               </header>
               <ul>
-                {this.state.posts.map((post, i) => {
+                {this.state.posts.length > 0 ? this.state.posts.map((post, i) => {
                   return <PostItem 
                     key={i} 
                     user={this.props.user} 
@@ -99,7 +99,10 @@ class ActivityPage extends React.Component {
                     post={post} 
                     updateModal={this.props.updateModal}
                   />
-                })}
+                }) :
+                <li className="post-item">
+                    <p>{"No posts yet :("}</p>
+                </li>}
               </ul>
             </div>
           </main>

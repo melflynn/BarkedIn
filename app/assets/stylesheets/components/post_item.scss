@@ -9,6 +9,10 @@ li.post-item {
   padding: 5px;
   position: relative;
 
+  > p {
+    padding: 10px;
+  }
+  
   header {
     display: flex;
     align-items: center;

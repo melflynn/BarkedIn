@@ -120,7 +120,7 @@ class ProfileIntro extends React.Component {
         }
         <h3>{this.props.user.firstName} {this.props.user.lastName}</h3>
         <h4>{this.props.user.breed ? this.props.user.breed : ''}</h4>
-        <h5>{`${this.props.user.region ? `${this.props.user.region}, ` : ''} ${this.props.user.country ? this.props.user.country : ''}`}
+        <h5>{`${this.props.user.region ? `${this.props.user.region}` : ''}${this.props.user.country ? `, ${this.props.user.country}` : ''}`}
           <p>•</p>
           <p onClick={() => this.props.updateModal('ContactInfo')}>Contact info</p>
         </h5>
