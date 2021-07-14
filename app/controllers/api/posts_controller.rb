@@ -15,6 +15,9 @@ class Api::PostsController < ApplicationController
       @posts = Post.where('id IN (?)',params[:postIds]).order(updated_at: :desc)
       render :index
     elsif (params[:userIds])
+      @posts = Post.where('author_id IN (?)', params[:userIds]).order(updated_at: :desc)
+      render :index
+    else
       render json: []
     end
   end
