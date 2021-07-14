@@ -41,6 +41,14 @@ export const fetchPosts = (postIds) => (dispatch) => (
     )
 )
 
+export const fetchNewsFeed = (userIds) => (dispatch) => (
+  APIUtil.fetchNewsFeed(userIds)
+    .then(
+      (posts) => dispatch(receivePosts(posts)),
+      (errors) => dispatch(receivePostErrors(errors.responseJSON))
+    )
+)
+
 export const fetchPost = (postId) => (dispatch) => (
   APIUtil.fetchPost(postId)
     .then(
