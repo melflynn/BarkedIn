@@ -15,10 +15,12 @@ class PostItem extends React.Component {
 
 
   addReaction (type) {
-    createReaction(this.props.post.id, type);
-    this.setState((prevState) => ({
-      reactionCount: prevState.reactionCount + 1
-    }));
+    createReaction(this.props.post.id, type)
+      .then(() => {
+        this.setState((prevState) => ({
+          reactionCount: prevState.reactionCount + 1
+        }));
+      })
   }
 
   render () {
