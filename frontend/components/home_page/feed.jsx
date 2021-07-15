@@ -13,7 +13,7 @@ class Feed extends React.Component {
 
   componentDidMount () {
     const mountFunction = (user) => {
-      this.props.fetchNewsFeed(user.connectedUsers.ids)
+      this.props.fetchNewsFeed(user.connectedUsers.ids.concat(this.props.currentUser.id))
       this.props.fetchUsers(user.connectedUsers.ids)
     }
 
