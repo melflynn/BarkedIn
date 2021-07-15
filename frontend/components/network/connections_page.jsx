@@ -22,7 +22,7 @@ class ConnectionsPage extends React.Component {
   componentDidMount () {
 
     const mountFunction = (connectedUserIds, currentUser) => {
-      const currentUserItem = this.props.currentUser
+      // const currentUserItem = this.props.currentUser
       this.props.fetchUsers(connectedUserIds)
         .then((users) => {
           if (currentUser) {
@@ -40,7 +40,7 @@ class ConnectionsPage extends React.Component {
     }
 
     if (!this.props.user || !this.props.user.connectedUsers) {
-      const currentUserId = this.props.currentUser.id;
+      // const currentUserId = this.props.currentUser.id;
       this.props.fetchUser(this.props.userId, {connectedUsers: true, pendingUsers: true})
         .then((user) => {
           const currentUser = (user.user.connectedUsers.ids.includes(this.props.currentUser.id)) ? true : false;

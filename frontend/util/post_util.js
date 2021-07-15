@@ -14,6 +14,14 @@ export const fetchPosts = (postIds) => (
   })
 )
 
+export const fetchNewsFeed = (userIds) => (
+  $.ajax({
+    method: 'GET',
+    url: '/api/posts',
+    data: { userIds }
+  })
+)
+
 export const fetchPost = (postId) => (
   $.ajax({
     method: 'GET',

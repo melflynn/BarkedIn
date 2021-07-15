@@ -111,3 +111,5 @@ reactions = Reaction.create([
   {post_id: posts[16].id, liker_id: teak.id, reaction_type: 'wag'},
   {post_id: posts[17].id, liker_id: goose.id, reaction_type: 'throw a bone'}
 ])
+
+
