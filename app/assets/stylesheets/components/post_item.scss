@@ -135,9 +135,9 @@ li.post-item {
     margin: 0;
 
     .react-button {
-      display: flex;
+      display: inline-block;
       color: $light-grey;
-      width: 65px;
+      // width: 65px;
       border-radius: 5px;
       padding: 5px;
       margin: 5px;
@@ -150,6 +150,10 @@ li.post-item {
       &:hover {
         background-color: $lighter-grey;
         cursor: pointer;
+      }
+
+      .reacted, .unreacted {
+        display: flex;
       }
     }
 

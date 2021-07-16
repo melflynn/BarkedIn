@@ -13,13 +13,10 @@ export const fetchReaction = (postId) => (
   })
 )
 
-export const updateReaction = (postId, reactionType) => (
-  fetchReaction(postId).then((reaction) => {
-      $.ajax({
-        method: 'PATCH',
-        url: `/api/posts/${postId}/reactions/${reaction.id}`,
-        data: { reactionType }
-      })
-      console.log(reaction)
-    })
+export const updateReaction = (postId, reactionType, reactionId) => (
+  $.ajax({
+    method: 'PATCH',
+    url: `/api/posts/${postId}/reactions/${reactionId}`,
+    data: { reactionType }
+  })
 )

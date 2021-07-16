@@ -26,12 +26,19 @@ class PostItem extends React.Component {
 
   addReaction (type) {
     if (this.state.reaction) {
-      updateReaction(this.props.post.id, type, this.state.reaction.id);
+      updateReaction(this.props.post.id, type, this.state.reaction.id)
+        .then((reaction) => {
+          console.log(reaction);
+          this.setState(() => ({
+            reaction
+          }))
+        })
     } else {
       createReaction(this.props.post.id, type)
-        .then(() => {
+        .then((reaction) => {
             this.setState((prevState) => ({
-              reactionCount: prevState.reactionCount + 1
+              reactionCount: prevState.reactionCount + 1,
+              reaction
         }))})
     }
   }
@@ -39,24 +46,24 @@ class PostItem extends React.Component {
   render () {
 
     let reactButton;
-    console.log(this.state.reaction)
+    // console.log(this.state.reaction)
     // debugger;
     if (this.state.reaction) {
       switch(this.state.reaction.reactionType) {
         case "wag":
-          reactButton = <div>
+          reactButton = <div className="reacted">
             <i className="fas fa-dog"></i>
             <p>Wag</p>
           </div>
           break;
         case "high five":
-          reactButton = <div>
+          reactButton = <div className="reacted">
             <i className="fas fa-paw"></i>
             <p>High Five</p>
           </div>
           break;
         case "throw a bone":
-          reactButton = <div>
+          reactButton = <div className="reacted">
             <i className="fas fa-bone"></i>
             <p>Throw a bone</p>
           </div>
@@ -112,7 +119,7 @@ class PostItem extends React.Component {
                 {this.state.reaction ? 
                   reactButton
                   :
-                  <div>
+                  <div className="unreacted">
                   <i className="fas fa-dog"></i>
                   <p>Wag</p>
                 </div>
