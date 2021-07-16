@@ -17,4 +17,8 @@ class Post < ApplicationRecord
 
   has_many :reactions
 
+  has_many :likers,
+    through: :reactions,
+    source: :liker
+
 end
