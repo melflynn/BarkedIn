@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import EditPostDropdown from '../../dropdown/edit_post_dropdown';
 import Dropdown from '../../dropdown/dropdown';
-import { createReaction } from '../../../util/reaction_util';
+import { createReaction, updateReaction } from '../../../util/reaction_util';
 
 class PostItem extends React.Component {
   constructor (props) {
@@ -16,11 +16,16 @@ class PostItem extends React.Component {
 
   addReaction (type) {
     createReaction(this.props.post.id, type)
-      .then(() => {
-        this.setState((prevState) => ({
-          reactionCount: prevState.reactionCount + 1
-        }));
-      })
+      .then(
+        () => {
+          this.setState((prevState) => ({
+            reactionCount: prevState.reactionCount + 1
+          }));
+        },
+        () => {
+          updateReaction(this.props.post.id, type)
+        }
+      )
   }
 
   render () {
