@@ -6,11 +6,15 @@ export const createReaction = (postId, reactionType) => (
   })
 )
 
-export const updateReaction = (postId, reactionType) => (
+export const fetchReaction = (postId) => (
   $.ajax({
     method: 'GET',
     url: `/api/posts/${postId}/reactions/`
-  }).then((reaction) => {
+  })
+)
+
+export const updateReaction = (postId, reactionType) => (
+  fetchReaction(postId).then((reaction) => {
       $.ajax({
         method: 'PATCH',
         url: `/api/posts/${postId}/reactions/${reaction.id}`,

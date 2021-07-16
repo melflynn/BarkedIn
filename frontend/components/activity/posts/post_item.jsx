@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import EditPostDropdown from '../../dropdown/edit_post_dropdown';
 import Dropdown from '../../dropdown/dropdown';
-import { createReaction, updateReaction } from '../../../util/reaction_util';
+import { createReaction, updateReaction, fetchReaction } from '../../../util/reaction_util';
 
 class PostItem extends React.Component {
   constructor (props) {
@@ -13,22 +13,56 @@ class PostItem extends React.Component {
     this.addReaction = this.addReaction.bind(this);
   }
 
+  componentDidMount () {
+    if (this.props.post.likers.ids.includes(this.props.currentUser.id)) {
+      fetchReaction(this.props.post.id)
+        .then((reaction) => {
+          this.setState({
+            reaction
+          })
+        })
+    }
+  }
 
   addReaction (type) {
-    createReaction(this.props.post.id, type)
-      .then(
-        () => {
-          this.setState((prevState) => ({
-            reactionCount: prevState.reactionCount + 1
-          }));
-        },
-        () => {
-          updateReaction(this.props.post.id, type)
-        }
-      )
+    if (this.state.reaction) {
+      updateReaction(this.props.post.id, type, this.state.reaction.id);
+    } else {
+      createReaction(this.props.post.id, type)
+        .then(() => {
+            this.setState((prevState) => ({
+              reactionCount: prevState.reactionCount + 1
+        }))})
+    }
   }
 
   render () {
+
+    let reactButton;
+    console.log(this.state.reaction)
+    // debugger;
+    if (this.state.reaction) {
+      switch(this.state.reaction.reactionType) {
+        case "wag":
+          reactButton = <div>
+            <i className="fas fa-dog"></i>
+            <p>Wag</p>
+          </div>
+          break;
+        case "high five":
+          reactButton = <div>
+            <i className="fas fa-paw"></i>
+            <p>High Five</p>
+          </div>
+          break;
+        case "throw a bone":
+          reactButton = <div>
+            <i className="fas fa-bone"></i>
+            <p>Throw a bone</p>
+          </div>
+          break;
+      }
+    }
 
     if (this.props.post) {
       return <li className="post-item">
@@ -75,8 +109,14 @@ class PostItem extends React.Component {
                     <p>Throw a bone</p>
                   </div>
                 </div>
-                <i className="fas fa-dog"></i>
-                <p>Wag</p>
+                {this.state.reaction ? 
+                  reactButton
+                  :
+                  <div>
+                  <i className="fas fa-dog"></i>
+                  <p>Wag</p>
+                </div>
+                }
             </div>
           </div>
         </div>

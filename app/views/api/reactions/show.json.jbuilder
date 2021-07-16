@@ -1,0 +1,1 @@
+json.extract! @reaction, :id, :post_id, :liker_id, :reaction_type
