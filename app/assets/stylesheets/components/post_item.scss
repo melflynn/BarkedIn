@@ -137,7 +137,6 @@ li.post-item {
     .react-button {
       display: inline-block;
       color: $light-grey;
-      // width: 65px;
       border-radius: 5px;
       padding: 5px;
       margin: 5px;
@@ -152,8 +151,20 @@ li.post-item {
         cursor: pointer;
       }
 
-      .reacted, .unreacted {
+      .reacted-dog, .reacted-paw, .reacted-bone, .unreacted {
         display: flex;
+      }
+
+      .reacted-dog {
+        color: $main-blue;
+      }
+
+      .reacted-paw {
+        color: purple;
+      }
+
+      .reacted-bone {
+        color: green;
       }
     }
 

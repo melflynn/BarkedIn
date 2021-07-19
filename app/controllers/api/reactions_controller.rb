@@ -31,6 +31,14 @@ class Api::ReactionsController < ApplicationController
     end
   end
 
+  def destroy 
+    reaction = Reaction.find_by(id: params[:id])
+    if reaction
+      reaction.destroy
+    else
+      render json: "reaction does not exit", status: 422
+  end
+
   # def index 
   #   if (params[:postId])
   #     reactions = Reaction.where('post_id = ?', params[:postId])

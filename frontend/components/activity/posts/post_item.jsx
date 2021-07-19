@@ -11,6 +11,7 @@ class PostItem extends React.Component {
       reactionCount: this.props.post.reactions.ids.length
     }
     this.addReaction = this.addReaction.bind(this);
+    this.removeReaction = this.removeReaction.bind(this);
   }
 
   componentDidMount () {
@@ -22,6 +23,10 @@ class PostItem extends React.Component {
           })
         })
     }
+  }
+
+  removeReaction () {
+    
   }
 
   addReaction (type) {
@@ -51,19 +56,19 @@ class PostItem extends React.Component {
     if (this.state.reaction) {
       switch(this.state.reaction.reactionType) {
         case "wag":
-          reactButton = <div className="reacted">
+          reactButton = <div className="reacted-dog" onClick={this.removeReaction}>
             <i className="fas fa-dog"></i>
             <p>Wag</p>
           </div>
           break;
         case "high five":
-          reactButton = <div className="reacted">
+          reactButton = <div className="reacted-paw" onClick={this.removeReaction}>
             <i className="fas fa-paw"></i>
             <p>High Five</p>
           </div>
           break;
         case "throw a bone":
-          reactButton = <div className="reacted">
+          reactButton = <div className="reacted-bone" onClick={this.removeReaction}>
             <i className="fas fa-bone"></i>
             <p>Throw a bone</p>
           </div>
@@ -119,7 +124,7 @@ class PostItem extends React.Component {
                 {this.state.reaction ? 
                   reactButton
                   :
-                  <div className="unreacted">
+                  <div className="unreacted" onClick={() => this.addReaction('wag')}>
                   <i className="fas fa-dog"></i>
                   <p>Wag</p>
                 </div>
