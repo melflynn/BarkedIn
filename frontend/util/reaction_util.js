@@ -20,3 +20,10 @@ export const updateReaction = (postId, reactionType, reactionId) => (
     data: { reactionType }
   })
 )
+
+export const deleteReaction = (postId, reactionId) => (
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/posts/${postId}/reactions/${reactionId}`
+  })
+)

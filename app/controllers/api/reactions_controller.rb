@@ -37,6 +37,7 @@ class Api::ReactionsController < ApplicationController
       reaction.destroy
     else
       render json: "reaction does not exit", status: 422
+    end
   end
 
   # def index 
