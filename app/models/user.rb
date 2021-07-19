@@ -39,6 +39,10 @@ class User < ApplicationRecord
   has_many :liked_posts, 
     through: :reactions,
     source: :post
+  
+  has_many :comments,
+    foreign_key: :author_id,
+    class_name: :Comment
 
   def connections
     Connection.where("(user_id1 = ? OR user_id2 = ?) AND status = 'connected'", self.id, self.id)  
