@@ -8,7 +8,7 @@ class Comment < ApplicationRecord
     class_name: :User
 
   belongs_to :parent_comment,
-    foreign_key: :parent_comment_id,
+    foreign_key: :parent_comment_id, 
     class_name: :Comment,
     optional: true
 
