@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PostItem from '../activity/posts/post_item';
 
 const ProfileActivity = (props) => {
+  console.log(props);
   return <section className="activity">
     <h3>Activity</h3>
     {props.post ? 

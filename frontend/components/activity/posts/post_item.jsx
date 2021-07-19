@@ -15,7 +15,7 @@ class PostItem extends React.Component {
   }
 
   componentDidMount () {
-    if (this.props.post.likers.ids.includes(this.props.currentUser.id)) {
+    if (!this.props.profile && this.props.post.likers.ids.includes(this.props.currentUser.id)) {
       fetchReaction(this.props.post.id)
         .then((reaction) => {
           this.setState({
