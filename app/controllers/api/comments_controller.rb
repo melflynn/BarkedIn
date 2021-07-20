@@ -12,4 +12,9 @@ class Api::CommentsController < ApplicationController
     end
   end
 
+  # def index
+  #   @comment 
+  # end
+
+
 end

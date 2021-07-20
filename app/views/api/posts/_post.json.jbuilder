@@ -5,3 +5,6 @@ end
 json.likers do 
   json.extract! post.likers, :ids
 end
+json.comments do 
+  json.extract! post.comments, :ids
+end

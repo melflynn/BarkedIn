@@ -10,6 +10,7 @@ class PostItem extends React.Component {
     super(props);
     this.state = {
       reactionCount: this.props.post.reactions.ids.length,
+      commentCount: this.props.post.comments.ids.length,
       commentBody: ''
     }
     this.addReaction = this.addReaction.bind(this);
@@ -69,6 +70,12 @@ class PostItem extends React.Component {
   postComment (e) {
     e.preventDefault();
     createComment(this.props.post.id, this.state.commentBody)
+      .then(() => {
+        this.setState((prevState) => ({
+          commentCount: prevState.commentCount + 1,
+          commentBody: ''
+        }))
+      })
   }
 
   render () {
@@ -128,6 +135,16 @@ class PostItem extends React.Component {
               <p>{this.state.reactionCount}</p>
             </div>
           : ''}
+          {this.state.commentCount > 0 ?
+          this.state.commentCount == 1 ?
+            <div>
+              <p>{`${this.state.commentCount} comment`}</p>
+            </div>
+          :
+            <div>
+              <p>{`${this.state.commentCount} comments`}</p>
+            </div>
+          : ''}
           <div className="reactions">
             <div className="react-button">
               <div className="select-reactions">
@@ -161,7 +178,7 @@ class PostItem extends React.Component {
           <div className="new-comment">
             <img src={this.props.currentUser.profilePhotoUrl || window.defaultProfPic}></img>
             <label>
-              <input type="text" placeholder="Add a comment..." onChange={this.updateCommentBody}/>
+              <input type="text" placeholder="Add a comment..." value={this.state.commentBody} onChange={this.updateCommentBody}/>
             </label>
             {this.state.commentBody ? 
             <button onClick={this.postComment}>Post</button> :
