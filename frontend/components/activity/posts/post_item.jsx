@@ -127,24 +127,29 @@ class PostItem extends React.Component {
         </div>
         {!this.props.profile ? 
         <div>
-          {this.state.reactionCount > 0 ? 
-            <div className="reactions-count">
-              <i className="fas fa-dog"></i>
-              <i className="fas fa-paw"></i>
-              <i className="fas fa-bone"></i>
-              <p>{this.state.reactionCount}</p>
-            </div>
-          : ''}
-          {this.state.commentCount > 0 ?
-          this.state.commentCount == 1 ?
-            <div>
-              <p>{`${this.state.commentCount} comment`}</p>
-            </div>
-          :
-            <div>
-              <p>{`${this.state.commentCount} comments`}</p>
-            </div>
-          : ''}
+          <div className="reactions-and-comments">
+            {this.state.reactionCount > 0 ? 
+              <div className="reactions-count">
+                <i className="fas fa-dog"></i>
+                <i className="fas fa-paw"></i>
+                <i className="fas fa-bone"></i>
+                <p>{this.state.reactionCount}</p>
+              </div>
+            : ''}
+            {this.state.reactionCount > 0 && this.state.commentCount > 0 ?
+            <p>•</p> : ''
+            }
+            {this.state.commentCount > 0 ?
+            this.state.commentCount == 1 ?
+              <div>
+                <p>{`${this.state.commentCount} comment`}</p>
+              </div>
+            :
+              <div>
+                <p>{`${this.state.commentCount} comments`}</p>
+              </div>
+            : ''}
+          </div>
           <div className="reactions">
             <div className="react-button">
               <div className="select-reactions">
@@ -177,6 +182,7 @@ class PostItem extends React.Component {
           </div>
           <div className="new-comment">
             <img src={this.props.currentUser.profilePhotoUrl || window.defaultProfPic}></img>
+            <form>
             <label>
               <input type="text" placeholder="Add a comment..." value={this.state.commentBody} onChange={this.updateCommentBody}/>
             </label>
@@ -184,6 +190,7 @@ class PostItem extends React.Component {
             <button onClick={this.postComment}>Post</button> :
             null
             }
+            </form>
           </div>
         </div>
         :

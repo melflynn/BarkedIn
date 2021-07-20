@@ -101,30 +101,43 @@ li.post-item {
     margin: 0;
   }
 
-  div.reactions-count {
+  div.reactions-and-comments {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    padding-left: 10px;
+    color: $light-grey;
 
-    i {
-      font-size: 12px;
-      border-radius: 50%; 
-      padding: 2px;
-      margin: 2px;
+    > p {
+      margin-right: 5px; 
+    }
 
-      &:first-child {
-        background-color: $main-blue;
-        color: rgb(130, 168, 230)
-      }
+    div.reactions-count {
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      margin-right: 5px;
 
-      &:nth-child(2) {
-        background-color: purple;
-        color: rgb(221, 151, 221)
-      }
+      i {
+        font-size: 12px;
+        border-radius: 50%; 
+        padding: 2px;
+        margin: 2px;
 
-      &:last-of-type {
-        background-color: green;
-        color: rgb(171, 235, 171)
+        &:first-child {
+          background-color: $main-blue;
+          color: rgb(130, 168, 230);
+        }
+
+        &:nth-child(2) {
+          background-color: purple;
+          color: rgb(221, 151, 221);
+        }
+
+        &:last-of-type {
+          background-color: green;
+          color: rgb(171, 235, 171);
+          margin-right: 5px;
+        }
       }
     }
   }
@@ -264,8 +277,14 @@ li.post-item {
       width: 40px;
     }
 
+    form {
+      width: 90%; 
+      display: flex;
+      flex-direction: column;
+    }
+
     label {
-      width: 90%;
+      width: 100%;
     }
 
     input {
