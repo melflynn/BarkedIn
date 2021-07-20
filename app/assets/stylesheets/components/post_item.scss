@@ -9,6 +9,15 @@ li.post-item {
   padding: 5px;
   position: relative;
 
+  img {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+    margin-right: 10px;
+  }
+
   > p {
     padding: 10px;
   }
@@ -17,14 +26,6 @@ li.post-item {
     display: flex;
     align-items: center;
 
-    img {
-      object-fit: cover;
-      border-radius: 50%;
-      height: 50px;
-      width: 50px;
-      margin: 10px;
-      margin-right: 10px;
-    }
 
     a:hover {
         color: $main-blue;
@@ -250,6 +251,34 @@ li.post-item {
 
     .react-button:hover .select-reactions {
       display: flex;
+    }
+  }
+
+  div.new-comment {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+
+    img {
+      height: 40px;
+      width: 40px;
+    }
+
+    label {
+      width: 90%;
+    }
+
+    input {
+      border-radius: 24px;
+      border: 1px solid $lighter-grey;
+      width: 90%;
+      padding: 10px;
+      font-size: 16px;
+
+      &:focus {
+        outline: none;
+        border: 1px solid $light-grey;
+      }
     }
   }
 }

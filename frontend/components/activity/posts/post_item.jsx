@@ -161,7 +161,7 @@ class PostItem extends React.Component {
           <div className="new-comment">
             <img src={this.props.currentUser.profilePhotoUrl || window.defaultProfPic}></img>
             <label>
-              <input type="text" placeholder="Add a comment" onChange={this.updateCommentBody}/>
+              <input type="text" placeholder="Add a comment..." onChange={this.updateCommentBody}/>
             </label>
             {this.state.commentBody ? 
             <button onClick={this.postComment}>Post</button> :
