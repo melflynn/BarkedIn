@@ -140,6 +140,12 @@ li.post-item {
         }
       }
     }
+
+    div:last-of-type:hover {
+      cursor: pointer;
+      color: $main-blue;
+      text-decoration: underline;
+    }
   }
 
   div.reactions {
