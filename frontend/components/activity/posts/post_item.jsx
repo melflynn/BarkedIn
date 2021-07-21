@@ -106,6 +106,7 @@ class PostItem extends React.Component {
       }
     }
 
+    
     if (this.props.post) {
       return <li className="post-item">
         <header>

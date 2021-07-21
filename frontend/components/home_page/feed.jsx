@@ -9,6 +9,16 @@ import { NavLink } from 'react-router-dom';
 class Feed extends React.Component {
   constructor (props) {
     super(props);
+    this.state = {
+
+    }
+    this.updatedPost = this.updatedPost.bind(this);
+  }
+
+  updatedPost () {
+    this.setState({
+      updatedPost: true
+    })
   }
 
   componentDidMount () {
@@ -27,7 +37,6 @@ class Feed extends React.Component {
   }
 
   render () {
-    console.log(this.props)
     let modal;
     switch (this.props.modal) {
       case 'NewPost':
@@ -37,6 +46,25 @@ class Feed extends React.Component {
           updateModal={this.props.updateModal}
           createPost={this.props.createPost}
           />
+        break;
+      case 'EditPost':
+        modal = <Modal 
+          name={this.props.modal}
+          user={this.props.currentUser}
+          updateModal={this.props.updateModal}
+          editPost={this.props.editPost}
+          post={this.props.modalPost}
+          updatedPost={this.updatedPost}
+        />
+        break;
+      case 'DeletePost':
+        modal = <Modal 
+          name={this.props.modal}
+          post={this.props.modalPost}
+          deletePost={this.props.deletePost}
+          updateModal={this.props.updateModal}
+          updatedPost={this.updatedPost}
+        />
         break;
       default:
         modal = '';
