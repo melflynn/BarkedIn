@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import EditPostDropdown from '../../dropdown/edit_post_dropdown';
 import Dropdown from '../../dropdown/dropdown';
 import { createReaction, updateReaction, fetchReaction, deleteReaction } from '../../../util/reaction_util';
-import { createComment } from '../../../util/comment_util';
+import { createComment, fetchComments } from '../../../util/comment_util';
 
 class PostItem extends React.Component {
   constructor (props) {
@@ -11,12 +11,14 @@ class PostItem extends React.Component {
     this.state = {
       reactionCount: this.props.post.reactions.ids.length,
       commentCount: this.props.post.comments.ids.length,
-      commentBody: ''
+      commentBody: '',
+      offset: 0
     }
     this.addReaction = this.addReaction.bind(this);
     this.removeReaction = this.removeReaction.bind(this);
     this.updateCommentBody = this.updateCommentBody.bind(this);
     this.postComment = this.postComment.bind(this);
+    this.getComments = this.getComments.bind(this);
   }
 
   componentDidMount () {
@@ -78,10 +80,25 @@ class PostItem extends React.Component {
       })
   }
 
+  getComments (e) {
+    e.preventDefault();
+    fetchComments(this.props.post.id, 2, this.state.offset)
+      .then((comments) => {
+        // console.log(Object.values(comments))
+        this.setState((prevState) => ({
+          offset: prevState.offset + 2,
+          comments: Object.values(comments)
+        }))
+      })
+    // this.setState((prevState) => ({
+    //   offset: prevState.offset + 2
+    // }))
+  }
+
   render () {
 
     let reactButton;
-    // console.log(this.state.reaction)
+    // console.log(this.state.comments)
     // debugger;
     if (this.state.reaction) {
       switch(this.state.reaction.reactionType) {
@@ -106,7 +123,7 @@ class PostItem extends React.Component {
       }
     }
 
-    
+
     if (this.props.post) {
       return <li className="post-item">
         <header>
@@ -143,11 +160,11 @@ class PostItem extends React.Component {
             {this.state.commentCount > 0 ?
             this.state.commentCount == 1 ?
               <div>
-                <p>{`${this.state.commentCount} comment`}</p>
+                <p onClick={this.getComments}>{`${this.state.commentCount} comment`}</p>
               </div>
             :
               <div>
-                <p>{`${this.state.commentCount} comments`}</p>
+                <p onClick={this.getComments}>{`${this.state.commentCount} comments`}</p>
               </div>
             : ''}
           </div>
@@ -196,6 +213,13 @@ class PostItem extends React.Component {
         </div>
         :
         ''}
+        {this.state.comments ?
+        <div>
+         {this.state.comments.map((comment, i) => {
+           return <p>{comment.body}</p>
+         }) }
+        </div>
+        : ''}
       </li>
     } else {
       return null;

@@ -13,7 +13,7 @@ class Api::CommentsController < ApplicationController
   end
 
   def index
-    @comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc).limit(params[:limit]).offset(params[:offset])
+    @comments = Comment.where(post_id: params[:post_id]).order(created_at: :asc).limit(params[:limit]).offset(params[:offset])
     if @comments
       render :index
     else

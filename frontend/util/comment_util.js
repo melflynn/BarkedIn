@@ -5,3 +5,15 @@ export const createComment = (postId, body) => (
     data: { body }
   })
 )
+
+export const fetchComments = (postId, limit, offset) => (
+  $.ajax({
+    method: 'GET',
+    url: `/api/posts/${postId}/comments`,
+    data: {
+      postId,
+      limit,
+      offset
+    }
+  })
+)
