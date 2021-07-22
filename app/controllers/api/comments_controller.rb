@@ -12,9 +12,14 @@ class Api::CommentsController < ApplicationController
     end
   end
 
-  # def index
-  #   @comment 
-  # end
+  def index
+    @comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc).limit(params[:limit]).offset(params[:offset])
+    if @comments
+      render :index
+    else
+      render json: @comments.errors.full_messages
+    end
+  end
 
 
 end
