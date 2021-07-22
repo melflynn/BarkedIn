@@ -3,7 +3,7 @@ import HeaderContainer from '../header/header_container';
 import UserSidebar from './user_sidebar';
 import NewPost from './new_post';
 import Modal from '../modal/modal';
-import PostItem from '../activity/posts/post_item';
+import PostItem from '../posts/post_item';
 import { NavLink } from 'react-router-dom';
 
 class Feed extends React.Component {

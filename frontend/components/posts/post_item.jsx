@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EditPostDropdown from '../../dropdown/edit_post_dropdown';
-import Dropdown from '../../dropdown/dropdown';
-import { createReaction, updateReaction, fetchReaction, deleteReaction } from '../../../util/reaction_util';
-import { createComment, fetchComments } from '../../../util/comment_util';
+import EditPostDropdown from '../dropdown/edit_post_dropdown';
+import Dropdown from '../dropdown/dropdown';
+import { createReaction, updateReaction, fetchReaction, deleteReaction } from '../../util/reaction_util';
+import { createComment, fetchComments } from '../../util/comment_util';
 
 class PostItem extends React.Component {
   constructor (props) {
@@ -84,7 +84,7 @@ class PostItem extends React.Component {
     e.preventDefault();
     fetchComments(this.props.post.id, 2, this.state.offset)
       .then((comments) => {
-        // console.log(Object.values(comments))
+        console.log(Object.values(comments))
         this.setState((prevState) => ({
           offset: prevState.offset + 2,
           comments: Object.values(comments)
