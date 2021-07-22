@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import EditPostDropdown from '../dropdown/edit_post_dropdown';
 import Dropdown from '../dropdown/dropdown';
+import CommentItem from '../comments/comment_item';
 import { createReaction, updateReaction, fetchReaction, deleteReaction } from '../../util/reaction_util';
 import { createComment, fetchComments } from '../../util/comment_util';
 
@@ -215,9 +216,16 @@ class PostItem extends React.Component {
         ''}
         {this.state.comments ?
         <div>
-         {this.state.comments.map((comment, i) => {
-           return <p>{comment.body}</p>
-         }) }
+          <ul>
+          {this.state.comments.map((comment, i) => {
+            return <CommentItem 
+                key={i}
+                comment={comment}
+            />
+          }) }
+          </ul>
+          {this.state.commentCount > this.state.comments.length ? 
+          <p>Load more comments</p> : ''}
         </div>
         : ''}
       </li>
