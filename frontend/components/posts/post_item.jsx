@@ -13,6 +13,7 @@ class PostItem extends React.Component {
       reactionCount: this.props.post.reactions.ids.length,
       commentCount: this.props.post.comments.ids.length,
       commentBody: '',
+      comments: [],
       offset: 0
     }
     this.addReaction = this.addReaction.bind(this);
@@ -87,8 +88,8 @@ class PostItem extends React.Component {
       .then((comments) => {
         console.log(Object.values(comments))
         this.setState((prevState) => ({
-          offset: prevState.offset + 2,
-          comments: Object.values(comments)
+          comments: prevState.comments.concat(Object.values(comments)),
+          offset: prevState.comments.concat(Object.values(comments)).length
         }))
       })
     // this.setState((prevState) => ({
@@ -214,7 +215,7 @@ class PostItem extends React.Component {
         </div>
         :
         ''}
-        {this.state.comments ?
+        {this.state.comments.length > 0 ?
         <div>
           <ul>
           {this.state.comments.map((comment, i) => {
@@ -225,7 +226,7 @@ class PostItem extends React.Component {
           }) }
           </ul>
           {this.state.commentCount > this.state.comments.length ? 
-          <p>Load more comments</p> : ''}
+          <p className="load-comments" onClick={this.getComments}>Load more comments</p> : ''}
         </div>
         : ''}
       </li>

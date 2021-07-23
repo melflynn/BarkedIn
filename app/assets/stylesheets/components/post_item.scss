@@ -306,4 +306,25 @@ li.post-item {
       }
     }
   }
+
+  ul {
+    // display: inline-block;
+    height: auto;
+    padding: 0;
+  }
+
+  p.load-comments {
+    color: $light-grey;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 4px;
+    display: inline-block;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $lighter-grey;
+    }
+  }
 }
