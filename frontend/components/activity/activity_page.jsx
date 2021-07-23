@@ -3,7 +3,7 @@ import HeaderContainer from '../header/header_container';
 import UserSidebar from '../home_page/user_sidebar';
 import PostItem from '../posts/post_item';
 import CreaterSidebar from '../ads/creater_sidebar';
-import { fetchPosts } from '../../util/post_util';
+import { fetchPosts, sortPosts } from '../../util/post_util';
 import Modal from '../modal/modal';
 
 class ActivityPage extends React.Component {
@@ -69,8 +69,8 @@ class ActivityPage extends React.Component {
 
     }
 
-    if (this.props.user && Object.keys(this.props.posts).length !== 0) {
-      console.log(this.props.posts)
+    if (this.props.user) {
+      let posts = sortPosts(Object.values(this.props.posts));
       return <div> 
         {modal}
         <HeaderContainer photo={this.props.currentUser.profilePhotoUrl} />
@@ -83,7 +83,7 @@ class ActivityPage extends React.Component {
                 <p>Posts</p>
               </header>
               <ul>
-                {Object.keys(this.props.posts).length > 0 ? Object.values(this.props.posts).map((post, i) => {
+                {posts.length > 0 ? posts.map((post, i) => {
                   return <PostItem 
                     key={i} 
                     user={this.props.user} 
