@@ -2,18 +2,20 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 2;
+  grid-gap: 15px;
   margin-top: 40px;
   width: 90%;
-  margin-right: auto;
+  // margin-right: auto;
+  padding: 20px;
 
   .network-left {
     grid-column: 1;
     background-color: white;
     border-radius: 5px;
     border: 1px solid $lighter-grey;
-    margin-left: auto;
-    margin-right: 20px;
-    width: 250px;
+    // margin-left: ;
+    // margin-right: 20px;
+    width: 100%;
     height: 100px;
 
     h3 {
@@ -56,7 +58,7 @@
 
   .network-right {
     grid-column: 2;
-    width: 700px;
+    width: 100%;
 
     .invitations {
       background-color: white;
