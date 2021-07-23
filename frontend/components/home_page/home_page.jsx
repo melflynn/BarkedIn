@@ -19,6 +19,8 @@ const HomePage = () => (
     </header>
     <section className="home-page">
       <h1>Welcome to your <p>p<i className="fas fa-paw" style={{ 'fontSize': '40px' }}></i>wfessional</p> community</h1>
+      <img src={window.splashDogs}/>
+      <a href="https://www.vecteezy.com/free-vector/dog">Dog Vectors by Vecteezy</a>
     </section>
   </div>
 )
