@@ -92,16 +92,11 @@ class PostItem extends React.Component {
           offset: prevState.comments.concat(Object.values(comments)).length
         }))
       })
-    // this.setState((prevState) => ({
-    //   offset: prevState.offset + 2
-    // }))
   }
 
   render () {
 
     let reactButton;
-    // console.log(this.state.comments)
-    // debugger;
     if (this.state.reaction) {
       switch(this.state.reaction.reactionType) {
         case "wag":
@@ -161,11 +156,11 @@ class PostItem extends React.Component {
             }
             {this.state.commentCount > 0 ?
             this.state.commentCount == 1 ?
-              <div>
+              <div className="comment-count">
                 <p onClick={this.getComments}>{`${this.state.commentCount} comment`}</p>
               </div>
             :
-              <div>
+              <div className="comment-count">
                 <p onClick={this.getComments}>{`${this.state.commentCount} comments`}</p>
               </div>
             : ''}

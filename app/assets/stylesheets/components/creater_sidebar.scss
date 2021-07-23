@@ -1,0 +1,45 @@
+.creater-sidebar {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid $lighter-grey;
+  width: 100%;
+  margin-right: 20px;
+  height: 200px;
+  // display: flex; 
+  // flex-direction: column;
+  // align-items: center; 
+
+  p {
+    padding: 5px; 
+
+    &:first-child {
+      padding-top: 20px;
+      font-weight: bold;
+    }
+  }
+
+  img {
+    object-fit: cover;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: 1px solid white;
+  }
+
+  ul {
+    padding: 5px; 
+  
+    li {
+      padding: 5px; 
+      font-weight: bold;
+      font-size: 14px;
+      list-style: disc inside;
+
+      &:hover {
+        background-color: $lighter-grey;
+        cursor: pointer;
+      }
+    }
+  }
+  
+}

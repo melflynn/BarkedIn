@@ -4,6 +4,7 @@ import UserSidebar from './user_sidebar';
 import NewPost from './new_post';
 import Modal from '../modal/modal';
 import PostItem from '../posts/post_item';
+import CreaterSidebar from '../ads/creater_sidebar';
 import { NavLink } from 'react-router-dom';
 
 class Feed extends React.Component {
@@ -96,6 +97,7 @@ class Feed extends React.Component {
                 </li>}
               </ul>
             </div>
+            <CreaterSidebar />
           </main>
         </div>
       </div>

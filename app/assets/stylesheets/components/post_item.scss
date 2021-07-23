@@ -141,7 +141,7 @@ li.post-item {
       }
     }
 
-    div:last-of-type:hover {
+    div.comment-count:hover {
       cursor: pointer;
       color: $main-blue;
       text-decoration: underline;
