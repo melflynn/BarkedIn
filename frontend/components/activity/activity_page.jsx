@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderContainer from '../header/header_container';
 import UserSidebar from '../home_page/user_sidebar';
 import PostItem from '../posts/post_item';
-import CreaterSidebar from '../ads/creater_sidebar';
+import CreatorSidebar from '../ads/creator_sidebar';
 import { fetchPosts, sortPosts } from '../../util/post_util';
 import Modal from '../modal/modal';
 
@@ -97,7 +97,7 @@ class ActivityPage extends React.Component {
                 </li>}
               </ul>
             </div>
-            <CreaterSidebar />
+            <CreatorSidebar />
           </main>
         </div>
       </div>

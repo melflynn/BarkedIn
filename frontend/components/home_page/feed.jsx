@@ -4,7 +4,7 @@ import UserSidebar from './user_sidebar';
 import NewPost from './new_post';
 import Modal from '../modal/modal';
 import PostItem from '../posts/post_item';
-import CreaterSidebar from '../ads/creater_sidebar';
+import CreatorSidebar from '../ads/creator_sidebar';
 import { NavLink } from 'react-router-dom';
 import { sortPosts } from '../../util/post_util';
 
@@ -105,7 +105,7 @@ class Feed extends React.Component {
                 </li>}
               </ul>
             </div>
-            <CreaterSidebar />
+            <CreatorSidebar />
           </main>
         </div>
       </div>

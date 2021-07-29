@@ -1,10 +1,12 @@
 import React from 'react';
 
-const CreaterSidebar = (props) => (
-  <div className="creater-sidebar">
-    <p>BarkedIn Creater</p>
-    <img src={window.createrProfPic}/>
-    <p>Melissa Flynn</p>
+const CreatorSidebar = (props) => (
+  <div className="creator-sidebar">
+    <header>
+      <p>BarkedIn Creator</p>
+      <img src={window.creatorProfPic}/>
+      <p>Melissa Flynn</p>
+    </header>
     <ul>
       <li>
         <a href="https://github.com/melflynn">Github</a>
@@ -19,4 +21,4 @@ const CreaterSidebar = (props) => (
   </div>
 )
 
-export default CreaterSidebar;
+export default CreatorSidebar;

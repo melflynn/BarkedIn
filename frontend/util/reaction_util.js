@@ -1,4 +1,4 @@
-export const createReaction = (postId, reactionType) => (
+export const creatoreaction = (postId, reactionType) => (
   $.ajax({
     method: 'POST',
     url: `/api/posts/${postId}/reactions`,

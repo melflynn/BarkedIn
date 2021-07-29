@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import EditPostDropdown from '../dropdown/edit_post_dropdown';
 import Dropdown from '../dropdown/dropdown';
 import CommentItem from '../comments/comment_item';
-import { createReaction, updateReaction, fetchReaction, deleteReaction } from '../../util/reaction_util';
+import { creatoreaction, updateReaction, fetchReaction, deleteReaction } from '../../util/reaction_util';
 import { createComment, fetchComments } from '../../util/comment_util';
 
 class PostItem extends React.Component {
@@ -54,7 +54,7 @@ class PostItem extends React.Component {
           }))
         })
     } else {
-      createReaction(this.props.post.id, type)
+      creatoreaction(this.props.post.id, type)
         .then((reaction) => {
           this.setState((prevState) => ({
             reactionCount: prevState.reactionCount + 1,
@@ -196,16 +196,16 @@ class PostItem extends React.Component {
             </div> */}
           </div>
           <div className="new-comment">
-            <img src={this.props.currentUser.profilePhotoUrl || window.defaultProfPic}></img>
             <form>
-            <label>
-              <input type="text" placeholder="Add a comment..." value={this.state.commentBody} onChange={this.updateCommentBody}/>
-            </label>
+              <img src={this.props.currentUser.profilePhotoUrl || window.defaultProfPic}></img>
+              <label>
+                <input type="text" placeholder="Add a comment..." value={this.state.commentBody} onChange={this.updateCommentBody}/>
+              </label>
+            </form>
             {this.state.commentBody ? 
             <button onClick={this.postComment}>Post</button> :
             null
             }
-            </form>
           </div>
         </div>
         :
