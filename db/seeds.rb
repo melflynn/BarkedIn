@@ -64,7 +64,7 @@ connections = Connection.create([
   {user_id1: teak.id, user_id2: lyla.id, status: 'pending_user2'}
 ])
 
-posts = Post.create([
+new_posts = [
   {author_id: demo_user.id, body: "Hi there! Demo dog here! I hope you're enjoying BarkedIn as much as I am. Stay a while and wag a bit :)"},
   {author_id: demo_user.id, body: "Wow just had the best time romping around in the grass with my doggy friends. Woof woof! What a life!"},
   {author_id: demo_user.id, body: "The hikers in my village are starting to come back. Can't wait for all the company!"},
@@ -84,10 +84,12 @@ posts = Post.create([
   {author_id: soba.id, body: "Have you all seen my latest instagram post? I am FIERCE"},
   {author_id: lily.id, body: "Really tired from all the refereeing. Can you pups regulate yourselves some of the time?? A girl can't catch a break!"},
   {author_id: lyla.id, body: "arf arf arf anybody up for a playdate? barks and wags <3"}
-])
+]
+
+posts = Post.create(new_posts.shuffle)
 
 reactions = Reaction.create([
-  {post_id: posts[0].id, liker_id: goose.id, reaction_type: 'wag'},
+  {post_id: Post.where(author_id: demo_user.id).pluck(), liker_id: goose.id, reaction_type: 'wag'},
   {post_id: posts[0].id, liker_id: duke.id, reaction_type: 'wag'},
   {post_id: posts[0].id, liker_id: athena.id, reaction_type: 'throw a bone'},
   {post_id: posts[1].id, liker_id: athena.id, reaction_type: 'high five'},
