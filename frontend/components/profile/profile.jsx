@@ -15,7 +15,6 @@ class Profile extends React.Component {
       redirect: false,
       currentPageUserId: props.userId,
       aboutMeUpdated: false,
-      // accepted: 0
     }
     this.updatePhoto = this.updatePhoto.bind(this);
     this.seeMore = this.seeMore.bind(this);

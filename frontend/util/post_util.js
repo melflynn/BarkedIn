@@ -45,7 +45,6 @@ export const deletePost = (postId) => (
 )
 
 const merge = (left, right) => {
-  // debugger;
   let merged = [];
   while (!(left.length === 0) && !(right.length === 0)) {
     if (left[0].createdAt > right[0].createdAt) {

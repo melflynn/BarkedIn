@@ -48,7 +48,6 @@ class PostItem extends React.Component {
     if (this.state.reaction) {
       updateReaction(this.props.post.id, type, this.state.reaction.id)
         .then((reaction) => {
-          console.log(reaction);
           this.setState(() => ({
             reaction
           }))
@@ -86,7 +85,6 @@ class PostItem extends React.Component {
     e.preventDefault();
     fetchComments(this.props.post.id, 2, this.state.offset)
       .then((comments) => {
-        console.log(Object.values(comments))
         this.setState((prevState) => ({
           comments: prevState.comments.concat(Object.values(comments)),
           offset: prevState.comments.concat(Object.values(comments)).length

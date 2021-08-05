@@ -2,7 +2,6 @@ import React from 'react';
 
 
 const EditPostDropdown = (props) => {
-  console.log(props.post)
   return (
   <div>
     <p id="edit-post-dropdown-parent" onClick={props.dropdownDisplay}>...</p>

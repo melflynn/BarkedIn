@@ -4,7 +4,6 @@ import MeDropdown from './me_dropdown';
 
 class Dropdown extends React.Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       showDropdown: false

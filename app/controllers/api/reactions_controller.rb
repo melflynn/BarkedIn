@@ -40,10 +40,4 @@ class Api::ReactionsController < ApplicationController
     end
   end
 
-  # def index 
-  #   if (params[:postId])
-  #     reactions = Reaction.where('post_id = ?', params[:postId])
-  #   end
-  # end
-
 end

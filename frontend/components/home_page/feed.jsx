@@ -26,10 +26,6 @@ class Feed extends React.Component {
   componentDidMount () {
     const mountFunction = (user) => {
       this.props.fetchNewsFeed(user.connectedUsers.ids.concat(this.props.currentUser.id))
-        // .then((posts) => {
-        //   let post_array = Object.values(posts);
-        //   console.log(sortPosts(post_array));
-        // })
       this.props.fetchUsers(user.connectedUsers.ids)
     }
 
@@ -88,8 +84,6 @@ class Feed extends React.Component {
               <NewPost user={this.props.currentUser} modal={this.props.modal} updateModal={this.props.updateModal}/>
               <ul>
                {posts.length > 0 ? posts.map((post, i) => {
-                  // let item;
-                  // post.authorId in this.props.users ? 
                     return <PostItem 
                       key={i} 
                       user={this.props.users[`${post.authorId}`]}
@@ -97,8 +91,6 @@ class Feed extends React.Component {
                       post={post} 
                       updateModal={this.props.updateModal}
                     /> 
-                    // : item = null;
-                    // return item;
                 }) :
                 <li className="post-item">
                     <p>{"No posts yet :("}</p>

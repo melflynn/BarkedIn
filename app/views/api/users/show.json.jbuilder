@@ -1,31 +1,21 @@
 if @userOptions[:connectedUsers]
   connectedUsers = @user.connected_users
-# else
-#   connectedUsers = nil
 end
 
 if @userOptions[:pendingUsers]
   pendingUsers = @user.pending_users
-# else
-#   pendingUsers = nil
 end
 
 if @userOptions[:usersRequestingConnection]
   usersRequestingConnection = @user.users_requesting_connection
-# else
-#   usersRequestingConnection = nil
 end
 
 if @userOptions[:ConnectionRequests]
   connectionRequests = @user.connection_requests
-# else
-#   connectionRequests = nil
 end
 
 if @userOptions[:requestedConnections]
   requestedConnections = @user.requested_connections
-# else
-#   requestedConnections = nil
 end
 
 if @userOptions[:posts]
