@@ -104,10 +104,13 @@ class PostItem extends React.Component {
     e.preventDefault();
     createComment(this.props.post.id, this.state.commentBody)
       .then(() => {
-        this.setState((prevState) => ({
-          commentCount: prevState.commentCount + 1,
-          commentBody: ''
-        }))
+        this.props.fetchPost(this.props.post.id)
+          .then((post) => {
+            this.setState((prevState) => ({
+              commentCount: post.post.comments.ids.length,
+              commentBody: ''
+            }))
+          })
       })
   }
 
