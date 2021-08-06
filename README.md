@@ -19,18 +19,20 @@ BarkedIn is a fullstack clone of LinkedIn, but for dogs. Users can create their 
 
 ### Profiles
 
-A user's profile displays their profile photo (hosted through S3), headline information, an about me section and a clip of their activity. If a user is visiting their own profile, it includes the ability to upload a profile photo, delete a profile photo and reset it to the default photo, edit any of their 'about me' information. 
+A user's profile displays their profile photo (hosted through S3), headline information, an about me section and a clip of their activity (the full extent of a user's activity can be viewed on the activity page). If a user is visiting their own profile, it includes the ability to upload a profile photo, delete a profile photo and reset it to the default photo, edit any of their 'about me' information. 
 
 
-### Posts
+### Posts (+ Reactions & Comments)
 
-User's can add posts to the network. If a post is their own, they have the ability to edit or delete it. User's can also react to posts with a variety of reactions including 'wag', 'high five' or 'throw a bone'. 
+User's can add posts to the network. If a post is their own, they have the ability to edit or delete it. User's can also comment on or react to posts with a variety of reactions including 'wag', 'high five' or 'throw a bone'. 
 
 ### Other features
+#### Active
 - User Authentication
 - Connections
-#### To be built
+  - Add, or remove existing or pending connections
 - News Feed
+#### To be built
 - Skills and endorsements
 - People you may know
 - Degree of connectivity
@@ -42,7 +44,7 @@ User's can add posts to the network. If a post is their own, they have the abili
 
 Devising a plan for implementing connections and connection requests was a large task with a variety of implementation options. It was important that users be able to initiate, withdraw and respond to connection requests, as well as maintain a list of their connected users. While there were many possible approaches, I ultimately decided that my biggest priority was to best maintain the integrity of the data in the database. 
 
-As such, there is only one data table for both connections and connection requests, and only one entry per connection. While there was a bit more code required to find a user on the table, this approach ensured that connections were always reciprocal and that updates to connection statuses (from pending to connected, or a withdrawn request or connection) were smooth. 
+As such, there is only one data table for both connections and connection requests, and only one entry per connection. While there was a bit more code required to find a user on the table, this approach ensured that connections were always reciprocal and that updates to connection statuses (from pending to connected, or a withdrawn request or connection) were smooth. The potential for a bit of latency with searching users on the table was somewhat addressed with indexing both the user_id1, user_id2, and the pair, but would potentially need to be addressed further should the application be rescoped for a larger scale.
 
 The data table includes a column for `user_id1`, `user_id2` and the connection `status`. There are check constraints on the table as well as model level validations to ensure that `user_id1` < `user_id2` (ensuring no duplicate connections) and `status` is either 'connected', 'pending_user1' or 'pending_user2'. 
 
