@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { fetchUser, fetchUsers } from '../../actions/user_actions';
 import { updateModal } from '../../actions/ui_actions';
 import Feed from './feed';
-import { createPost, fetchNewsFeed, deletePost, updatePost } from '../../actions/post_actions';
+import { createPost, fetchNewsFeed, deletePost, updatePost, fetchPost } from '../../actions/post_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -21,7 +21,8 @@ const mapDispatchToProps = (dispatch) => ({
   createPost: (body) => dispatch(createPost(body)),
   fetchNewsFeed: (userIds) => dispatch(fetchNewsFeed(userIds)),
   deletePost: (postId) => dispatch(deletePost(postId)),
-  editPost: (post) => dispatch(updatePost(post))
+  editPost: (post) => dispatch(updatePost(post)),
+  fetchPost: (post) => dispatch(fetchPost(post))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed);

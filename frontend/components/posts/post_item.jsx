@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import EditPostDropdown from '../dropdown/edit_post_dropdown';
 import Dropdown from '../dropdown/dropdown';
 import CommentItem from '../comments/comment_item';
-import { creatoreaction, updateReaction, fetchReaction, deleteReaction } from '../../util/reaction_util';
+import { createReaction, updateReaction, fetchReaction, deleteReaction } from '../../util/reaction_util';
 import { createComment, fetchComments } from '../../util/comment_util';
 
 class PostItem extends React.Component {
@@ -12,6 +12,7 @@ class PostItem extends React.Component {
     this.state = {
       reactionCount: this.props.post.reactions.ids.length,
       commentCount: this.props.post.comments.ids.length,
+      postId: this.props.post.id,
       commentBody: '',
       comments: [],
       offset: 0
@@ -34,13 +35,39 @@ class PostItem extends React.Component {
     }
   }
 
+  componentDidUpdate () {
+    if (this.state.postId != this.props.post.id) {
+      this.setState({
+        reactionCount: this.props.post.reactions.ids.length ,
+        commentCount: this.props.post.comments.ids.length,
+        postId: this.props.post.id,
+      })
+
+      if (!this.props.profile && this.props.post.likers.ids.includes(this.props.currentUser.id)) {
+      fetchReaction(this.props.post.id)
+        .then((reaction) => {
+          this.setState({
+            reaction
+          })
+        })
+      } else if (!this.props.profile && !this.props.post.likers.ids.includes(this.props.currentUser.id)) {
+        this.setState({
+          reaction: null
+        })
+      } 
+    }
+  }
+
   removeReaction () {
     deleteReaction(this.props.post.id, this.state.reaction.id)
       .then(() => {
-        this.setState((prevState) => ({
-          reaction: null,
-          reactionCount: prevState.reactionCount - 1
-        }))
+        this.props.fetchPost(this.props.post.id)
+          .then((post) => {
+            this.setState((prevState) => ({
+              reaction: null,
+              reactionCount: post.post.reactions.ids.length,
+            }))
+          })
       })
   }
 
@@ -53,12 +80,15 @@ class PostItem extends React.Component {
           }))
         })
     } else {
-      creatoreaction(this.props.post.id, type)
+      createReaction(this.props.post.id, type)
         .then((reaction) => {
-          this.setState((prevState) => ({
-            reactionCount: prevState.reactionCount + 1,
-            reaction
-          }))
+          this.props.fetchPost(this.props.post.id)
+            .then((post) => {
+              this.setState({
+                reactionCount: post.post.reactions.ids.length,
+                reaction
+              })
+            })
         })
     }
   }

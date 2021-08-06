@@ -38,6 +38,18 @@ class Feed extends React.Component {
 
   }
 
+  componentDidUpdate () {
+    if (this.props.posts && this.state.newsFeed.length != Object.values(this.props.posts).length) {
+      this.setState(() => {
+        let posts = sortPosts(Object.values(this.props.posts)).slice();
+
+        return {
+        newsFeed: posts
+      }})
+      
+    }
+  }
+
   render () {
     let modal;
     switch (this.props.modal) {
@@ -72,7 +84,23 @@ class Feed extends React.Component {
         modal = '';
     }
 
-    let posts = sortPosts(Object.values(this.props.posts))
+    // let posts = sortPosts(Object.values(this.props.posts))
+
+    let postList = <ul>
+               {this.state.newsFeed.length > 0 ? this.state.newsFeed.map((post, i) => {
+                    return <PostItem 
+                      key={i} 
+                      user={this.props.users[`${post.authorId}`]}
+                      currentUser={this.props.currentUser}
+                      post={post} 
+                      updateModal={this.props.updateModal}
+                      fetchPost={this.props.fetchPost}
+                    /> 
+                }) :
+                <li className="post-item">
+                    <p>{"No posts yet :("}</p>
+                </li>}
+              </ul>
 
     return <div>
         {modal}
@@ -82,8 +110,8 @@ class Feed extends React.Component {
             <UserSidebar user={this.props.currentUser} />
             <div className="activity-feed">
               <NewPost user={this.props.currentUser} modal={this.props.modal} updateModal={this.props.updateModal}/>
-              <ul>
-               {posts.length > 0 ? posts.map((post, i) => {
+              {/* <ul>
+               {this.state.newsFeed.length > 0 ? this.state.newsFeed.map((post, i) => {
                     return <PostItem 
                       key={i} 
                       user={this.props.users[`${post.authorId}`]}
@@ -95,7 +123,8 @@ class Feed extends React.Component {
                 <li className="post-item">
                     <p>{"No posts yet :("}</p>
                 </li>}
-              </ul>
+              </ul> */}
+              {postList}
             </div>
             <CreatorSidebar />
           </main>

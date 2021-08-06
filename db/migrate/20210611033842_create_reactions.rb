@@ -1,4 +1,4 @@
-class creatoreactions < ActiveRecord::Migration[5.2]
+class createReactions < ActiveRecord::Migration[5.2]
   def change
     create_table :reactions do |t|
       t.integer :post_id, null: false, index: true
